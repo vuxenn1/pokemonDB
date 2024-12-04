@@ -1,0 +1,91 @@
+/* Reset and body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #DFF8EB; /* Light Aqua background */
+    color: #011638; /* Dark Blue text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack content vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #011638; /* Dark Blue */
+    color: #CDCDCD; /* Light Grey text */
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* Button container styles */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+    flex-grow: 1; /* Allow the container to expand and take up remaining space */
+}
+
+/* Main Menu Button styles */
+.main-btn {
+    background-color: #214E34; /* Dark Green */
+    color: #CDCDCD; /* Light Grey text */
+    font-size: 1.5em;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 200px;
+    text-align: center;
+}
+
+.main-btn:hover {
+    background-color: #364156; /* Secondary Dark Blue */
+    transform: translateY(-3px); /* Slight elevation on hover */
+}
+
+.main-btn:active {
+    background-color: #011638; /* Dark Blue on click */
+}
+
+.adm-btn {
+    background-color: #2f3e46; /* Dark Green */
+    color: #CDCDCD; /* Light Grey text */
+    font-size: 1.5em;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 200px;
+    text-align: center;
+}
+
+.adm-btn:hover {
+    background-color: #1d3557; /* Secondary Dark Blue */
+    transform: translateY(-3px); /* Slight elevation on hover */
+}
+
+.adm-btn:active {
+    background-color: #390099; /* Dark Blue on click */
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 1em;
+    background-color: #011638; /* Dark Blue */
+    color: #CDCDCD; /* Light Grey text */
+    margin-top: auto; /* Push footer to the bottom */
+}

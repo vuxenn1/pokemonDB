@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+    <header>
+        <h1>Pokédex</h1>
+        <!-- Back to Main Menu Button inside header -->
+        <div class="back-to-main">
+            <a href="index.html">
+                <button class="back-btn">Back to Main Menu</button>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Pokémon Grid Container -->
+        <div class="container" id="pokemon-grid"></div>
+    </main>
+
+    <footer>Powered by Node.js & MySQL</footer>
+
+    <script>
+        // Fetch Pokémon data from API
+        fetch('/api/pokemons')
+        .then(response => response.json())
+        .then(data => {
+            const grid = document.getElementById('pokemon-grid');
+            
+            // Render Pokémon cards with placeholders for logos
+            grid.innerHTML = data.map(pokemon => `
+                <div class="card ${pokemon.isShiny ? 'shiny' : ''}">
+                    <div class="pokemon-logo">
+                        <img src="path/to/logo-placeholder.png" alt="${pokemon.name} logo">
+                    </div>
+                    <p><small>#</small>${pokemon.id}</p>
+                    <h3>${pokemon.name}</h3>
+                    <p><strong>Lv.</strong> ${pokemon.level}</p>
+                    <p><strong>pType:</strong> ${pokemon.primaryType}</p>
+                    <p><strong>sType:</strong> ${pokemon.secondaryType}</p>
+                </div>
+            `).join('');
+        })
+        .catch(err => console.error('Error fetching Pokémon data:', err));
+    </script>
+</body>
+</html>

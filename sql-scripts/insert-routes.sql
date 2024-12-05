@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM route;
 ALTER TABLE route AUTO_INCREMENT = 1;
 

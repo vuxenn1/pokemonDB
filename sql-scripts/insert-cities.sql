@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM city;
 ALTER TABLE City AUTO_INCREMENT = 1;
 

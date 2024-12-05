@@ -110,15 +110,15 @@ header {
     height: 40px;
     object-fit: contain;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
 }
 
 .primary-type {
-    left: 10px; /* Position at bottom-left corner */
+    left: 20px; /* Position at bottom-left corner */
 }
 
 .secondary-type {
-    right: 10px; /* Position at bottom-right corner */
+    right: 20px; /* Position at bottom-right corner */
 }
 
 /* Footer styles */

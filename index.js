@@ -28,7 +28,7 @@ db.connect(err => {
 // API endpoint to get all pokemons
 app.get('/api/pokemons', (req, res) => 
     {
-    var queryText = 'SELECT p.id, p.name, p.level, t1.name AS primaryType, t2.name AS secondaryType, p.isShiny FROM Pokemon p JOIN PokemonType t1 ON t1.id = p.ptype LEFT JOIN PokemonType t2 ON t2.id = p.stype;';
+    var queryText = 'SELECT p.id, p.name, p.level, t1.name AS primaryType, t2.name AS secondaryType, p.isShiny, p.logo_url as url FROM Pokemon p JOIN PokemonType t1 ON t1.id = p.ptype LEFT JOIN PokemonType t2 ON t2.id = p.stype;';
     db.query(queryText, (err, results) => {
         if (err) {
             res.status(500).send(err);

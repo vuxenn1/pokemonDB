@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM Item;
 ALTER TABLE Item AUTO_INCREMENT = 1;
 INSERT INTO Item (name, description, price) VALUES

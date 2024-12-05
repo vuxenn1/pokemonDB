@@ -1,5 +1,3 @@
-USE pokemonyasarhoca;
-
 DELIMITER $$
 
 CREATE PROCEDURE InsertTrainerDetails()

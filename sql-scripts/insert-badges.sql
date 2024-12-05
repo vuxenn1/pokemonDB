@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM Badge;
 ALTER TABLE Badge AUTO_INCREMENT = 1;
 INSERT INTO Badge (name, description, price, isElite) VALUES

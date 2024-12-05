@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM pokecenter;
 ALTER TABLE pokecenter AUTO_INCREMENT = 1;
 

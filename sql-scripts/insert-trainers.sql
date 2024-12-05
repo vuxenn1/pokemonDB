@@ -1,4 +1,5 @@
-use pokemonyasarhoca;
+delete from trainer;
+alter table trainer auto_increment = 1;
 
 INSERT INTO Trainer (name, age, gender, badge, type) VALUES
 ('Ash Ketchum', 10, 'M', 1, 'Player'),
@@ -34,5 +35,3 @@ INSERT INTO Trainer (name, age, gender, badge, type) VALUES
 
 select * from trainer;
 SELECT t.name AS TrainerName, b.name AS BadgeName FROM Trainer t LEFT JOIN Badge b ON t.badge = b.id;
-
-select name from pokemon;

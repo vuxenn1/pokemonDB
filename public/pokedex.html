@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1>Pokédex</h1>
-        <a href="#" class="back-btn">Back to Main Menu</a>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
     </header>
     <main class="container" id="pokemon-grid">
         <!-- Pokémon cards will be rendered here -->
@@ -52,7 +52,7 @@
                 grid.innerHTML = data.map(pokemon => `
                     <a href="https://pokemondb.net/pokedex/${pokemon.name}" target="_blank" class="card ${pokemon.isShiny ? 'shiny' : ''}">
                         <div class="pokemon-logo">
-                            <img src="https://img.pokemondb.net/sprites/silver/normal/${pokemon.name}.png" alt="${pokemon.name}">
+                            <img src="${pokemon.url}" alt="${pokemon.name}">
                         </div>
                         <p><small>#</small>${pokemon.id}</p>
                         <h3>${pokemon.name}</h3>

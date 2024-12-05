@@ -22,10 +22,6 @@ header {
 }
 
 /* Back to Main Menu Button in header */
-.back-to-main {
-    margin-top: 15px; /* Add space between title and button */
-}
-
 .back-btn {
     background-color: #214E34; /* Dark Green */
     color: #CDCDCD; /* Light Grey text */
@@ -36,6 +32,7 @@ header {
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
+    margin-top: 15px;
 }
 
 .back-btn:hover {
@@ -67,6 +64,9 @@ header {
     padding: 20px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* Remove underline for links */
+    color: inherit; /* Ensure text color is inherited */
+    position: relative; /* Enable absolute positioning for child elements */
 }
 
 .card:hover {
@@ -102,6 +102,23 @@ header {
 
 .shiny h3 {
     color: #FF8C00; /* Orange text for shiny Pokémon */
+}
+
+/* Type image styles */
+.type-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    position: absolute;
+    bottom: 10px;
+}
+
+.primary-type {
+    left: 10px; /* Position at bottom-left corner */
+}
+
+.secondary-type {
+    right: 10px; /* Position at bottom-right corner */
 }
 
 /* Footer styles */

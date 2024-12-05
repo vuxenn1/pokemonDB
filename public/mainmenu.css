@@ -36,7 +36,7 @@ header h1 {
 /* Main Menu Button styles */
 .main-btn {
     background-color: #214E34; /* Dark Green */
-    color: #CDCDCD; /* Light Grey text */
+    color: #ffffff; /* Light Grey text */
     font-size: 1.5em;
     padding: 15px 30px;
     border: none;
@@ -59,7 +59,7 @@ header h1 {
 
 .adm-btn {
     background-color: #2f3e46; /* Dark Green */
-    color: #CDCDCD; /* Light Grey text */
+    color: #ffffff; /* Light Grey text */
     font-size: 1.5em;
     padding: 15px 30px;
     border: none;

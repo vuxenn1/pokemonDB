@@ -9,47 +9,60 @@
 <body>
     <header>
         <h1>Pokédex</h1>
-        <!-- Back to Main Menu Button inside header -->
-        <div class="back-to-main">
-            <a href="index.html">
-                <button class="back-btn">Back to Main Menu</button>
-            </a>
-        </div>
+        <a href="#" class="back-btn">Back to Main Menu</a>
     </header>
-
-    <main>
-        <!-- Pokémon Grid Container -->
-        <div class="container" id="pokemon-grid"></div>
+    <main class="container" id="pokemon-grid">
+        <!-- Pokémon cards will be rendered here -->
     </main>
-
-    <footer>Powered by Node.js & MySQL</footer>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
 
     <script>
+        // Define type logos for all 18 types
+        const typeLogos = {
+            Normal: '/images/typelogos/normal.png',
+            Fire: '/images/typelogos/fire.png',
+            Water: '/images/typelogos/water.png',
+            Grass: '/images/typelogos/grass.png',
+            Electric: '/images/typelogos/electric.png',
+            Ice: '/images/typelogos/ice.png',
+            Fighting: '/images/typelogos/fighting.png',
+            Poison: '/images/typelogos/poison.png',
+            Ground: '/images/typelogos/ground.png',
+            Flying: '/images/typelogos/flying.png',
+            Psychic: '/images/typelogos/psychic.png',
+            Bug: '/images/typelogos/bug.png',
+            Rock: '/images/typelogos/rock.png',
+            Ghost: '/images/typelogos/ghost.png',
+            Dragon: '/images/typelogos/dragon.png',
+            Dark: '/images/typelogos/dark.png',
+            Steel: '/images/typelogos/steel.png',
+            Fairy: '/images/typelogos/fairy.png'
+        };
+
         // Fetch Pokémon data from API
         fetch('/api/pokemons')
-        .then(response => response.json())
-        .then(data => 
-        {
-            const grid = document.getElementById('pokemon-grid');
-            
-            // Render Pokémon cards with placeholders for logos
-            grid.innerHTML = data.map(pokemon => `
-                <div class="card ${pokemon.isShiny ? 'shiny' : ''}">
-                    <div class="pokemon-logo">
-                        <a href="https://pokemondb.net/pokedex/${pokemon.name}" target="_blank">
+            .then(response => response.json())
+            .then(data => 
+            {
+                const grid = document.getElementById('pokemon-grid');
+                
+                // Render Pokémon cards with placeholders for logos
+                grid.innerHTML = data.map(pokemon => `
+                    <a href="https://pokemondb.net/pokedex/${pokemon.name}" target="_blank" class="card ${pokemon.isShiny ? 'shiny' : ''}">
+                        <div class="pokemon-logo">
                             <img src="https://img.pokemondb.net/sprites/silver/normal/${pokemon.name}.png" alt="${pokemon.name}">
-                        </a>
-                    </div>
-                    <p><small>#</small>${pokemon.id}</p>
-                    <h3>${pokemon.name}</h3>
-                    <p><strong>Lv.</strong> ${pokemon.level}</p>
-                    <p><strong>Type 1:</strong> ${pokemon.primaryType}</p>
-                    ${pokemon.secondaryType ? `<p><strong>Type 2:</strong> ${pokemon.secondaryType}</p>` : ''}
-                </div>
-            `).join('');
-        })
-        .catch(err => console.error('Error fetching Pokémon data:', err));
+                        </div>
+                        <p><small>#</small>${pokemon.id}</p>
+                        <h3>${pokemon.name}</h3>
+                        <p><strong>Lv.</strong> ${pokemon.level}</p>
+                        <img src="${typeLogos[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">
+                        ${pokemon.secondaryType ? `<img src="${typeLogos[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
+                    </a>
+                `).join('');
+            })
+            .catch(err => console.error('Error fetching Pokémon data:', err));
     </script>
-    
 </body>
 </html>

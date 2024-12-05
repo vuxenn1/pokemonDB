@@ -90,7 +90,7 @@ CREATE TABLE PokeCenter (
 CREATE TABLE Gym (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    location VARCHAR(50) NOT NULL,
+    location VARCHAR(100) NOT NULL,
     gymType INT NOT NULL,
     city INT NOT NULL,
     

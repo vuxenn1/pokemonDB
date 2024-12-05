@@ -36,13 +36,15 @@
             grid.innerHTML = data.map(pokemon => `
                 <div class="card ${pokemon.isShiny ? 'shiny' : ''}">
                     <div class="pokemon-logo">
-                        <img src="path/to/logo-placeholder.png" alt="${pokemon.name} logo">
+                        <a href="https://pokemondb.net/pokedex/${pokemon.name}" target="_blank">
+                            <img src="https://img.pokemondb.net/sprites/silver/normal/${pokemon.name}.png" alt="${pokemon.name}">
+                        </a>
                     </div>
                     <p><small>#</small>${pokemon.id}</p>
                     <h3>${pokemon.name}</h3>
                     <p><strong>Lv.</strong> ${pokemon.level}</p>
-                    <p><strong>pType:</strong> ${pokemon.primaryType}</p>
-                    ${pokemon.secondaryType ? `<p><strong>sType:</strong> ${pokemon.secondaryType}</p>` : ''}
+                    <p><strong>Type 1:</strong> ${pokemon.primaryType}</p>
+                    ${pokemon.secondaryType ? `<p><strong>Type 2:</strong> ${pokemon.secondaryType}</p>` : ''}
                 </div>
             `).join('');
         })

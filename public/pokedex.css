@@ -3,19 +3,19 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #DFF8EB; /* Light Aqua background */
-    color: #011638; /* Dark Blue text color */
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack content vertically */
-    min-height: 100vh; /* Ensure full viewport height */
+    background-color: #E8F5E9; /* Very light green background */
+    color: #1B263B; /* Deep navy blue text color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header styles */
 header {
     text-align: center;
-    padding: 40px 20px;
-    background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    padding: 30px 20px;
+    background-color: #1B263B; /* Deep navy blue */
+    color: #F0F4F8; /* Soft white text */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,12 +23,12 @@ header {
 
 /* Back to Main Menu Button in header */
 .back-btn {
-    background-color: #214E34; /* Dark Green */
-    color: #CDCDCD; /* Light Grey text */
+    background-color: #26A69A; /* Teal */
+    color: #FFFFFF; /* White text */
     font-size: 1.2em;
-    padding: 12px 30px;
+    padding: 10px 25px;
     border: none;
-    border-radius: 30px; /* Rounded corners */
+    border-radius: 30px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
@@ -36,12 +36,12 @@ header {
 }
 
 .back-btn:hover {
-    background-color: #364156; /* Secondary Dark Blue */
-    transform: translateY(-3px); /* Slight elevation on hover */
+    background-color: #2E7D6C; /* Darker teal on hover */
+    transform: translateY(-3px);
 }
 
 .back-btn:active {
-    background-color: #011638; /* Dark Blue on click */
+    background-color: #004D40; /* Deepest teal on click */
 }
 
 /* Grid container styles */
@@ -52,21 +52,21 @@ header {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    flex-grow: 1; /* Allow grid to take up available space */
+    flex-grow: 1;
 }
 
 /* Card styles */
 .card {
-    background-color: #ffffff; /* White background */
-    border-radius: 10px; /* Rounded corners */
+    background-color: #FFFFFF; /* White background */
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none; /* Remove underline for links */
-    color: inherit; /* Ensure text color is inherited */
-    position: relative; /* Enable absolute positioning for child elements */
+    text-decoration: none;
+    color: #1B263B; /* Deep navy blue text */
+    position: relative;
 }
 
 .card:hover {
@@ -84,7 +84,7 @@ header {
 
 /* Card header (Pokemon name) styles */
 .card h3 {
-    color: #364156; /* Secondary Dark Blue */
+    color: #004D40; /* Dark teal */
     font-size: 1.4em;
     margin: 10px 0;
 }
@@ -92,16 +92,17 @@ header {
 .card p {
     font-size: 1em;
     margin: 5px 0;
+    color: #455A64; /* Soft gray-blue text */
 }
 
 /* Shiny Pokémon styles */
 .card.shiny {
-    background-color: #FFF3D4; /* Soft yellow background for shiny Pokémon */
-    border: 2px solid #FFCC00; /* Golden border for shiny Pokémon */
+    background-color: #FFF9C4; /* Pale yellow background for shiny Pokémon */
+    border: 2px solid #FFEB3B; /* Bright yellow border */
 }
 
 .shiny h3 {
-    color: #FF8C00; /* Orange text for shiny Pokémon */
+    color: #F57F17; /* Orange-yellow text for shiny Pokémon */
 }
 
 /* Type image styles */
@@ -114,19 +115,19 @@ header {
 }
 
 .primary-type {
-    left: 20px; /* Position at bottom-left corner */
+    left: 20px;
 }
 
 .secondary-type {
-    right: 20px; /* Position at bottom-right corner */
+    right: 20px;
 }
 
 /* Footer styles */
 footer {
     text-align: center;
     padding: 15px;
-    margin-top: auto; /* Push footer to the bottom */
+    margin-top: auto;
     font-size: 1em;
-    background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    background-color: #1B263B; /* Deep navy blue */
+    color: #F0F4F8; /* Soft white text */
 }

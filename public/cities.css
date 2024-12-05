@@ -1,0 +1,94 @@
+/* Reset and body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5DC; /* Beige background */
+    color: #011638; /* Dark Blue text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack content vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #011638; /* Dark Blue */
+    color: #CDCDCD; /* Light Grey text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Back to Main Menu Button in header */
+.back-btn {
+    background-color: #214E34; /* Dark Green */
+    color: #CDCDCD; /* Light Grey text */
+    font-size: 1.2em;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 15px;
+}
+
+.back-btn:hover {
+    background-color: #364156; /* Secondary Dark Blue */
+    transform: translateY(-3px); /* Slight elevation on hover */
+}
+
+.back-btn:active {
+    background-color: #011638; /* Dark Blue on click */
+}
+
+/* Grid container styles */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1; /* Allow grid to take up available space */
+}
+
+/* Card styles */
+.card {
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card header (City name) styles */
+.card h3 {
+    color: #364156; /* Secondary Dark Blue */
+    font-size: 1.4em;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: auto; /* Push footer to the bottom */
+    font-size: 1em;
+    background-color: #011638; /* Dark Blue */
+    color: #CDCDCD; /* Light Grey text */
+}

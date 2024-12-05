@@ -3,89 +3,85 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #DFF8EB; /* Light Aqua background */
+    background-color: #F9F9F9; /* Light Gray background */
     color: #011638; /* Dark Blue text color */
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack content vertically */
     min-height: 100vh; /* Ensure full viewport height */
+    text-align: center;
 }
 
 /* Header styles */
 header {
-    text-align: center;
-    padding: 40px 20px;
+    padding: 20px 15px; /* Reduced padding */
     background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    color: #F0F8FF; /* Light Text */
+    border-bottom: 3px solid #214E34; /* Subtle bottom border */
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 1.8em; /* Smaller font size */
+    margin: 0;
 }
 
 /* Button container styles */
 .button-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack buttons vertically */
     align-items: center;
     gap: 20px;
     margin-top: 50px;
-    flex-grow: 1; /* Allow the container to expand and take up remaining space */
 }
 
-/* Main Menu Button styles */
-.main-btn {
-    background-color: #214E34; /* Dark Green */
-    color: #ffffff; /* Light Grey text */
+/* Common Button styles */
+.main-btn, .adm-btn {
     font-size: 1.5em;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px; /* Rounded corners */
+    padding: 15px 20px;
+    border: 2px solid transparent; /* Initial transparent border */
+    border-radius: 10px; /* Rounded corners */
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    width: 200px;
+    transition: all 0.3s ease-in-out;
+    width: 300px; /* Fixed width for all buttons */
     text-align: center;
+    font-weight: bold;
+    background-color: #FFFFFF; /* White background */
+    color: #011638; /* Dark Blue text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.main-btn:hover {
-    background-color: #364156; /* Secondary Dark Blue */
-    transform: translateY(-3px); /* Slight elevation on hover */
-}
-
-.main-btn:active {
-    background-color: #011638; /* Dark Blue on click */
+.main-btn:hover, .adm-btn:hover {
+    background-color: #214E34; /* Green highlight */
+    color: #FFFFFF; /* White text on hover */
+    border: 2px solid #214E34; /* Green border */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly elevated shadow */
 }
 
 .adm-btn {
-    background-color: #2f3e46; /* Dark Green */
-    color: #ffffff; /* Light Grey text */
-    font-size: 1.5em;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px; /* Rounded corners */
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    width: 200px;
-    text-align: center;
+    background-color: #F0F8FF; /* Light Aqua */
+    color: #011638; /* Dark Blue text */
+    border: 2px solid #A8DADC; /* Aqua border */
 }
 
 .adm-btn:hover {
-    background-color: #1d3557; /* Secondary Dark Blue */
-    transform: translateY(-3px); /* Slight elevation on hover */
-}
-
-.adm-btn:active {
-    background-color: #390099; /* Dark Blue on click */
+    background-color: #011638; /* Dark Blue on hover */
+    color: #FFFFFF; /* White text */
+    border-color: #011638; /* Match hover background color */
 }
 
 /* Footer styles */
 footer {
-    text-align: center;
-    padding: 15px;
-    font-size: 1em;
     background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    color: #F0F8FF; /* Light Text */
+    padding: 20px;
     margin-top: auto; /* Push footer to the bottom */
+    font-size: 1em;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer strong {
+    color: #ffffff; /* Green accent for technology names */
 }

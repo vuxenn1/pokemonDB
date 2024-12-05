@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cities</title>
+    <link rel="stylesheet" href="cities.css">
+</head>
+<body>
+    <header>
+        <h1>Cities</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="city-grid">
+        <!-- City cards will be rendered here -->
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Fetch city data from API
+        fetch('/api/cities')
+            .then(response => response.json())
+            .then(data => 
+            {
+                const grid = document.getElementById('city-grid');
+                
+                // Render city cards
+                grid.innerHTML = data.map(city => `
+                    <div class="card">
+                        <h3>${city.name}</h3>
+                        <p><small>ID: ${city.id}</small></p>
+                        <p><strong>Population:</strong> ${city.population}</p>
+                    </div>
+                `).join('');
+            })
+            .catch(err => console.error('Error fetching city data:', err));
+    </script>
+</body>
+</html>

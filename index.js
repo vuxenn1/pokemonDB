@@ -26,7 +26,7 @@ db.connect(err => {
 });
 
 // API endpoint to get all pokemons
-app.get('/api/pokemons', (req, res) => 
+app.get('/api/pokedex', (req, res) => 
     {
     var queryText = 'SELECT p.id, p.name, p.level, t1.name AS primaryType, t2.name AS secondaryType, p.isShiny, p.logo_url as url FROM Pokemon p JOIN PokemonType t1 ON t1.id = p.ptype LEFT JOIN PokemonType t2 ON t2.id = p.stype;';
     db.query(queryText, (err, results) => {
@@ -37,6 +37,21 @@ app.get('/api/pokemons', (req, res) =>
         }
     });
 });
+
+// API endpoint to get all pokemons
+app.get('/api/cities', (req, res) => 
+    {
+        var queryText = 'SELECT id, name, population FROM CITY;';
+        db.query(queryText, (err, results) => 
+        {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.json(results);
+            }
+        });
+    });
+    
 
 // Start server
 app.listen(3000, () => {

@@ -42,7 +42,7 @@
         };
 
         // Fetch Pokémon data from API
-        fetch('/api/pokemons')
+        fetch('/api/pokedex')
             .then(response => response.json())
             .then(data => 
             {
@@ -54,7 +54,7 @@
                         <div class="pokemon-logo">
                             <img src="${pokemon.url}" alt="${pokemon.name}">
                         </div>
-                        <p><small>#</small>${pokemon.id}</p>
+                        <p><small>#${pokemon.id}</small></p>
                         <h3>${pokemon.name}</h3>
                         <p><strong>Lv.</strong> ${pokemon.level}</p>
                         <img src="${typeLogos[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">

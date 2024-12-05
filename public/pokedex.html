@@ -28,7 +28,8 @@
         // Fetch Pokémon data from API
         fetch('/api/pokemons')
         .then(response => response.json())
-        .then(data => {
+        .then(data => 
+        {
             const grid = document.getElementById('pokemon-grid');
             
             // Render Pokémon cards with placeholders for logos
@@ -41,11 +42,12 @@
                     <h3>${pokemon.name}</h3>
                     <p><strong>Lv.</strong> ${pokemon.level}</p>
                     <p><strong>pType:</strong> ${pokemon.primaryType}</p>
-                    <p><strong>sType:</strong> ${pokemon.secondaryType}</p>
+                    ${pokemon.secondaryType ? `<p><strong>sType:</strong> ${pokemon.secondaryType}</p>` : ''}
                 </div>
             `).join('');
         })
         .catch(err => console.error('Error fetching Pokémon data:', err));
     </script>
+    
 </body>
 </html>

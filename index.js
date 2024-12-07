@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',  // Replace with your DB password
+    password: 'password',  // Replace with your DB password
     database: 'pokemonyasarhoca'
 });
 
@@ -52,6 +52,53 @@ app.get('/api/cities', (req, res) =>
         });
     });
     
+app.get('/api/routes', (req, res) => 
+    {
+        var queryText = 'SELECT Route.id, Route.name, sc.name AS startingCityName, ec.name AS endingCityName FROM Route JOIN City AS sc ON Route.startingCity = sc.id JOIN City AS ec ON Route.endingCity = ec.id;';
+        db.query(queryText, (err, results) => 
+        {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.json(results);
+            }
+        });
+    });
+
+app.get('/api/wildpokemons', (req, res) => 
+    {
+        var queryText = 'SELECT WildPokemon.pokemon_id AS wildPokemonID, Pokemon.name AS pokemonName, route_id FROM WildPokemon JOIN Pokemon ON WildPokemon.pokemon_id = Pokemon.id ;';
+        db.query(queryText, (err, results) => 
+        {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                //console.log(results); // Debugging the database response
+                res.json(results);
+            }
+        });
+    });
+
+app.get('/api/capturedpokemons', (req, res) => 
+    {
+        var queryText = `
+        SELECT 
+            CapturedPokemon.pokemon_id AS pokemonID, 
+            Pokemon.name AS pokemonName, 
+            Trainer.name AS trainerName 
+        FROM CapturedPokemon
+        JOIN Pokemon ON CapturedPokemon.pokemon_id = Pokemon.id
+        JOIN Trainer ON CapturedPokemon.trainer_id = Trainer.id;
+    `;
+        db.query(queryText, (err, results) => 
+        {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.json(results);
+            }
+        });
+    });
 
 // Start server
 app.listen(3000, () => {

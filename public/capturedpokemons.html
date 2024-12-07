@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captured Pokemons</title>
+    <link rel="stylesheet" href="cities.css">
+</head>
+<body>
+    <header>
+        <h1>Captured Pokemons</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="capturedpokemon-grid">
+        <!-- City cards will be rendered here -->
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Fetch city data from API
+        fetch('/api/capturedpokemons')
+            .then(response => response.json())
+            .then(data => 
+            {
+                const grid = document.getElementById('capturedpokemon-grid');
+                
+                // Render city cards
+                grid.innerHTML = data.map(capturedpokemons => `
+                    <div class="card">
+                        <h3>Pokemon: ${capturedpokemons.pokemonName}</h3>
+                        <p><strong>Owner:</strong> ${capturedpokemons.trainerName}</p>
+                    </div>
+                `).join('');
+            })
+            .catch(err => console.error('Error fetching city data:', err));
+    </script>
+</body>
+</html>

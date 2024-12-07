@@ -1,33 +1,37 @@
 /* Reset and body styles */
-body {
+body
+{
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #E8F5E9; /* Very light green background */
-    color: #1B263B; /* Deep navy blue text color */
+    background-color: #E8F5E9;
+    color: #1B263B;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 /* Header styles */
-header {
+header
+{
     text-align: center;
     padding: 40px 20px;
-    background-color: #1B263B; /* Deep navy blue */
-    color: #F0F4F8; /* Soft white text */
+    background-color: #1B263B;
+    color: #F0F4F8;
 }
 
-header h1 {
+header h1
+{
     font-size: 2.5em;
     margin: 0;
 }
 
 /* Back to Main Menu Button */
-.back-btn {
+.back-btn
+{
     display: inline-block;
-    background-color: #26A69A; /* Teal */
-    color: #FFFFFF; /* White text */
+    background-color: #26A69A;
+    color: #FFFFFF;
     font-size: 1em;
     padding: 12px 30px;
     border: none;
@@ -38,17 +42,20 @@ header h1 {
     margin-top: 20px;
 }
 
-.back-btn:hover {
-    background-color: #2E7D6C; /* Darker teal on hover */
+.back-btn:hover
+{
+    background-color: #2E7D6C;
     transform: translateY(-3px);
 }
 
-.back-btn:active {
-    background-color: #004D40; /* Deepest teal on click */
+.back-btn:active
+{
+    background-color: #004D40;
 }
 
 /* Grid container */
-.container {
+.container
+{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
@@ -59,45 +66,30 @@ header h1 {
 }
 
 /* Card styles */
-/* Card styles with grain texture */
-/* Card styles with grain texture */
-.card {
+.card
+{
     position: relative;
-    background: linear-gradient(135deg, #fffce6 50%, #f7e38d 100%);
+    background: linear-gradient(135deg, #efefef 50%, #eeeeee 100%);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    text-decoration: none;
     padding: 20px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #1B263B; /* Deep navy blue text */
+    color: #1B263B;
     cursor: pointer;
 }
 
-/* Grain texture overlay */
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/holographic.avif'); /* Replace with your grain texture path */
-    background-size: cover; /* Ensure the texture covers the card */
-    background-repeat: no-repeat;
-    opacity: 0.8; /* Adjust opacity for visibility */
-    mix-blend-mode: overlay; /* Adjust blend mode as needed */
-    pointer-events: none; /* Ensure the overlay doesn't block interactions */
-}
-
-.card:hover {
+.card:hover
+{
     transform: scale(1.05);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #ffe44b; /* Teal glow */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #ffe44b;
 }
 
 /* Shine effect */
-/* Updated Shine Effect */
-.card::after {
+.card::after
+{
     content: '';
     position: absolute;
     top: 0;
@@ -116,60 +108,43 @@ header h1 {
     opacity: 0;
 }
 
-.card:hover::after {
+.card:hover::after
+{
     left: 150%;
     opacity: 1;
     transition: left 0.8s ease, opacity 0.8s ease;
 }
 
-
 /* Card content */
-.card h3 {
+.card h3
+{
     font-size: 1.6em;
-    color: #004D40; /* Dark teal */
+    color: #004D40;
     margin: 15px 0 10px;
 }
 
-.card p {
+.card p
+{
     font-size: 1em;
-    color: #455A64; /* Soft gray-blue text */
+    color: #455A64;
     margin: 5px 0;
 }
 
-/* Holographic overlay 
-.card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
-    animation: holographic-rotate 8s linear infinite;
-    pointer-events: none;
-}*/
-
-@keyframes holographic-rotate {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Shiny Pokémon */
-.card.shiny {
-    background: linear-gradient(135deg, #f3ed4b, #e6b543);
+/* Card with special styles for shiny elements */
+.card.shiny
+{
+    background: linear-gradient(135deg, #fffb79, #ffc94b);
     border: 3px solid #FFC107;
 }
 
-.shiny h3 {
-    color: #FF6F00; /* Bright orange */
+.card.shiny h3
+{
+    color: #FF6F00;
 }
 
 /* Type badges */
-.type-img {
+.type-img
+{
     width: 40px;
     height: 40px;
     object-fit: contain;
@@ -178,20 +153,23 @@ header h1 {
     z-index: 2;
 }
 
-.primary-type {
+.primary-type
+{
     left: 15px;
 }
 
-.secondary-type {
+.secondary-type
+{
     right: 15px;
 }
 
 /* Footer */
-footer {
+footer
+{
     text-align: center;
     padding: 20px;
-    background-color: #1B263B; /* Deep navy blue */
-    color: #F0F4F8; /* Soft white text */
+    background-color: #1B263B;
+    color: #F0F4F8;
     font-size: 1em;
     margin-top: auto;
 }

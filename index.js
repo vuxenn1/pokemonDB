@@ -25,6 +25,33 @@ db.connect(err => {
     }
 });
 
+   // API endpoint to get column names of a table
+   app.get('/api/columns/:table', (req, res) => 
+    {
+        const tableName = req.params.table;
+    
+        const queryText = `
+            SELECT COLUMN_NAME 
+            FROM INFORMATION_SCHEMA.COLUMNS 
+            WHERE TABLE_SCHEMA = 'pokemonyasarhoca' 
+              AND TABLE_NAME = ?;
+        `;
+    
+        db.query(queryText, [tableName], (err, results) => 
+        {
+            if (err) 
+            {
+                res.status(500).send(err);
+            } 
+            else 
+            {
+                // Extract column names into a simple array
+                const columnNames = results.map(row => row.COLUMN_NAME);
+                res.json(columnNames);
+            }
+        });
+    });    
+
 // API endpoint to get all pokemons
 app.get('/api/pokedex', (req, res) => 
     {
@@ -38,7 +65,7 @@ app.get('/api/pokedex', (req, res) =>
     });
 });
 
-// API endpoint to get all pokemons
+// API endpoint to get all city
 app.get('/api/cities', (req, res) => 
     {
         var queryText = 'SELECT id, name, population FROM CITY;';

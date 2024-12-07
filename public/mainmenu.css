@@ -82,6 +82,23 @@ footer p {
     margin: 0;
 }
 
+footer a {
+    margin: 0;
+    text-decoration: none;
+    color: #F0F8FF;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition for hover effects */
+}
+
+footer a:hover {
+    color: #87CEFA; /* Light blue on hover */
+    text-decoration: underline; /* Adds an underline effect on hover */
+}
+
+footer a:visited {
+    color: #D3D3D3; /* Light gray for visited links */
+}
+
+
 footer strong {
     color: #ffffff; /* Green accent for technology names */
 }

@@ -8,37 +8,65 @@
 /* General body styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: #F7FFF7; /* Soft white-green background */
+    color: #343434; /* Dark gray text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header */
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #2ECC71;
-    color: #fff;
-    border-bottom: 2px solid #27AE60;
+    padding: 15px 20px;
+    background-color: #2F3061; /* Deep blue */
+    color: #FFE66D; /* Bright yellow */
+    position: relative;
 }
 
 .back-btn {
-    color: white;
+    position: absolute;
+    left: 20px;
+    color: #FFE66D; /* Bright yellow */
     text-decoration: none;
     font-weight: bold;
-    transition: transform 0.2s ease;
+    font-size: 1rem;
+    padding: 8px 12px;
+    background-color: #2F3061; /* Deep blue */
+    border: 2px solid #FFE66D; /* Light blue border */
+    border-radius: 8px; /* Slightly rounded corners for modern look */
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.3s ease;
 }
 
 .back-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Subtle zoom effect */
+    background-color: #FFE66D; /* Light blue hover */
+    color: #2F3061; /* Deep blue text on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+}
+
+.back-btn:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
+    background-color: #FFE66D; /* Bright yellow active */
+    color: #343434; /* Dark text for contrast */
+    border-color: #2F3061; /* Border darkens */
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Main container */
 .container {
+    flex: 1; /* Makes the main content grow to fill the space */
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 20px;
-    height: 70vh;
 }
 
 .pokemon-info {
@@ -46,24 +74,29 @@ header {
     flex-direction: row;
     gap: 20px;
     align-items: flex-start;
+    background-color: #F7FFF7; /* Same as body background for a clean look */
+    border-radius: 10px; /* Optional: Keeps a modern, rounded look */
+    padding: 20px;
 }
 
 /* Image container */
 .pokemon-img-container {
     width: 250px;
     height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pokemon-img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
 }
 
 /* Details container */
 .pokemon-details {
-    font-size: 1.1rem;
-    color: #333;
+    font-size: 1.2rem;
+    color: #343434; /* Dark gray text */
     text-align: left;
     line-height: 1.8;
 }
@@ -72,8 +105,8 @@ header {
 footer {
     text-align: center;
     padding: 10px 0;
-    background-color: #2ECC71;
-    color: white;
-    font-size: 0.8rem;
-    border-top: 2px solid #27AE60;
+    background-color: #2F3061; /* Deep blue */
+    color: #FFE66D; /* Bright yellow */
+    font-size: 0.9rem;
+    margin-top: auto; /* Pushes the footer to the bottom */
 }

@@ -87,6 +87,12 @@ header h1
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #AED6F1;
 }
 
+.card.card.shiny:hover
+{
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #F1C40F;
+}
+
 /* Shine effect */
 .card::after
 {

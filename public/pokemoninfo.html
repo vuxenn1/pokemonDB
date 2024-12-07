@@ -9,7 +9,7 @@
 <body>
     <header>
         <a href="pokedex.html" class="back-btn">Back to Pokédex</a>
-        <h1>Pokemon Info</h1>
+        <h1 id="page-header">Pokemon Info</h1>
     </header>
 
     <main class="container">
@@ -45,6 +45,14 @@
                 const pokemon = data.find(p => p.id == pokemonId);
 
                 if (pokemon) {
+                    // Update page title
+                    document.title = pokemon.name;
+
+                    // Update header text
+                    const pageHeader = document.getElementById('page-header');
+                    pageHeader.textContent = pokemon.name;
+
+                    // Populate Pokémon details
                     document.getElementById('pokemon-img').src = pokemon.url;
                     document.getElementById('pokemon-id').textContent = `#${pokemon.id}`;
                     document.getElementById('pokemon-name').textContent = pokemon.name;
@@ -56,15 +64,20 @@
                     const types = pokemon.primaryType + (pokemon.secondaryType ? ` / ${pokemon.secondaryType}` : '');
                     document.getElementById('pokemon-types').textContent = types;
                 } else {
+                    // Handle case where Pokémon is not found
                     document.getElementById('pokemon-id').textContent = "Not Found";
                     document.getElementById('pokemon-name').textContent = "Unknown";
                     document.getElementById('pokemon-types').textContent = "Unknown";
                     document.getElementById('pokemon-hp').textContent = "-";
                     document.getElementById('pokemon-ap').textContent = "-";
                     document.getElementById('pokemon-speed').textContent = "-";
+                    document.getElementById('page-header').textContent = "Unknown Pokémon";
                 }
             })
-            .catch(err => console.error('Error loading Pokemon details', err));
+            .catch(err => {
+                console.error('Error loading Pokémon details:', err);
+                document.getElementById('page-header').textContent = "Error Loading Pokémon";
+            });
     </script>
 </body>
 </html>

@@ -110,3 +110,15 @@ footer {
     font-size: 0.9rem;
     margin-top: auto; /* Pushes the footer to the bottom */
 }
+
+/* Type icons styling */
+.type-icons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.type-icon {
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+}

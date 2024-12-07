@@ -20,25 +20,25 @@
 
     <script>
         // Define type logos for all 18 types
-        const typeLogos = {
-            Normal: '/images/typelogos/normal.png',
-            Fire: '/images/typelogos/fire.png',
-            Water: '/images/typelogos/water.png',
-            Grass: '/images/typelogos/grass.png',
-            Electric: '/images/typelogos/electric.png',
-            Ice: '/images/typelogos/ice.png',
-            Fighting: '/images/typelogos/fighting.png',
-            Poison: '/images/typelogos/poison.png',
-            Ground: '/images/typelogos/ground.png',
-            Flying: '/images/typelogos/flying.png',
-            Psychic: '/images/typelogos/psychic.png',
-            Bug: '/images/typelogos/bug.png',
-            Rock: '/images/typelogos/rock.png',
-            Ghost: '/images/typelogos/ghost.png',
-            Dragon: '/images/typelogos/dragon.png',
-            Dark: '/images/typelogos/dark.png',
-            Steel: '/images/typelogos/steel.png',
-            Fairy: '/images/typelogos/fairy.png'
+        const typeicons = {
+            Normal: '/images/icons/normal.svg',
+            Fire: '/images/icons/fire.svg',
+            Water: '/images/icons/water.svg',
+            Grass: '/images/icons/grass.svg',
+            Electric: '/images/icons/electric.svg',
+            Ice: '/images/icons/ice.svg',
+            Fighting: '/images/icons/fighting.svg',
+            Poison: '/images/icons/poison.svg',
+            Ground: '/images/icons/ground.svg',
+            Flying: '/images/icons/flying.svg',
+            Psychic: '/images/icons/psychic.svg',
+            Bug: '/images/icons/bug.svg',
+            Rock: '/images/icons/rock.svg',
+            Ghost: '/images/icons/ghost.svg',
+            Dragon: '/images/icons/dragon.svg',
+            Dark: '/images/icons/dark.svg',
+            Steel: '/images/icons/steel.svg',
+            Fairy: '/images/icons/fairy.svg'
         };
 
     fetch('/api/pokedex')
@@ -56,8 +56,8 @@
                 <p><small>#${pokemon.id}</small></p>
                 <h3>${pokemon.name}</h3>
                 <p><strong>Lv.</strong> ${pokemon.level}</p>
-                <img src="${typeLogos[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">
-                ${pokemon.secondaryType ? `<img src="${typeLogos[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
+                <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">
+                ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
             </div>
         `).join('');
 

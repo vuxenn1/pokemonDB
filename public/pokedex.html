@@ -41,28 +41,38 @@
             Fairy: '/images/typelogos/fairy.png'
         };
 
-        // Fetch Pokémon data from API
-        fetch('/api/pokedex')
-            .then(response => response.json())
-            .then(data => 
+    fetch('/api/pokedex')
+    .then(response => response.json())
+    .then(data => 
+    {
+        const grid = document.getElementById('pokemon-grid');
+        
+        // Render Pokémon cards
+        grid.innerHTML = data.map(pokemon => `
+            <div class="card ${pokemon.isShiny ? 'shiny' : ''}" data-id="${pokemon.id}">
+                <div class="pokemon-logo">
+                    <img src="${pokemon.url}" alt="${pokemon.name}">
+                </div>
+                <p><small>#${pokemon.id}</small></p>
+                <h3>${pokemon.name}</h3>
+                <p><strong>Lv.</strong> ${pokemon.level}</p>
+                <img src="${typeLogos[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">
+                ${pokemon.secondaryType ? `<img src="${typeLogos[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
+            </div>
+        `).join('');
+
+        // Add click event listeners to open Pokémon page
+        document.querySelectorAll('.card').forEach(card => 
+        {
+            card.addEventListener('click', () => 
             {
-                const grid = document.getElementById('pokemon-grid');
-                
-                // Render Pokémon cards with placeholders for logos
-                grid.innerHTML = data.map(pokemon => `
-                    <a href="https://pokemondb.net/pokedex/${pokemon.name}" target="_blank" class="card ${pokemon.isShiny ? 'shiny' : ''}">
-                        <div class="pokemon-logo">
-                            <img src="${pokemon.url}" alt="${pokemon.name}">
-                        </div>
-                        <p><small>#${pokemon.id}</small></p>
-                        <h3>${pokemon.name}</h3>
-                        <p><strong>Lv.</strong> ${pokemon.level}</p>
-                        <img src="${typeLogos[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-img primary-type">
-                        ${pokemon.secondaryType ? `<img src="${typeLogos[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
-                    </a>
-                `).join('');
-            })
-            .catch(err => console.error('Error fetching Pokémon data:', err));
+                const pokemonId = card.getAttribute('data-id');
+                window.location.href = `/pokemoninfo.html?id=${pokemonId}`;
+            });
+        });
+    })
+    .catch(err => console.error('Error fetching Pokémon data:', err));
+
     </script>
     <script src="splash.js"></script>
 </body>

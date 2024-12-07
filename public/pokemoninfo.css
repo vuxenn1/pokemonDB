@@ -1,0 +1,79 @@
+/* Reset for consistent rendering */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2ECC71;
+    color: #fff;
+    border-bottom: 2px solid #27AE60;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Main container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    height: 70vh;
+}
+
+.pokemon-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Image container */
+.pokemon-img-container {
+    width: 250px;
+    height: 250px;
+}
+
+.pokemon-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Details container */
+.pokemon-details {
+    font-size: 1.1rem;
+    color: #333;
+    text-align: left;
+    line-height: 1.8;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #2ECC71;
+    color: white;
+    font-size: 0.8rem;
+    border-top: 2px solid #27AE60;
+}

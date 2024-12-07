@@ -4,8 +4,8 @@ body
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #E8F5E9;
-    color: #1B263B;
+    background-color: #F4F9F9;
+    color: #2C3E50;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -16,8 +16,8 @@ header
 {
     text-align: center;
     padding: 40px 20px;
-    background-color: #1B263B;
-    color: #F0F4F8;
+    background-color: #34495E;
+    color: #ECF0F1;
 }
 
 header h1
@@ -30,7 +30,7 @@ header h1
 .back-btn
 {
     display: inline-block;
-    background-color: #26A69A;
+    background-color: #1ABC9C;
     color: #FFFFFF;
     font-size: 1em;
     padding: 12px 30px;
@@ -44,13 +44,13 @@ header h1
 
 .back-btn:hover
 {
-    background-color: #2E7D6C;
+    background-color: #16A085;
     transform: translateY(-3px);
 }
 
 .back-btn:active
 {
-    background-color: #004D40;
+    background-color: #0E6655;
 }
 
 /* Grid container */
@@ -69,7 +69,7 @@ header h1
 .card
 {
     position: relative;
-    background: linear-gradient(135deg, #efefef 50%, #eeeeee 100%);
+    background: linear-gradient(135deg, #FFFFFF 50%, #F8F9F9 100%);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -77,14 +77,14 @@ header h1
     padding: 20px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #1B263B;
+    color: #2C3E50;
     cursor: pointer;
 }
 
 .card:hover
 {
     transform: scale(1.05);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #ffe44b;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #AED6F1;
 }
 
 /* Shine effect */
@@ -119,27 +119,27 @@ header h1
 .card h3
 {
     font-size: 1.6em;
-    color: #004D40;
+    color: #2980B9;
     margin: 15px 0 10px;
 }
 
 .card p
 {
     font-size: 1em;
-    color: #455A64;
+    color: #566573;
     margin: 5px 0;
 }
 
 /* Card with special styles for shiny elements */
 .card.shiny
 {
-    background: linear-gradient(135deg, #fffb79, #ffc94b);
-    border: 3px solid #FFC107;
+    background: linear-gradient(135deg, #F9E79F, #F7DC6F);
+    border: 3px solid #F1C40F;
 }
 
 .card.shiny h3
 {
-    color: #FF6F00;
+    color: #D68910;
 }
 
 /* Type badges */
@@ -168,8 +168,8 @@ footer
 {
     text-align: center;
     padding: 20px;
-    background-color: #1B263B;
-    color: #F0F4F8;
+    background-color: #34495E;
+    color: #ECF0F1;
     font-size: 1em;
     margin-top: auto;
 }

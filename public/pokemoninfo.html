@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Info</title>
+    <link rel="stylesheet" href="pokemoninfo.css">
+</head>
+<body>
+    <header>
+        <a href="pokedex.html" class="back-btn">Back to Pokédex</a>
+        <h1>Pokemon Info</h1>
+    </header>
+
+    <main class="container">
+        <div class="pokemon-info">
+            <!-- Pokémon image -->
+            <div class="pokemon-img-container">
+                <img id="pokemon-img" src="" alt="Pokemon Image" class="pokemon-img">
+            </div>
+            <!-- Details section -->
+            <div class="pokemon-details">
+                <p><strong>ID:</strong> <span id="pokemon-id">Loading...</span></p>
+                <p><strong>Name:</strong> <span id="pokemon-name">Loading...</span></p>
+                <p><strong>Type:</strong> <span id="pokemon-types">Loading...</span></p>
+                <p><strong>HP:</strong> <span id="pokemon-hp">Loading...</span></p>
+                <p><strong>AP:</strong> <span id="pokemon-ap">Loading...</span></p>
+                <p><strong>Speed:</strong> <span id="pokemon-speed">Loading...</span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Pokémon Inc.
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const pokemonId = params.get('id');
+
+        // Fetch the Pokémon data from API
+        fetch('/api/pokedex')
+            .then(response => response.json())
+            .then(data => {
+                const pokemon = data.find(p => p.id == pokemonId);
+
+                if (pokemon) {
+                    document.getElementById('pokemon-img').src = pokemon.url;
+                    document.getElementById('pokemon-id').textContent = `#${pokemon.id}`;
+                    document.getElementById('pokemon-name').textContent = pokemon.name;
+                    document.getElementById('pokemon-hp').textContent = pokemon.hp;
+                    document.getElementById('pokemon-ap').textContent = pokemon.ap;
+                    document.getElementById('pokemon-speed').textContent = pokemon.speed;
+
+                    // Handle types with conditional logic
+                    const types = pokemon.primaryType + (pokemon.secondaryType ? ` / ${pokemon.secondaryType}` : '');
+                    document.getElementById('pokemon-types').textContent = types;
+                } else {
+                    document.getElementById('pokemon-id').textContent = "Not Found";
+                    document.getElementById('pokemon-name').textContent = "Unknown";
+                    document.getElementById('pokemon-types').textContent = "Unknown";
+                    document.getElementById('pokemon-hp').textContent = "-";
+                    document.getElementById('pokemon-ap').textContent = "-";
+                    document.getElementById('pokemon-speed').textContent = "-";
+                }
+            })
+            .catch(err => console.error('Error loading Pokemon details', err));
+    </script>
+</body>
+</html>

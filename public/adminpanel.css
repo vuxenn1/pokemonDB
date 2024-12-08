@@ -1,9 +1,11 @@
+/* General Reset for Margin and Padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body & General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #FFFFFF;
@@ -11,12 +13,34 @@ body {
     padding: 20px;
 }
 
+/* Back to Menu Button */
+.back-to-menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-menu:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+/* Header & Title */
 h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
+/* Tabs */
 .tabs {
     display: flex;
     justify-content: center;
@@ -41,6 +65,7 @@ h1 {
     background-color: #777;
 }
 
+/* Tab Content */
 .tab-content {
     border-radius: 5px;
     background-color: #F8F8F8;
@@ -53,17 +78,6 @@ h1 {
     display: block;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead th {
-    background-color: #333;
-    color: #FFFFFF;
-    padding: 10px;
-}
-
 td {
     background-color: #FFFFFF;
     text-align: center;
@@ -71,6 +85,7 @@ td {
     border: 1px solid #555;
 }
 
+/* Edit/Delete Button Styles */
 button.edit {
     background-color: #FFD700;
     color: #333;
@@ -99,11 +114,31 @@ button.delete:hover {
     background-color: #FF6347;
 }
 
-table tr.shiny td:first-child {
-    color: #FFD700;
+/* Table General Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-table tr.elite td:nth-child(4) {
-    color: #800080;
-    font-weight: bold;
+thead th {
+    background-color: #333;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+td {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #555;
+}
+
+/* Shiny Rows with Yellow Background */
+tr.shiny {
+    background-color: #dcc920;
+}
+
+/* Elite Rows with Purple Background */
+tr.elite {
+    background-color: #5331b1;
 }

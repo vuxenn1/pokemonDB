@@ -122,3 +122,38 @@ footer {
     height: 45px;
     vertical-align: middle;
 }
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background-color: #2F3061; /* Deep blue */
+    color: #FFE66D; /* Bright yellow */
+    border: 2px solid #FFE66D;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    background-color: #FFE66D; /* Light yellow */
+    color: #2F3061; /* Deep blue text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+    background-color: #FFE66D; /* Light yellow */
+    color: #343434; /* Dark gray text */
+    border-color: #2F3061;
+}

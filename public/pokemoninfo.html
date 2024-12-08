@@ -33,6 +33,10 @@
                 <p><strong>SP:</strong> <span id="pokemon-speed">Loading...</span></p>
             </div>
         </div>
+        <div class="navigation-buttons">
+            <button id="prev-btn" class="nav-btn">Previous</button>
+            <button id="next-btn" class="nav-btn">Next</button>
+        </div>
     </main>
 
     <footer>
@@ -102,7 +106,28 @@
             })
             .catch(err => console.error('Error loading Pokemon details', err));
     </script>
-
+    <script>
+        // Event listeners for navigation buttons
+        document.getElementById('prev-btn').addEventListener('click', () => navigateToPokemon(-1));
+        document.getElementById('next-btn').addEventListener('click', () => navigateToPokemon(1));
+    
+        function navigateToPokemon(direction) {
+            const currentId = parseInt(pokemonId);
+            const newId = currentId + direction;
+            if (newId > 0 && newId <= MAX_POKEMON_ID) { // Replace MAX_POKEMON_ID with your limit
+                window.location.href = `/pokemoninfo.html?id=${newId}`;
+            }
+        }
+    
+        // Dynamically fetch the total Pokémon count
+        let MAX_POKEMON_ID = 151; // Default value
+        fetch('/api/pokedex')
+            .then(response => response.json())
+            .then(data => {
+                MAX_POKEMON_ID = data.length; // Set the total count dynamically
+            })
+            .catch(err => console.error('Error fetching Pokémon count:', err));
+    </script>    
     <script src="splash.js"></script>
 </body>
 </html>

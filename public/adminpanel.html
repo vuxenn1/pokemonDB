@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="adminpanel.css">
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('pokemon')">Pokémon</div>
+        <div class="tab" onclick="switchTab('items')">Items</div>
+        <div class="tab" onclick="switchTab('badges')">Badges</div>
+    </div>
+
+    <div class="tab-content active" id="pokemon-content">
+        <table id="pokemon-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Primary Type</th>
+                    <th>Secondary Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="items-content">
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="badges-content">
+        <table id="badges-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Elite</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="adminpanel.js"></script>
+</body>
+</html>

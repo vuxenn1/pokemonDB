@@ -4,113 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokemonDB Main Menu</title>
-    <link rel="stylesheet" href="mainmenu.css">
-    <style>
-        /* Basic styling for the navigation bar */
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #333;
-            padding: 10px 0;
-            z-index: 100;
-        }
-
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap; /* Wrap items to the next line if there are too many */
-        }
-
-        .menu-container a {
-            background-color: #333;
-            color: white;
-            padding: 14px 20px;
-            font-size: 16px;
-            text-decoration: none;
-            margin: 5px;
-            cursor: pointer;
-            border: none;
-            display: inline-block;
-        }
-
-        .menu-container a:hover {
-            background-color: #bebebe;
-        }
-
-        .main-btn, .btn-link {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            margin: 10px;
-            font-size: 16px;
-            text-align: center;
-            cursor: pointer;
-            border: none;
-        }
-
-        .main-btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Styling for the header */
-        header {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
     <header>
         <h1>PokemonDB</h1>
+        <nav class="main-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Pokemons</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Captured</a></li>
+                        <li><a href="#">Wild</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Facilities</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gyms</a></li>
+                        <li><a href="#">Poke-Centers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cities</a></li>
+                <li><a href="#">Routes</a></li>
+                <li><a href="#" class="admin-link">Admin Panel</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="menu-container">
-            <a href="pokedex.html">Pokédex</a>
-            <a href="wildpokemons.html">Wild Pokemon</a>
-            <a href="capturedpokemons.html">Captured Pokemon</a>
-            <a href="types.html">Types</a>
-            <a href="cities.html">Cities</a>
-            <a href="routes.html">Routes</a>
-            <a href="pokecenter.html">PokeCenters</a>
-            <a href="gym.html">Gyms</a>
-            <a href="trainer.html">Trainers</a>
-            <a href="casualtrainer.html">Casual Trainers</a>
-            <a href="player.html">Players</a>
-            <a href="professor.html">Professors</a>
-            <a href="gymleader.html">Gym Leaders</a>
-            <a href="item.html">Items</a>
-            <a href="badge.html">Badges</a>
-        </div>
-    </nav>
-
     <main>
-        <div class="button-container">
-            <a href="adminpanel.html" class="btn-link">
-                <button class="adm-btn">Admin Panel</button>
-            </a>
-            <a href="about.html" class="btn-link">
-                <button class="main-btn">About Us</button>
-            </a>
+        <div class="welcome-section">
+            <h2>Welcome to PokemonDB</h2>
+            <p>Explore the world of Pokemon by using the menu above.</p>
+        </div>
+        <div class="random-pokemon-box">
+            <h3>Random Pokémon</h3>
+            <div class="content">
+                <div class="pokemon-logo">
+                    <img src="path/to/default-pokemon-image.png" alt="Pokemon" id="pokemon-img">
+                </div>
+                <div class="attributes">
+                    <p><strong>Name:</strong> <span id="pokemon-name">Unknown</span></p>
+                    <p><strong>Level:</strong> <span id="pokemon-level">N/A</span></p>
+                    <div class="type-icons" id="type-icons">
+                        <!-- Type icons will be inserted dynamically -->
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-
     <footer>
-        <p>Powered by <strong>Node.js</strong> & <strong>MySQL</strong></p>
+        <p>
+            <a href="https://github.com/vuxenn1/pokemonDB" target="_blank">GitHub Repository</a>
+        </p>
     </footer>
+    <script src="mainmenu.js"></script>
     <script src="splash.js"></script>
 </body>
 </html>

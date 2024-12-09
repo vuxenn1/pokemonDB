@@ -28,9 +28,29 @@
                         <!-- Type icons will be injected here -->
                     </span>
                 </p>
-                <p><strong>HP:</strong> <span id="pokemon-hp">Loading...</span></p>
-                <p><strong>AP:</strong> <span id="pokemon-ap">Loading...</span></p>
-                <p><strong>SP:</strong> <span id="pokemon-speed">Loading...</span></p>
+                <div class="pokemon-stat-bar">
+                    <span>HP:</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="pokemon-hp-bar"></div>
+                    </div>
+                    <span id="pokemon-hp"></span>
+                </div>
+                
+                <div class="pokemon-stat-bar">
+                    <span>AP:</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="pokemon-ap-bar"></div>
+                    </div>
+                    <span id="pokemon-ap"></span>
+                </div>
+                
+                <div class="pokemon-stat-bar">
+                    <span>SP:</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="pokemon-speed-bar"></div>
+                    </div>
+                    <span id="pokemon-speed"></span>
+                </div>                
             </div>
         </div>
         <div class="navigation-buttons">
@@ -130,6 +150,36 @@
             })
             .catch(err => console.error('Error fetching Pokémon count:', err));
     </script>    
-    <script src="splash.js"></script>
+    <script>
+        // Function to update the stat bars
+        function updateStatBar(statBarId, value, maxValue) {
+            const statBar = document.getElementById(statBarId);
+            const statValue = document.getElementById(statBarId.replace('-bar', ''));
+            const percentage = (value / maxValue) * 100;
+
+            // Update the bar width
+            statBar.style.width = `${percentage}%`;
+
+            // Update the value display
+            if (statValue) {
+                statValue.textContent = value;
+            }
+        }
+
+
+        // Example: Fetching data and updating bars
+        fetch('/api/pokedex')
+            .then(response => response.json())
+            .then(data => {
+                const pokemon = data.find(p => p.id == pokemonId);
+
+                if (pokemon) {
+                    updateStatBar('pokemon-hp-bar', pokemon.hp, 255);
+                    updateStatBar('pokemon-ap-bar', pokemon.ap, 255);
+                    updateStatBar('pokemon-speed-bar', pokemon.speed, 255);
+                }
+            })
+            .catch(err => console.error('Error loading Pokémon details', err));
+    </script>
 </body>
 </html>

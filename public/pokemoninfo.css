@@ -163,3 +163,49 @@ footer {
     color: #343434;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -1px 3px rgba(255, 255, 255, 0.1);
 }
+
+.pokemon-stat-bar {
+    display: flex;
+    align-items: center; /* Vertically align items in the center */
+    margin-bottom: 10px; /* Add spacing between each stat bar */
+}
+
+.pokemon-stat-bar span {
+    margin-right: 10px; /* Space between the label and the stat bar */
+    font-weight: bold; /* Optional: Make the label bold */
+}
+
+.stat-bar-container {
+    width: 200px; /* Set a fixed width for all stat bars */
+    height: 12px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.stat-label {
+    width: 50px;
+    font-weight: bold;
+}
+
+.stat-value {
+    width: 40px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.stat-bar {
+    height: 100%;
+    background-color: #FFE66D; /* Gold color */
+    width: 0%; /* This will be dynamically updated */
+    transition: width 0.3s ease-in-out;
+    border: 2px solid rgb(181, 177, 52);
+}

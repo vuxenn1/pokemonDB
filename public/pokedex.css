@@ -85,12 +85,14 @@ header h1
 {
     transform: scale(1.05);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #AED6F1;
+    background: linear-gradient(135deg, #eefaff 50%, #dde8ed 100%);
 }
 
 .card.card.shiny:hover
 {
     transform: scale(1.05);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), 0 0 30px #F1C40F;
+    background: linear-gradient(135deg, #f8e69c, #ecd26b);
 }
 
 /* Shine effect */

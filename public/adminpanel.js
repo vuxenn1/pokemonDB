@@ -26,7 +26,7 @@ function fetchPokemon() {
                     <tr class="${pokemon.isShiny ? 'shiny' : ''}">
                         <td><small>#${pokemon.id}</small></td>
                         <td>
-                            <img src="${pokemon.url}" alt="${pokemon.name}" class="pokemon-img" data-id="${pokemon.id}" style="height: 40px; cursor: pointer;">
+                            <img src="${pokemon.url}" alt="${pokemon.name}" title="${pokemon.name}" class="pokemon-img" data-id="${pokemon.id}" style="height: 40px; cursor: pointer;">
                         </td>
                         <td>${pokemon.name}</td>
                         <td>${pokemon.level}</td>

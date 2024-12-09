@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Info</title>
+    <title>Pokémon Info</title>
     <link rel="stylesheet" href="pokemoninfo.css">
 </head>
 <body>
     <header>
         <a href="pokedex.html" class="back-btn">Back to Pokédex</a>
-        <h1 id="page-header">Pokemon Info</h1>
+        <h1 id="page-header">Pokémon Info</h1>
     </header>
 
     <main class="container">
@@ -34,9 +34,13 @@
             </div>
         </div>
         <div class="navigation-buttons">
-            <button id="prev-btn" class="nav-btn"><<</button>
-            <button id="next-btn" class="nav-btn">>></button>
-        </div>
+            <button id="prev-btn" class="nav-btn" title="Previous Pokémon">
+                <strong>&lt;&lt;</strong>
+            </button>
+            <button id="next-btn" class="nav-btn" title="Next Pokémon">
+                <strong>&gt;&gt;</strong>
+            </button>
+        </div>        
     </main>
 
     <footer>
@@ -82,6 +86,7 @@
     
                     // Update Pokémon details
                     document.getElementById('pokemon-img').src = pokemon.url;
+                    document.getElementById('pokemon-img').title = `${pokemon.name}`;
                     document.getElementById('pokemon-id').textContent = `#${pokemon.id}`;
                     document.getElementById('pokemon-name').textContent = pokemon.name;
                     document.getElementById('pokemon-hp').textContent = pokemon.hp;
@@ -91,8 +96,8 @@
                     // Display type icons
                     const typesContainer = document.getElementById('pokemon-types');
                     typesContainer.innerHTML = `
-                        <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" class="type-icon">
-                        ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" class="type-icon">` : ''}
+                        <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}" class="type-icon">
+                        ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}" class="type-icon">` : ''}
                     `;
                 } else {
                     // Handle the case where Pokémon is not found

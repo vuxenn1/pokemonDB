@@ -128,32 +128,38 @@ footer {
     justify-content: space-between;
     width: 100%;
     position: absolute;
-    bottom: 350px;
+    bottom: 50%;
     padding: 0 20px;
+    transform: translateY(50%);
 }
 
 .nav-btn {
-    background-color: #2F3061; /* Deep blue */
-    color: #FFE66D; /* Bright yellow */
-    border: 2px solid #FFE66D;
-    border-radius: 8px;
-    padding: 10px 20px;
+    background-color: #2F3061;
+    color: #FFE66D;
+    border: none;
+    border-radius: 4px;
+    width: 50px;
+    height: 50px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -1px 3px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-btn:hover {
     transform: scale(1.1);
-    background-color: #FFE66D; /* Light yellow */
-    color: #2F3061; /* Deep blue text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #FFE66D;
+    color: #2F3061;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(255, 255, 255, 0.1);
 }
 
 .nav-btn:active {
     transform: scale(0.95);
-    background-color: #FFE66D; /* Light yellow */
-    color: #343434; /* Dark gray text */
-    border-color: #2F3061;
+    background-color: #FFE66D;
+    color: #343434;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -1px 3px rgba(255, 255, 255, 0.1);
 }

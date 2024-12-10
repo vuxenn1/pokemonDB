@@ -4,48 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokemonDB Main Menu</title>
-    <link rel="stylesheet" href="mainmenu.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header>
         <h1>PokemonDB</h1>
+        <nav class="main-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Pokemons</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Captured</a></li>
+                        <li><a href="#">Wild</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Facilities</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gyms</a></li>
+                        <li><a href="#">Poke-Centers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cities</a></li>
+                <li><a href="#">Routes</a></li>
+                <li><a href="#" class="admin-link">Admin Panel</a></li>
+            </ul>
+        </nav>
     </header>
-
     <main>
-        <!-- Main Menu Buttons -->
-        <div class="button-container">
-            <a href="adminpanel.html" class="btn-link">
-                <button class="adm-btn">Admin Panel</button>
-            </a>
-            <a href="pokedex.html" class="btn-link">
-                <button class="main-btn">Pokédex</button>
-            </a>
-            <a href="cities.html" class="btn-link">
-                <button class="main-btn">Cities</button>
-            </a>
-            <a href="https://github.com/vuxenn1/pokemonDB" class="btn-link" target="_blank">
-                <button class="main-btn">About Us</button>
-            </a>
-            <a href="deneme.html" class="btn-link">
-                <button class="main-btn">DENEME</button>
-            </a>
+        <div class="welcome-section">
+            <h2>Welcome to PokemonDB</h2>
+            <p>Explore the world of Pokemon by using the menu above.</p>
+        </div>
+        <div class="random-pokemon-box">
+            <h3>Random Pokémon</h3>
+            <div class="content">
+                <div class="pokemon-logo">
+                    <img src="#" alt="Pokemon Image" id="pokemon-img">
+                </div>
+                <div class="attributes">
+                    <p><strong>Name:</strong> <span id="pokemon-name">Unknown</span></p>
+                    <p><strong>Level:</strong> <span id="pokemon-level">N/A</span></p>
+                    <div class="type-icons" id="type-icons">
+                        <!-- Type icons will be inserted dynamically -->
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-
     <footer>
         <p>
-            Powered by 
-            <strong>Node.js</strong> 
-            & 
-            <strong>MySQL</strong> 
-            |
-            <strong>
-                <a href="https://github.com/vuxenn1/pokemonDB" class="btn-link" target="_blank">
-                    GitHub
-                </a>                
-            </strong>
+            <a href="https://github.com/vuxenn1/pokemonDB" target="_blank">GitHub Repository</a>
         </p>
     </footer>
+    <script src="mainmenu.js"></script>
     <script src="splash.js"></script>
 </body>
 </html>

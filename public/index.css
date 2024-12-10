@@ -137,8 +137,6 @@ footer a:hover {
 .random-pokemon-box .pokemon-logo img {
     width: 100%;
     height: auto;
-    border-radius: 50%;
-    background-color: #FFF4C3; /* Subtle background for image */
 }
 
 .random-pokemon-box .attributes {
@@ -161,8 +159,8 @@ footer a:hover {
 }
 
 .random-pokemon-box .type-img {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
 }
 
 .admin-link {

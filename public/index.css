@@ -1,28 +1,32 @@
+/* Reset and body styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F7FFF7;
+    background-color: #F7FFF7; /* Soft light background */
     border-radius: 8px;
-    color: #343434;
+    color: #343434; /* Dark Gray text */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Header styles */
 header {
-    background-color: #2F3061;
-    color: #FFE66D;
+    background-color: #2F3061; /* Dark Blue */
+    color: #FFE66D; /* Soft Yellow */
     padding: 1rem;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
+    font-weight: 600;
 }
 
+/* Main navigation */
 nav.main-nav {
-    background-color: #2F3061;
+    background-color: #2F3061; /* Dark Blue */
 }
 
 nav.main-nav ul {
@@ -40,16 +44,17 @@ nav.main-nav ul li {
 nav.main-nav ul li a {
     display: block;
     padding: 1rem 2rem;
-    color: #FFE66D;
+    color: #FFE66D; /* Soft Yellow */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    font-weight: 500;
 }
 
 nav.main-nav ul li a:hover,
 nav.main-nav ul li a:focus {
-    background-color: #1e2441;
-    color: #FFFFFF;
-    transform: scale(1.1);
+    background-color: #1e2441; /* Darker Blue for hover */
+    color: #FFFFFF; /* White text */
+    transform: scale(1.1); /* Slight zoom on hover */
 }
 
 nav.main-nav ul li .dropdown-menu {
@@ -57,7 +62,7 @@ nav.main-nav ul li .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #343434;
+    background-color: #343434; /* Dark Gray */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
@@ -68,22 +73,24 @@ nav.main-nav ul li .dropdown-menu li {
 
 nav.main-nav ul li .dropdown-menu li a {
     padding: 0.5rem 1rem;
-    color: #FFE66D;
+    color: #FFE66D; /* Soft Yellow */
 }
 
 nav.main-nav ul li:hover .dropdown-menu {
     display: block;
 }
 
+/* Main content area */
 main {
     padding: 2rem;
     text-align: center;
     flex-grow: 1;
 }
 
+/* Footer styles */
 footer {
-    background-color: #2F3061;
-    color: #FFE66D;
+    background-color: #2F3061; /* Dark Blue */
+    color: #FFE66D; /* Soft Yellow */
     text-align: center;
     padding: 0.1rem;
     font-size: 1rem;
@@ -91,7 +98,7 @@ footer {
 }
 
 footer a {
-    color: #FFE66D;
+    color: #FFE66D; /* Soft Yellow */
     text-decoration: none;
     font-size: 0.9rem;
 }
@@ -100,12 +107,13 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Regular Pokémon Box */
 .random-pokemon-box {
     width: 420px;
     margin: 2rem auto;
     padding: 1.8rem;
-    background: linear-gradient(135deg, #F8D56A, #FFD94A);
-    color: #2F3061;
+    background: linear-gradient(135deg, #ffffff, #f3e5f5, #f7f1c5); /* Soft Gradient with a hint of gold */
+    color: #2F3061; /* Dark Blue text */
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -113,19 +121,30 @@ footer a:hover {
     align-items: center;
     gap: 1.5rem;
     font-family: 'Arial', sans-serif;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Shiny Pokémon Box Color (Silver to Gold Gradient) */
+.random-pokemon-box.shiny {
+    background: linear-gradient(135deg, #c0c0c0, #d3d3d3, #ffd700); /* Silver to Gold Gradient */
+    color: #fff; /* Light text for contrast */
 }
 
 .random-pokemon-box:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px); /* Slight hover lift */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.random-pokemon-box:hover {
+    transform: translateY(-8px); /* Slight hover lift */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .random-pokemon-box h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0;
-    color: #2F3061;
-    border-bottom: 2px solid #2F3061;
+    color: #2F3061; /* Dark Blue */
+    border-bottom: 2px solid #2F3061; /* Dark Blue border */
     padding-bottom: 0.5rem;
     text-align: center;
 }
@@ -134,68 +153,53 @@ footer a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .random-pokemon-box .pokemon-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .random-pokemon-box .pokemon-logo {
     width: 120px;
     height: 120px;
-    background-color: #FFF;
-    border: 3px solid #2F3061;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .random-pokemon-box .pokemon-logo img {
-    width: 80%;
+    width: 100%;
     height: auto;
 }
 
 .random-pokemon-box .attributes {
     text-align: center;
-    font-size: 1rem;
-    color: #2F3061;
-    line-height: 1.4rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    color: #2F3061; /* Dark Blue */
+    line-height: 1.2rem;
+    font-weight: 400;
 }
 
 .random-pokemon-box .type-icons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
-.random-pokemon-box .type-img {
-    width: 50px;
-    height: 50px;
-    background-color: #FFF;
-    border: 2px solid #2F3061;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s ease;
+.random-pokemon-box .type-icons img {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
 }
 
-.random-pokemon-box .type-img:hover {
-    transform: scale(1.1);
-}
-
-
+/* Admin Link */
 .admin-link {
-    background-color: #FF6F61;
-    color: #FFFFFF;
+    background-color: #FF6F61; /* Soft Coral */
+    color: #FFFFFF; /* White text */
     font-weight: bold;
     padding: 0.2rem 0.5rem;
     border-radius: 5px;
@@ -205,8 +209,8 @@ footer a:hover {
 
 .admin-link:hover,
 .admin-link:focus {
-    background-color: #D94E3B;
-    color: #F7FFF7;
-    transform: scale(1.05);
+    background-color: #D94E3B; /* Darker Coral on hover */
+    color: #F7FFF7; /* Light text */
+    transform: scale(1.05); /* Slight hover zoom */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

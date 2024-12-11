@@ -4,8 +4,8 @@ body
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F4F9F9;
-    color: #2C3E50;
+    background-color: #F7FFF7; /* Soft light background */
+    color: #343434; /* Dark Gray text color */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -16,8 +16,8 @@ header
 {
     text-align: center;
     padding: 40px 20px;
-    background-color: #34495E;
-    color: #ECF0F1;
+    background-color: #2F3061; /* Dark Blue */
+    color: #FFE66D; /* Soft Yellow text */
 }
 
 header h1
@@ -30,8 +30,8 @@ header h1
 .back-btn
 {
     display: inline-block;
-    background-color: #1ABC9C;
-    color: #FFFFFF;
+    background-color: #FFE66D; /* Soft Yellow */
+    color: #2F3061; /* Dark Blue text */
     font-size: 1em;
     padding: 12px 30px;
     border: none;
@@ -44,13 +44,14 @@ header h1
 
 .back-btn:hover
 {
-    background-color: #16A085;
-    transform: translateY(-3px);
+    background-color: #FFCC00; /* Brighter Yellow on hover */
+    transform: translateY(-3px); /* Slight elevation */
 }
 
 .back-btn:active
 {
-    background-color: #0E6655;
+    background-color: #2F3061; /* Dark Blue on click */
+    color: #FFE66D; /* Keep text color soft yellow */
 }
 
 /* Grid container */
@@ -77,7 +78,7 @@ header h1
     padding: 20px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #2C3E50;
+    color: #343434;
     cursor: pointer;
 }
 
@@ -127,14 +128,14 @@ header h1
 .card h3
 {
     font-size: 1.6em;
-    color: #2980B9;
+    color: #2F3061; /* Dark Blue */
     margin: 15px 0 10px;
 }
 
 .card p
 {
     font-size: 1em;
-    color: #566573;
+    color: #566573; /* Dark Gray for description text */
     margin: 5px 0;
 }
 
@@ -147,7 +148,7 @@ header h1
 
 .card.shiny h3
 {
-    color: #D68910;
+    color: #D68910; /* Gold color */
 }
 
 /* Type badges */
@@ -176,8 +177,8 @@ footer
 {
     text-align: center;
     padding: 20px;
-    background-color: #34495E;
-    color: #ECF0F1;
+    background-color: #2F3061; /* Dark Blue */
+    color: #FFE66D; /* Soft Yellow text */
     font-size: 1em;
     margin-top: auto;
 }

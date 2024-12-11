@@ -12,7 +12,7 @@
         <nav class="main-nav">
             <ul>
                 <li class="dropdown">
-                    <a href="#">Pokemons</a>
+                    <a href="pokedex.html">Pokemons</a>
                     <ul class="dropdown-menu">
                         <li><a href="pokedex.html">All</a></li>
                         <li><a href="#">Captured</a></li>
@@ -26,9 +26,9 @@
                         <li><a href="#">Poke-Centers</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cities</a></li>
+                <li><a href="cities.html">Cities</a></li>
                 <li><a href="#">Routes</a></li>
-                <li><a href="#" class="admin-link">Admin Panel</a></li>
+                <li><a href="adminpanel.html" class="admin-link">Admin Panel</a></li>
             </ul>
         </nav>
     </header>
@@ -36,12 +36,14 @@
         <div class="welcome-section">
             <h2>Welcome to PokemonDB</h2>
             <p>Explore the world of Pokemon by using the menu above.</p>
+            <!-- Added section for current type counts -->
+            <p id="type-counts">Loading Pokémon type counts...</p>
         </div>
         <div class="random-pokemon-box">
             <h3>Random Pokémon</h3>
             <div class="content">
                 <div class="pokemon-logo">
-                    <img src="#" alt="Pokemon Image" id="pokemon-img">
+                    <img src="#" alt="Pokemon Image" id="pokemon-img" title="Pokemon Image">
                 </div>
                 <div class="attributes">
                     <p><strong>Name:</strong> <span id="pokemon-name">Unknown</span></p>
@@ -60,5 +62,26 @@
     </footer>
     <script src="mainmenu.js"></script>
     <script src="splash.js"></script>
+    <script>
+        // Fetch type info from the API
+        fetch('/api/pokeinfo/typeinfo')
+            .then(response => response.json())
+            .then(data => {
+                const wildCount = data.find(item => item.typeName === 'Wild')?.count || 0;
+                const capturedCount = data.find(item => item.typeName === 'Captured')?.count || 0;
+
+                // Update the type-counts paragraph with the fetched data
+                const typeCountsElement = document.getElementById('type-counts');
+                typeCountsElement.innerHTML = `
+                    <strong>Current Pokémon Type Counts:</strong><br>
+                    Wild: ${wildCount}<br>
+                    Captured: ${capturedCount}
+                `;
+            })
+            .catch(err => {
+                console.error('Error fetching type counts:', err);
+                document.getElementById('type-counts').innerHTML = 'Failed to load Pokémon type counts.';
+            });
+    </script>
 </body>
 </html>

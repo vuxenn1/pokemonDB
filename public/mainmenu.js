@@ -26,15 +26,27 @@ function getRandomPokemon() {
             const randomIndex = Math.floor(Math.random() * pokedex.length);
             const pokemon = pokedex[randomIndex];
 
+            // Get the Pokémon box container
+            const pokemonBox = document.querySelector('.random-pokemon-box');
+
+            // Check if the Pokémon is shiny, add the 'shiny' class if true
+            if (pokemon.isShiny === 1) {
+                pokemonBox.classList.add('shiny');
+            } else {
+                pokemonBox.classList.remove('shiny');
+            }
+
+            // Update Pokémon data on the page
             document.getElementById('pokemon-img').src = pokemon.url;
             document.getElementById('pokemon-img').alt = pokemon.name;
+            document.getElementById('pokemon-img').title = pokemon.name;
             document.getElementById('pokemon-name').textContent = pokemon.name;
             document.getElementById('pokemon-level').textContent = pokemon.level;
 
             const typeIconsContainer = document.getElementById('type-icons');
             typeIconsContainer.innerHTML = `
-                <img src="${typeIcons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}">
-                ${pokemon.secondaryType ? `<img src="${typeIcons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}">` : ''}
+                <img class="type-icon" src="${typeIcons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}">
+                ${pokemon.secondaryType ? `<img class="type-icon" src="${typeIcons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}">` : ''}
             `;
         })
         .catch(error => console.error('Error fetching Pokémon data:', error));

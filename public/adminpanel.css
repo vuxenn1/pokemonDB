@@ -8,8 +8,8 @@
 /* Body & General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
-    color: #333;
+    background-color: #f7fff7;
+    color: #343434;
     padding: 20px;
 }
 
@@ -18,8 +18,8 @@ body {
     position: fixed;
     top: 10px;
     left: 10px;
-    background-color: #333;
-    color: #FFFFFF;
+    background-color: #343434;
+    color: #f7fff7;
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
@@ -29,14 +29,14 @@ body {
 }
 
 .back-to-menu:hover {
-    background-color: #555;
+    background-color: #2f3061;
     transform: scale(1.1);
 }
 
 /* Header & Title */
 h1 {
     text-align: center;
-    color: #333;
+    color: #2f3061;
     margin-bottom: 20px;
 }
 
@@ -51,24 +51,25 @@ h1 {
 .tab {
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #555;
-    color: #FFFFFF;
+    background-color: #2f3061;
+    color: #f7fff7;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .tab.active {
-    background-color: #333;
+    background-color: #343434;
 }
 
 .tab:hover {
-    background-color: #777;
+    background-color: #ffe66d;
+    color: #343434;
 }
 
 /* Tab Content */
 .tab-content {
     border-radius: 5px;
-    background-color: #F8F8F8;
+    background-color: #f7fff7;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: none;
@@ -78,17 +79,41 @@ h1 {
     display: block;
 }
 
-td {
-    background-color: #FFFFFF;
+/* Table General Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead th {
+    background-color: #2f3061;
+    color: #f7fff7;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    background-color: #f7fff7;
     text-align: center;
     padding: 10px;
-    border: 1px solid #555;
+    border: 1px solid #343434;
+}
+
+/* Special Rows */
+tr.shiny {
+    background-color: #ffe66d;
+}
+
+tr.elite {
+    background-color: #2f3061;
+    color: #f7fff7;
 }
 
 /* Edit/Delete Button Styles */
 button.edit {
-    background-color: #FFD700;
-    color: #333;
+    background-color: #ffe66d;
+    color: #343434;
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
@@ -97,8 +122,8 @@ button.edit {
 }
 
 button.delete {
-    background-color: #FF4500;
-    color: #FFFFFF;
+    background-color: #343434;
+    color: #f7fff7;
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
@@ -107,38 +132,9 @@ button.delete {
 }
 
 button.edit:hover {
-    background-color: #FFC107;
+    background-color: #ffd700;
 }
 
 button.delete:hover {
-    background-color: #FF6347;
-}
-
-/* Table General Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead th {
-    background-color: #333;
-    color: #FFFFFF;
-    padding: 10px;
-}
-
-td {
-    background-color: #FFFFFF;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #555;
-}
-
-/* Shiny Rows with Yellow Background */
-tr.shiny {
-    background-color: #dcc920;
-}
-
-/* Elite Rows with Purple Background */
-tr.elite {
-    background-color: #5331b1;
+    background-color: #d7263d;
 }

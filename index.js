@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password', // Change this password if needed
+    password: 'nuri234!', // Change this password if needed
     database: 'pokemonyasarhoca'
 });
 
@@ -79,29 +79,35 @@ app.get('/api/cities', (req, res) => {
     });
 });
 
-app.get('/api/strongWeakAgainst/:type', (req, res) => {
-    const pokemonType = req.params.type;
-
-    const query = `
-        SELECT 
-            pt.name AS type_name,
-            strong.name AS strong_against,
-            weak.name AS weak_against
-        FROM 
-            PokemonType pt
-        LEFT JOIN 
-            PokemonType strong ON pt.strongAgainst = strong.id
-        LEFT JOIN 
-            PokemonType weak ON pt.weakAgainst = weak.id
-        WHERE pt.name = ?`;
-
-    db.query(query, [pokemonType], (err, results) => {
+app.get('/api/pokeinfo/typeinfo', (req, res) => {
+    const query = 'select type as typeName, count(*) as count from pokemon group by type';
+    db.query(query, (err, results) => {
         if (err) {
-            console.error(err);
-            res.status(500).send('Server error');
+            res.status(500).json({ error: 'Failed to fetch cities.' });
         } else {
             res.json(results);
         }
+    });
+});
+
+// API endpoint to delete an item by ID
+app.delete('/api/items/:id', (req, res) => {
+    const itemId = req.params.id;
+
+    // SQL query to delete the item by ID
+    const query = 'DELETE FROM Item WHERE id = ?';
+
+    db.query(query, [itemId], (err, result) => {
+        if (err) {
+            console.error('Error deleting item:', err);
+            return res.status(500).json({ error: 'Failed to delete item.' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Item not found.' });
+        }
+
+        res.status(200).json({ message: `Item with ID ${itemId} has been deleted.` });
     });
 });
 

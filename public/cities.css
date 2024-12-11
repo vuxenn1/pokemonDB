@@ -3,8 +3,8 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F5F5DC; /* Beige background */
-    color: #011638; /* Dark Blue text color */
+    background-color: #f7fff7; /* Soft light background */
+    color: #343434; /* Dark Gray text color */
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack content vertically */
     min-height: 100vh; /* Ensure full viewport height */
@@ -13,9 +13,9 @@ body {
 /* Header styles */
 header {
     text-align: center;
-    padding: 40px 20px;
-    background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    padding: 20px 20px; /* Reduced padding for a smaller header */
+    background-color: #2f3061; /* Dark Blue */
+    color: #ffe66d; /* Soft Yellow text */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,25 +23,27 @@ header {
 
 /* Back to Main Menu Button in header */
 .back-btn {
-    background-color: #214E34; /* Dark Green */
-    color: #CDCDCD; /* Light Grey text */
-    font-size: 1.2em;
-    padding: 12px 30px;
+    background-color: #ffe66d; /* Soft Yellow */
+    color: #2f3061; /* Dark Blue text */
+    font-size: 1.1em;
+    padding: 14px 35px; /* Slightly larger padding for better proportion */
     border: none;
-    border-radius: 30px; /* Rounded corners */
+    border-radius: 50px; /* More rounded corners */
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 15px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
 }
 
 .back-btn:hover {
-    background-color: #364156; /* Secondary Dark Blue */
+    background-color: #ffcc00; /* Brighter yellow on hover */
     transform: translateY(-3px); /* Slight elevation on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow on hover */
 }
 
 .back-btn:active {
-    background-color: #011638; /* Dark Blue on click */
+    background-color: #2f3061; /* Dark Blue on click */
+    color: #ffe66d; /* Keep text color soft yellow */
 }
 
 /* Grid container styles */
@@ -73,11 +75,12 @@ header {
 
 /* Card header (City name) styles */
 .card h3 {
-    color: #364156; /* Secondary Dark Blue */
-    font-size: 1.4em;
+    color: #2f3061; /* Dark Blue */
+    font-size: 1.5em;
     margin: 10px 0;
 }
 
+/* Card population styles */
 .card p {
     font-size: 1em;
     margin: 5px 0;
@@ -89,6 +92,6 @@ footer {
     padding: 15px;
     margin-top: auto; /* Push footer to the bottom */
     font-size: 1em;
-    background-color: #011638; /* Dark Blue */
-    color: #CDCDCD; /* Light Grey text */
+    background-color: #2f3061; /* Dark Blue */
+    color: #ffe66d; /* Soft Yellow text */
 }

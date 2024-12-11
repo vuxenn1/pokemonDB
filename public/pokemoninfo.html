@@ -50,7 +50,21 @@
                         <div class="stat-bar" id="pokemon-speed-bar"></div>
                     </div>
                     <span id="pokemon-speed"></span>
-                </div>                
+                </div>
+                <div class="pokemon-attribute strong-against">
+                    <span>Strong Against:</span>
+                    <div class="type-icons-container" id="strong-against-text">
+                        <!-- Dynamically populated strong icons -->
+                    </div>
+                </div>
+            
+                <!-- Weak Against -->
+                <div class="pokemon-attribute weak-against">
+                    <span>Weak Against:</span>
+                    <div class="type-icons-container" id="weak-against-text">
+                        <!-- Dynamically populated weak icons -->
+                    </div>
+                </div>
             </div>
         </div>
         <div class="navigation-buttons">
@@ -66,10 +80,23 @@
     <footer>
         &copy; 2024 Pokémon Inc.
     </footer>
-
+    <script>
+        // Add a keydown event listener to the document
+        document.addEventListener('keydown', function(event) {
+            // Check if the 'a' key is pressed
+            if (event.key === 'a' || event.key === 'A') {
+                document.getElementById('prev-btn').click(); // Simulate click on the "Previous" button
+            }
+            // Check if the 'd' key is pressed
+            else if (event.key === 'd' || event.key === 'D') {
+                document.getElementById('next-btn').click(); // Simulate click on the "Next" button
+            }
+        });
+    </script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const pokemonId = params.get('id');
+        const pokemonType = params.get('pType')
     
         // Define type icons
         const typeicons = {
@@ -92,13 +119,40 @@
             Steel: '/images/icons/steel.svg',
             Fairy: '/images/icons/fairy.svg'
         };
-    
         // Fetch the Pokémon data from API
-        fetch('/api/pokedex')
-            .then(response => response.json())
-            .then(data => {
-                const pokemon = data.find(p => p.id == pokemonId);
-    
+                fetch('/api/pokedex')
+                .then(response => response.json())
+                .then(data => {
+                    const pokemon = data.find(p => p.id == pokemonId);
+                    fetch(`/api/strongWeakAgainst/${pokemon.primaryType}`)
+                .then(response => response.json())
+                .then(strongWeakData => {
+                    if (strongWeakData && strongWeakData.length > 0) {
+                        const typeData = strongWeakData[0];
+                        // Update HTMLs elements
+                        if (typeData.strong_against) {
+                        const strongTypes = typeData.strong_against.split(','); // Split the string by commas
+                        document.getElementById('strong-against-text').innerHTML = strongTypes
+                            .map(type => `<img src="${typeicons[type.trim()]}" alt="${type.trim()}" title="${type.trim()}" class="type-icon">`)
+                            .join(''); // Generate HTML for each type icon and join them together
+                    } else {
+                        document.getElementById('strong-against-text').textContent = 'None'; // If no strong types, display 'None'
+                    }
+
+                    // Populate the "Weak Against" section with icons
+                    if (typeData.weak_against) {
+                        const weakTypes = typeData.weak_against.split(','); // Split the string by commas
+                        document.getElementById('weak-against-text').innerHTML = weakTypes
+                            .map(type => `<img src="${typeicons[type.trim()]}" alt="${type.trim()}" title="${type.trim()}" class="type-icon">`)
+                            .join(''); // Generate HTML for each type icon and join them together
+                    } else {
+                        document.getElementById('weak-against-text').textContent = 'None'; // If no weak types, display 'None'
+                    }
+                    }
+                })
+                .catch(err => {
+                    console.error('Error loading strong/weak data:', err);
+                });
                 if (pokemon) {
                     // Set the page title and header to Pokémon's name
                     document.title = `${pokemon.name} Info`;
@@ -112,6 +166,7 @@
                     document.getElementById('pokemon-hp').textContent = pokemon.hp;
                     document.getElementById('pokemon-ap').textContent = pokemon.ap;
                     document.getElementById('pokemon-speed').textContent = pokemon.speed;
+                    
     
                     // Display type icons
                     const typesContainer = document.getElementById('pokemon-types');
@@ -119,6 +174,7 @@
                         <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}" class="type-icon">
                         ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}" class="type-icon">` : ''}
                     `;
+                    
                 } else {
                     // Handle the case where Pokémon is not found
                     document.getElementById('pokemon-id').textContent = "Not Found";
@@ -149,7 +205,7 @@
                 MAX_POKEMON_ID = data.length; // Set the total count dynamically
             })
             .catch(err => console.error('Error fetching Pokémon count:', err));
-    </script>    
+    </script>
     <script>
         // Function to update the stat bars
         function updateStatBar(statBarId, value, maxValue) {
@@ -165,8 +221,6 @@
                 statValue.textContent = value;
             }
         }
-
-
         // Example: Fetching data and updating bars
         fetch('/api/pokedex')
             .then(response => response.json())

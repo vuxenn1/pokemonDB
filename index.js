@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'nuri234!', // Change this password if needed
+    password: 'password', // Change this password if needed
     database: 'pokemonyasarhoca'
 });
 
@@ -73,6 +73,32 @@ app.get('/api/cities', (req, res) => {
     db.query(query, (err, results) => {
         if (err) {
             res.status(500).json({ error: 'Failed to fetch cities.' });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+app.get('/api/strongWeakAgainst/:type', (req, res) => {
+    const pokemonType = req.params.type;
+
+    const query = `
+        SELECT 
+            pt.name AS type_name,
+            strong.name AS strong_against,
+            weak.name AS weak_against
+        FROM 
+            PokemonType pt
+        LEFT JOIN 
+            PokemonType strong ON pt.strongAgainst = strong.id
+        LEFT JOIN 
+            PokemonType weak ON pt.weakAgainst = weak.id
+        WHERE pt.name = ?`;
+
+    db.query(query, [pokemonType], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Server error');
         } else {
             res.json(results);
         }

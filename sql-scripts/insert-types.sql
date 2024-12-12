@@ -1,3 +1,5 @@
+use pokemonyasarhoca;
+
 DELETE FROM PokemonType;
 ALTER TABLE PokemonType AUTO_INCREMENT = 1;
 
@@ -23,9 +25,10 @@ VALUES
     ('Steel'),
     ('Fairy');
 
+UPDATE PokemonType SET strongAgainst = 1, weakAgainst = 14 WHERE name = 'Normal';
 UPDATE PokemonType SET strongAgainst = 5, weakAgainst = 3 WHERE name = 'Fire';
 UPDATE PokemonType SET strongAgainst = 2, weakAgainst = 5 WHERE name = 'Water';
-UPDATE PokemonType SET strongAgainst = 2, weakAgainst = 9 WHERE name = 'Electric';
+UPDATE PokemonType SET strongAgainst = 3, weakAgainst = 9 WHERE name = 'Electric';
 UPDATE PokemonType SET strongAgainst = 3, weakAgainst = 2 WHERE name = 'Grass';
 UPDATE PokemonType SET strongAgainst = 5, weakAgainst = 2 WHERE name = 'Ice';
 UPDATE PokemonType SET strongAgainst = 1, weakAgainst = 10 WHERE name = 'Fighting';

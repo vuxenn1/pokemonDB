@@ -84,11 +84,11 @@
         // Add a keydown event listener to the document
         document.addEventListener('keydown', function(event) {
             // Check if the 'a' key is pressed
-            if (event.key === 'a' || event.key === 'A') {
+            if (event.key === 'a' || event.key === 'A' || event.key === 'ArrowLeft') {
                 document.getElementById('prev-btn').click(); // Simulate click on the "Previous" button
             }
             // Check if the 'd' key is pressed
-            else if (event.key === 'd' || event.key === 'D') {
+            else if (event.key === 'd' || event.key === 'D' || event.key === 'ArrowRight') {
                 document.getElementById('next-btn').click(); // Simulate click on the "Next" button
             }
         });

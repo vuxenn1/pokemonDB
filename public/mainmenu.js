@@ -19,10 +19,12 @@ const typeIcons = {
     Fairy: '/images/icons/fairy.svg',
 };
 
-function getRandomPokemon() {
+function getRandomPokemon() 
+{
     fetch('/api/pokedex')
         .then(response => response.json())
-        .then(pokedex => {
+        .then(pokedex => 
+        {
             const randomIndex = Math.floor(Math.random() * pokedex.length);
             const pokemon = pokedex[randomIndex];
 
@@ -30,9 +32,12 @@ function getRandomPokemon() {
             const pokemonBox = document.querySelector('.random-pokemon-box');
 
             // Check if the Pokémon is shiny, add the 'shiny' class if true
-            if (pokemon.isShiny === 1) {
+            if (pokemon.isShiny === 1) 
+            {
                 pokemonBox.classList.add('shiny');
-            } else {
+            } 
+            else 
+            {
                 pokemonBox.classList.remove('shiny');
             }
 
@@ -42,6 +47,12 @@ function getRandomPokemon() {
             document.getElementById('pokemon-img').title = pokemon.name;
             document.getElementById('pokemon-name').textContent = pokemon.name;
             document.getElementById('pokemon-level').textContent = pokemon.level;
+            document.getElementById('pokemon-info').textContent = pokemon.name;
+
+            // Update the link to the Pokémon's personal page
+            const infoLink = document.querySelector('.attributes a');
+            infoLink.href = `/pokemoninfo.html?id=${pokemon.id}`;
+            infoLink.title = `More information about ${pokemon.name}`;
 
             const typeIconsContainer = document.getElementById('type-icons');
             typeIconsContainer.innerHTML = `

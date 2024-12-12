@@ -121,7 +121,7 @@ footer a:hover {
     align-items: center;
     gap: 1.5rem;
     font-family: 'Arial', sans-serif;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Shiny Pokémon Box Color (Silver to Gold Gradient) */
@@ -131,12 +131,7 @@ footer a:hover {
 }
 
 .random-pokemon-box:hover {
-    transform: translateY(-8px); /* Slight hover lift */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.random-pokemon-box:hover {
-    transform: translateY(-8px); /* Slight hover lift */
+    transform: translateY(-3px); /* Slight hover lift */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
@@ -194,6 +189,18 @@ footer a:hover {
     width: 40px;
     height: 40px;
     margin: 0 5px;
+}
+
+.random-pokemon-box .attributes a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #2F3061; /* Dark Blue */
+    transition: color 0.3s ease;
+}
+
+.random-pokemon-box .attributes a:hover {
+    color: #8172cc; /* Muted purple that complements the palette */
 }
 
 /* Admin Link */

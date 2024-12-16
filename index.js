@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'nuri234!', // Change this password if needed
+    password: 'password', // Change this password if needed
     database: 'pokemonyasarhoca'
 });
 
@@ -136,6 +136,24 @@ app.delete('/api/items/:id', (req, res) => {
         res.status(200).json({ message: `Item with ID ${itemId} has been deleted.` });
     });
 });
+
+// API route to run custom queries
+app.post("/query", (req, res) => {
+    const userQuery = req.body.query;
+  
+    db.query(userQuery, (error, results, fields) => {
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+  
+      if (userQuery.trim().toUpperCase().startsWith("SELECT")) {
+        const columns = fields.map((field) => field.name);
+        res.json({ results, columns });
+      } else {
+        res.json({ message: "Query executed successfully!" });
+      }
+    });
+  });
 
 // Start server
 app.listen(3000, () => {

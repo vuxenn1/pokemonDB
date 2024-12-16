@@ -65,6 +65,7 @@ function fetchItems()
                         <td><small>#${item.id}</small></td>
                         <td>${item.name}</td>
                         <td>${item.description}</td>
+                        <td>${item.price}</td>
                         <td>
                             <button class="edit" onclick="editItem(${item.id})">Edit</button>
                             <button class="delete" onclick="deleteItem(${item.id})">Delete</button>
@@ -90,6 +91,7 @@ function fetchBadges()
                         <td><small>#${badge.id}</small></td>
                         <td>${badge.name}</td>
                         <td>${badge.description}</td>
+                        <td>${badge.price}</td>
                         <td>${badge.isElite ? 'Yes' : 'No'}</td>
                         <td>
                             <button class="edit" onclick="editBadge(${badge.id})">Edit</button>
@@ -173,6 +175,16 @@ function deleteBadge(badgeId)
 {
     alert(`Deleting Badge with ID: ${badgeId}`);
     console.log(`Delete action triggered for Badge with ID: ${badgeId}`);
+}
+
+function openModal(modalId)
+{
+    document.getElementById(modalId).style.display = "flex";
+}
+
+function closeModal(modalId)
+{
+    document.getElementById(modalId).style.display = "none";
 }
 
 // Initialize the admin panel by default showing Pokémon tab

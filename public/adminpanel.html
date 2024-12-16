@@ -18,6 +18,7 @@
     </div>
 
     <div class="tab-content active" id="pokemon-content">
+        <button class="add" onclick="openModal('pokemon-modal')">Add Pokémon</button>
         <table id="pokemon-table">
             <thead>
                 <tr>
@@ -35,12 +36,14 @@
     </div>
 
     <div class="tab-content" id="items-content">
+        <button class="add" onclick="openModal('item-modal')">Add Item</button>
         <table id="items-table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Price</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -49,12 +52,14 @@
     </div>
 
     <div class="tab-content" id="badges-content">
+        <button class="add" onclick="openModal('badge-modal')">Add Badge</button>
         <table id="badges-table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Price</th>
                     <th>Elite</th>
                     <th>Actions</th>
                 </tr>
@@ -63,7 +68,136 @@
         </table>
     </div>
 
+    <!-- Pokémon Modal -->
+    <div class="modal" id="pokemon-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('pokemon-modal')">&times;</span>
+            <h2>Add Pokémon</h2>
+            <form>
+                <label for="pokemon-name">Name:</label>
+                <input type="text" id="pokemon-name" placeholder="Pokémon Name" required>
+
+                <label for="pokemon-level">Level:</label>
+                <input type="number" id="pokemon-level" placeholder="Level" required>
+
+                <label for="pokemon-type1">Primary Type:</label>
+                <select id="pokemon-type1" required>
+                    <option value="" disabled selected>Select Primary Type</option>
+                    <!-- 18 Pokémon types -->
+                    <option>Normal</option>
+                    <option>Fire</option>
+                    <option>Water</option>
+                    <option>Grass</option>
+                    <option>Electric</option>
+                    <option>Ice</option>
+                    <option>Fighting</option>
+                    <option>Poison</option>
+                    <option>Ground</option>
+                    <option>Flying</option>
+                    <option>Psychic</option>
+                    <option>Bug</option>
+                    <option>Rock</option>
+                    <option>Ghost</option>
+                    <option>Dark</option>
+                    <option>Dragon</option>
+                    <option>Steel</option>
+                    <option>Fairy</option>
+                </select>
+
+                <label for="pokemon-type2">Secondary Type:</label>
+                <select id="pokemon-type2">
+                    <option value="" disabled selected>Select Secondary Type</option>
+                    <!-- 18 Pokémon types -->
+                    <option>Normal</option>
+                    <option>Fire</option>
+                    <option>Water</option>
+                    <option>Grass</option>
+                    <option>Electric</option>
+                    <option>Ice</option>
+                    <option>Fighting</option>
+                    <option>Poison</option>
+                    <option>Ground</option>
+                    <option>Flying</option>
+                    <option>Psychic</option>
+                    <option>Bug</option>
+                    <option>Rock</option>
+                    <option>Ghost</option>
+                    <option>Dark</option>
+                    <option>Dragon</option>
+                    <option>Steel</option>
+                    <option>Fairy</option>
+                </select>
+
+                <label for="pokemon-hp">HP:</label>
+                <input type="number" id="pokemon-hp" placeholder="HP" required>
+
+                <label for="pokemon-ap">AP:</label>
+                <input type="number" id="pokemon-ap" placeholder="Attack Power" required>
+
+                <label for="pokemon-sp">SP:</label>
+                <input type="number" id="pokemon-sp" placeholder="Special Power" required>
+
+                <label for="pokemon-shiny">Is Shiny:</label>
+                <input type="checkbox" id="pokemon-shiny">
+
+                <label for="pokemon-status">Type:</label>
+                <select id="pokemon-status" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option>Wild</option>
+                    <option>Captured</option>
+                </select>
+
+                <label for="pokemon-logo">Logo URL:</label>
+                <input type="url" id="pokemon-logo" placeholder="Logo URL" required>
+
+                <button type="submit">Add Pokémon</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Items Modal -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('item-modal')">&times;</span>
+            <h2>Add Item</h2>
+            <form>
+                <label for="item-name">Name:</label>
+                <input type="text" id="item-name" placeholder="Item Name" required>
+
+                <label for="item-description">Description:</label>
+                <textarea id="item-description" placeholder="Description" required></textarea>
+
+                <label for="item-price">Price:</label>
+                <input type="number" id="item-price" placeholder="Price" required>
+
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Badges Modal -->
+    <div class="modal" id="badge-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('badge-modal')">&times;</span>
+            <h2>Add Badge</h2>
+            <form>
+                <label for="badge-name">Name:</label>
+                <input type="text" id="badge-name" placeholder="Badge Name" required>
+
+                <label for="badge-description">Description:</label>
+                <textarea id="badge-description" placeholder="Description" required></textarea>
+
+                <label for="badge-price">Price:</label>
+                <input type="number" id="badge-price" placeholder="Price" required>
+
+                <label for="badge-elite">Is Elite Badge:</label>
+                <input type="checkbox" id="badge-elite">
+
+                <button type="submit">Add Badge</button>
+            </form>
+        </div>
+    </div>
+
     <script src="adminpanel.js"></script>
-    <script src="splash.js"></script>
 </body>
 </html>

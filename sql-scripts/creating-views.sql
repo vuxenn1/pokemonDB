@@ -1,0 +1,2 @@
+CREATE VIEW poketypes_view AS SELECT p.name AS 'Pokemon Name', t.name AS 'Primary Type', t2.name AS 'Secondary Type' FROM pokemon p JOIN pokemontype t ON p.ptype = t.id LEFT JOIN pokemontype t2 ON p.sType = t2.id;
+SELECT * FROM poketypes_view;

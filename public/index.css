@@ -126,7 +126,7 @@ footer a:hover {
 
 /* Shiny Pokémon Box Color (Silver to Gold Gradient) */
 .random-pokemon-box.shiny {
-    background: linear-gradient(135deg, #c0c0c0, #d3d3d3, #ffd700); /* Silver to Gold Gradient */
+    background: linear-gradient(135deg, #ffffff, #d3d3d3, #ffd700); /* Silver to Gold Gradient */
     color: #fff; /* Light text for contrast */
 }
 

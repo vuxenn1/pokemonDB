@@ -128,6 +128,20 @@ END $$
 
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE PROCEDURE updatePokeSpeed(IN increment INT)
+BEGIN
+    -- Update ALL Pokémon speed stats by the increment value
+    UPDATE Pokemon
+    SET speed = speed + increment;
+
+    -- Confirm success
+    SELECT CONCAT('Speed of ALL Pokémon has been incremented by ', increment, '.') AS Message;
+END $$
+
+DELIMITER ;
+
 CALL InsertTrainerDetails();
 CALL InsertPokemons();
 

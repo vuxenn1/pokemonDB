@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'nuri234!', // Change this password if needed
+    password: 'password', // Change this password if needed
     database: 'pokemonyasarhoca'
 });
 
@@ -157,25 +157,28 @@ app.post("/query", (req, res) => {
 
 // API endpoint to increment Pokémon speed
 app.post('/api/increment', (req, res) => {
-    const { increment } = req.body;
+    const { id, attribute, increment } = req.body;  // Now include id and attribute
 
-    if (!increment || isNaN(increment)) {
-        return res.status(400).json({ error: 'Please provide a valid increment value.' });
+    // Validate input
+    if (!id || !attribute || !increment || isNaN(increment)) {
+        return res.status(400).json({ error: 'Please provide a valid id, attribute, and increment value.' });
     }
 
-    // Execute the stored procedure to update Pokémon speeds
-    const query = `CALL updatePokeSpeed(?)`;
-    
-    db.query(query, [increment], (err, results) => {
+    // Execute the stored procedure to update the Pokémon stat
+    const query = `CALL updatePokeStat(?, ?, ?)`;
+
+    // Pass id, attribute, and increment to the stored procedure
+    db.query(query, [id, attribute, increment], (err, results) => {
         if (err) {
-            console.error('Error updating speed:', err);
-            return res.status(500).json({ error: 'Failed to update Pokémon speed.' });
+            console.error('Error updating stat:', err);
+            return res.status(500).json({ error: 'Failed to update Pokémon stat.' });
         }
 
         // Return the success message from the stored procedure
         res.json({ message: results[0][0].Message });
     });
 });
+
 
 // Start server
 app.listen(3000, () => {

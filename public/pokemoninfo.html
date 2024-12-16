@@ -310,7 +310,7 @@
         // Add event listeners to increment buttons
         document.getElementById('increment-hp-btn').addEventListener('click', () => openModal('hp'));
         document.getElementById('increment-ap-btn').addEventListener('click', () => openModal('ap'));
-        document.getElementById('increment-sp-btn').addEventListener('click', () => openModal('sp'));
+        document.getElementById('increment-sp-btn').addEventListener('click', () => openModal('speed'));
     
         // Function to open the modal and set the current stat
         function openModal(stat) {
@@ -334,25 +334,42 @@
         // Function to apply the increment and update the stat
         applyIncrementBtn.addEventListener('click', () => {
             const incrementValue = parseInt(incrementValueInput.value, 10); // Get the increment value
-    
+
             if (!isNaN(incrementValue) && incrementValue > 0) {
-                switch (currentStat) {
-                    case 'hp':
-                        updateStat(hpElement, hpBar, incrementValue);
-                        break;
-                    case 'ap':
-                        updateStat(apElement, apBar, incrementValue);
-                        break;
-                    case 'sp':
-                        updateStat(spElement, spBar, incrementValue);
-                        break;
-                }
+                // Assume you have a way to get the current Pokémon ID (from an attribute or selection)
+                const params = new URLSearchParams(window.location.search);
+                const pokemonId = params.get('id');
+                const stat = currentStat; // This should be 'hp', 'ap', or 'sp'
+                // Call API to update the stat
+                updateStatThroughAPI(pokemonId, stat, incrementValue);
+                
                 modal.style.display = 'none'; // Close the modal
                 incrementValueInput.value = ''; // Reset input field
             } else {
                 alert('Please enter a valid positive number.');
             }
         });
+
+        // Function to update the stat through API
+        function updateStatThroughAPI(id, stat, incrementValue) {
+            fetch('http://localhost:3000/api/increment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id, attribute: stat, increment: incrementValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Show success message from API
+                } else {
+                    alert('Something went wrong while updating the stat.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update Pokémon stat.');
+            });
+        }
     
         // Function to update the stat value and bar
         function updateStat(statElement, barElement, incrementValue) {

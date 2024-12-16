@@ -153,7 +153,29 @@ app.post("/query", (req, res) => {
         res.json({ message: "Query executed successfully!" });
       }
     });
-  });
+});
+
+// API endpoint to increment Pokémon speed
+app.post('/api/increment', (req, res) => {
+    const { increment } = req.body;
+
+    if (!increment || isNaN(increment)) {
+        return res.status(400).json({ error: 'Please provide a valid increment value.' });
+    }
+
+    // Execute the stored procedure to update Pokémon speeds
+    const query = `CALL updatePokeSpeed(?)`;
+    
+    db.query(query, [increment], (err, results) => {
+        if (err) {
+            console.error('Error updating speed:', err);
+            return res.status(500).json({ error: 'Failed to update Pokémon speed.' });
+        }
+
+        // Return the success message from the stored procedure
+        res.json({ message: results[0][0].Message });
+    });
+});
 
 // Start server
 app.listen(3000, () => {

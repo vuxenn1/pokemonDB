@@ -34,6 +34,7 @@
                         <div class="stat-bar" id="pokemon-hp-bar"></div>
                     </div>
                     <span id="pokemon-hp"></span>
+                    <button class="increment-btn" id="increment-hp-btn" title="Increase HP">+</button>
                 </div>
                 
                 <div class="pokemon-stat-bar">
@@ -42,6 +43,7 @@
                         <div class="stat-bar" id="pokemon-ap-bar"></div>
                     </div>
                     <span id="pokemon-ap"></span>
+                    <button class="increment-btn" id="increment-ap-btn" title="Increase AP">+</button>
                 </div>
                 
                 <div class="pokemon-stat-bar">
@@ -50,6 +52,7 @@
                         <div class="stat-bar" id="pokemon-speed-bar"></div>
                     </div>
                     <span id="pokemon-speed"></span>
+                    <button class="increment-btn" id="increment-sp-btn" title="Increase SP">+</button>
                 </div>
                 <div class="pokemon-attribute strong-against">
                     <span>Strong Against:</span>
@@ -63,6 +66,17 @@
                     <span>Weak Against:</span>
                     <div class="type-icons-container" id="weak-against-text">
                         <!-- Dynamically populated weak icons -->
+                    </div>
+                </div>
+
+                <div id="increment-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Increase Pokémon Stat</h3>
+                        <p>Enter the increment value:</p>
+                        <input type="number" id="increment-value" placeholder="e.g., 10" />
+                        <button onclick="incrementSpeed()" id="apply-increment-btn">Apply</button>
+                        <p id="responseMessage"></p>
                     </div>
                 </div>
             </div>
@@ -234,6 +248,152 @@
                 }
             })
             .catch(err => console.error('Error loading Pokémon details', err));
+    </script>
+    <!--<script>
+        const modal = document.getElementById('increment-modal');
+        const closeModalBtn = document.querySelector('.close');
+        const applyIncrementBtn = document.getElementById('apply-increment-btn');
+        const incrementValueInput = document.getElementById('increment-value');
+    
+        // Add click event listeners to increment buttons
+        document.getElementById('increment-hp-btn').addEventListener('click', () => openModal());
+        document.getElementById('increment-ap-btn').addEventListener('click', () => openModal());
+        document.getElementById('increment-sp-btn').addEventListener('click', () => openModal());
+    
+        // Function to open the modal
+        function openModal() {
+            modal.style.display = 'block';
+        }
+    
+        // Function to close the modal
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    
+        // Close modal if user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        // Increment button logic when applying the value (optional)
+        applyIncrementBtn.addEventListener('click', () => {
+            const incrementValue = parseInt(incrementValueInput.value, 10);
+            if (!isNaN(incrementValue)) {
+                alert(`You entered ${incrementValue}. You can now update the stat accordingly.`);
+                modal.style.display = 'none';
+                incrementValueInput.value = ''; // Reset input
+            } else {
+                alert('Please enter a valid number.');
+            }
+        });
+    </script>-->
+    <script>
+        const modal = document.getElementById('increment-modal'); // Modal container
+        const closeModalBtn = document.querySelector('.close'); // Close button in the modal
+        const applyIncrementBtn = document.getElementById('apply-increment-btn'); // Apply button in modal
+        const incrementValueInput = document.getElementById('increment-value'); // Input field for increment
+    
+        // Elements displaying stat values and buttons
+        const hpElement = document.getElementById('pokemon-hp');
+        const apElement = document.getElementById('pokemon-ap');
+        const spElement = document.getElementById('pokemon-speed');
+    
+        const hpBar = document.getElementById('pokemon-hp-bar');
+        const apBar = document.getElementById('pokemon-ap-bar');
+        const spBar = document.getElementById('pokemon-speed-bar');
+    
+        // Keep track of which stat is being incremented
+        let currentStat = null;
+    
+        // Add event listeners to increment buttons
+        document.getElementById('increment-hp-btn').addEventListener('click', () => openModal('hp'));
+        document.getElementById('increment-ap-btn').addEventListener('click', () => openModal('ap'));
+        document.getElementById('increment-sp-btn').addEventListener('click', () => openModal('sp'));
+    
+        // Function to open the modal and set the current stat
+        function openModal(stat) {
+            currentStat = stat; // Store which stat button was clicked
+            modal.style.display = 'block';
+            incrementValueInput.value = ''; // Clear the input field
+        }
+    
+        // Close modal when "X" is clicked
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    
+        // Close modal if user clicks outside the modal
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        // Function to apply the increment and update the stat
+        applyIncrementBtn.addEventListener('click', () => {
+            const incrementValue = parseInt(incrementValueInput.value, 10); // Get the increment value
+    
+            if (!isNaN(incrementValue) && incrementValue > 0) {
+                switch (currentStat) {
+                    case 'hp':
+                        updateStat(hpElement, hpBar, incrementValue);
+                        break;
+                    case 'ap':
+                        updateStat(apElement, apBar, incrementValue);
+                        break;
+                    case 'sp':
+                        updateStat(spElement, spBar, incrementValue);
+                        break;
+                }
+                modal.style.display = 'none'; // Close the modal
+                incrementValueInput.value = ''; // Reset input field
+            } else {
+                alert('Please enter a valid positive number.');
+            }
+        });
+    
+        // Function to update the stat value and bar
+        function updateStat(statElement, barElement, incrementValue) {
+            const maxValue = 255; // Assuming maximum value for stats
+            let currentValue = parseInt(statElement.textContent, 10) || 0;
+    
+            // Update the stat value
+            const newValue = Math.min(currentValue + incrementValue, maxValue); // Prevent exceeding max value
+            statElement.textContent = newValue;
+    
+            // Update the bar width (percentage-based)
+            const percentage = (newValue / maxValue) * 100;
+            barElement.style.width = `${percentage}%`;
+        }
+    </script>
+    <script>
+        function incrementSpeed() {
+            const incrementValue = document.getElementById('incrementValue').value;
+
+            if (!incrementValue || isNaN(incrementValue)) {
+                alert("Please enter a valid increment value.");
+                return;
+            }
+            fetch('http://localhost:3000/api/increment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ increment: parseInt(incrementValue) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    document.getElementById('responseMessage').innerText = data.message;
+                } else {
+                    document.getElementById('responseMessage').innerText = 'Something went wrong!';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').innerText = 'Failed to update Pokémon speed.';
+            });
+        }
     </script>
 </body>
 </html>

@@ -108,6 +108,7 @@
                 <select id="pokemon-type2">
                     <option value="" disabled selected>Select Secondary Type</option>
                     <!-- 18 Pokémon types -->
+                    <option>None</option>
                     <option>Normal</option>
                     <option>Fire</option>
                     <option>Water</option>
@@ -129,7 +130,7 @@
                 </select>
 
                 <label for="pokemon-hp">HP:</label>
-                <input type="number" id="pokemon-hp" placeholder="HP" required>
+                <input type="number" id="pokemon-hp" placeholder="Health Points" required>
 
                 <label for="pokemon-ap">AP:</label>
                 <input type="number" id="pokemon-ap" placeholder="Attack Power" required>
@@ -150,7 +151,7 @@
                 <label for="pokemon-logo">Logo URL:</label>
                 <input type="url" id="pokemon-logo" placeholder="Logo URL" required>
 
-                <button type="submit">Add Pokémon</button>
+                <button type="button" id="submit-pokemon">Add Pokémon</button>
             </form>
         </div>
     </div>

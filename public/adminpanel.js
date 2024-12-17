@@ -187,9 +187,74 @@ function closeModal(modalId)
     document.getElementById(modalId).style.display = "none";
 }
 
-// Initialize the admin panel by default showing Pokémon tab
+function initializePokemonFormHandler(formSelector, buttonSelector) 
+{
+    const form = document.querySelector(formSelector);
+    const submitButton = document.querySelector(buttonSelector);
+
+    if (!form) 
+    {
+        console.error(`Form with selector '${formSelector}' not found.`);
+        return;
+    }
+
+    if (!submitButton)
+    {
+        console.error(`Button with selector '${buttonSelector}' not found.`);
+        return;
+    }
+
+    // Attach click event listener to the button
+    submitButton.addEventListener('click', function (event) 
+    {
+        // Prevent default form submission
+        event.preventDefault();
+
+        // Extract values from form fields
+        const name = document.querySelector('#pokemon-name').value.trim();
+        const level = document.querySelector('#pokemon-level').value.trim();
+        const type1 = document.querySelector('#pokemon-type1').value.trim();
+        const type2 = document.querySelector('#pokemon-type2').value.trim(); // Optional
+        const hp = document.querySelector('#pokemon-hp').value.trim();
+        const ap = document.querySelector('#pokemon-ap').value.trim();
+        const sp = document.querySelector('#pokemon-sp').value.trim();
+        const isShiny = document.querySelector('#pokemon-shiny').checked;
+        const status = document.querySelector('#pokemon-status').value.trim();
+        const logo = document.querySelector('#pokemon-logo').value.trim();
+
+        // Validate required fields
+        if (!name || !level || !type1 || !hp || !ap || !sp || !status || !logo) 
+        {
+            alert("All fields except 'Secondary Type' are required. Please fill in all the fields.");
+            console.error("Validation Error: Missing required fields.");
+            return;
+        }
+
+        // Log values to the console
+        console.log("Pokémon Data:");
+        console.log("Name:", name);
+        console.log("Level:", level);
+        console.log("Primary Type:", type1);
+        console.log("Secondary Type:", type2 || "None");
+        console.log("HP:", hp);
+        console.log("Attack Power (AP):", ap);
+        console.log("Speed (SP):", sp);
+        console.log("Is Shiny:", isShiny ? "Yes" : "No");
+        console.log("Type:", status);
+        console.log("Logo URL:", logo);
+    });
+}
+
+// Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () =>
 {
+    // Switch to the Pokémon tab
     switchTab('pokemon');
+    
+    // Fetch Pokémon list
     fetchPokemon();
+
+    // Initialize custom button form handler
+    initializePokemonFormHandler('#pokemon-modal form', '#submit-pokemon');
 });
+    

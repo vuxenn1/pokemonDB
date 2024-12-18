@@ -142,6 +142,36 @@ END $$
 
 DELIMITER ;
 
+CREATE PROCEDURE decreasePokeStat(IN poke_id INT, IN stat_attribute VARCHAR(25), IN decrement INT)
+BEGIN
+    -- Check the attribute and update the corresponding stat
+    IF stat_attribute = 'hp' THEN
+        UPDATE Pokemon
+        SET hp = GREATEST(hp - decrement, 0) -- Ensure the value does not go below 0
+        WHERE id = poke_id;
+        
+    ELSEIF stat_attribute = 'ap' THEN
+        UPDATE Pokemon
+        SET ap = GREATEST(ap - decrement, 0) -- Prevent negative values
+        WHERE id = poke_id;
+        
+    ELSEIF stat_attribute = 'speed' THEN
+        UPDATE Pokemon
+        SET speed = GREATEST(speed - decrement, 0) -- Prevent negative values
+        WHERE id = poke_id;
+        
+    ELSE
+        -- Return an error message if an invalid attribute is provided
+        SELECT 'Invalid attribute specified' AS Message;
+    END IF;
+    
+    -- Return a success message after the update
+    SELECT CONCAT(stat_attribute, ' of Pokémon with ID ', poke_id, ' has been decremented by ', decrement, '.') AS Message;
+
+END $$
+
+DELIMITER ;
+
 CALL InsertTrainerDetails();
 CALL InsertPokemons();
 

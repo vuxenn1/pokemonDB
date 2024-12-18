@@ -165,7 +165,7 @@ app.post('/api/increment', (req, res) => {
     }
 
     // Execute the stored procedure to update the Pokémon stat
-    const query = `CALL updatePokeStat(?, ?, ?)`;
+    const query = `CALL increasePokeStat(?, ?, ?)`;
 
     // Pass id, attribute, and increment to the stored procedure
     db.query(query, [id, attribute, increment], (err, results) => {
@@ -179,6 +179,28 @@ app.post('/api/increment', (req, res) => {
     });
 });
 
+app.post('/api/decrement', (req, res) => {
+    const { id, attribute, decrement } = req.body;  // Now include id and attribute
+
+    // Validate input
+    if (!id || !attribute || !decrement || isNaN(decrement)) {
+        return res.status(400).json({ error: 'Please provide a valid id, attribute, and decrement value.' });
+    }
+
+    // Execute the stored procedure to update the Pokémon stat
+    const query = `CALL decreasePokeStat(?, ?, ?)`;
+
+    // Pass id, attribute, and increment to the stored procedure
+    db.query(query, [id, attribute, decrement], (err, results) => {
+        if (err) {
+            console.error('Error updating stat:', err);
+            return res.status(500).json({ error: 'Failed to update Pokémon stat.' });
+        }
+
+        // Return the success message from the stored procedure
+        res.json({ message: results[0][0].Message });
+    });
+});
 
 // Start server
 app.listen(3000, () => {

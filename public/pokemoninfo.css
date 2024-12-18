@@ -229,6 +229,26 @@ footer {
     background-color: #ff9900;
 }
 
+.decrement-btn {
+    border: none;
+    border-radius: 50%;
+    background-color: #FFE66D;
+    color: #000;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.decrement-btn:hover {
+    background-color: #ff9900;
+}
+
+
 /* Modal Styling */
 .modal {
     display: none; /* Hidden by default */

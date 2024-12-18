@@ -35,6 +35,7 @@
                     </div>
                     <span id="pokemon-hp"></span>
                     <button class="increment-btn" id="increment-hp-btn" title="Increase HP">+</button>
+                    <button class="decrement-btn" id="decrement-hp-btn" title="Decrease HP">-</button>
                 </div>
                 
                 <div class="pokemon-stat-bar">
@@ -44,6 +45,7 @@
                     </div>
                     <span id="pokemon-ap"></span>
                     <button class="increment-btn" id="increment-ap-btn" title="Increase AP">+</button>
+                    <button class="decrement-btn" id="decrement-ap-btn" title="Decrease AP">-</button>
                 </div>
                 
                 <div class="pokemon-stat-bar">
@@ -53,6 +55,7 @@
                     </div>
                     <span id="pokemon-speed"></span>
                     <button class="increment-btn" id="increment-sp-btn" title="Increase SP">+</button>
+                    <button class="decrement-btn" id="decrement-sp-btn" title="Decrease SP">-</button>
                 </div>
                 <div class="pokemon-attribute strong-against">
                     <span>Strong Against:</span>
@@ -79,6 +82,17 @@
                         <p id="responseMessage"></p>
                     </div>
                 </div>
+                <div id="decrement-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Decrease Pokémon Stat</h3>
+                        <p>Enter the decrement value:</p>
+                        <input type="number" id="decrement-value" placeholder="e.g., 10" />
+                        <button onclick="decrementSpeed()" id="apply-decrement-btn">Apply</button>
+                        <p id="responseMessage"></p>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div class="navigation-buttons">
@@ -249,46 +263,7 @@
             })
             .catch(err => console.error('Error loading Pokémon details', err));
     </script>
-    <!--<script>
-        const modal = document.getElementById('increment-modal');
-        const closeModalBtn = document.querySelector('.close');
-        const applyIncrementBtn = document.getElementById('apply-increment-btn');
-        const incrementValueInput = document.getElementById('increment-value');
     
-        // Add click event listeners to increment buttons
-        document.getElementById('increment-hp-btn').addEventListener('click', () => openModal());
-        document.getElementById('increment-ap-btn').addEventListener('click', () => openModal());
-        document.getElementById('increment-sp-btn').addEventListener('click', () => openModal());
-    
-        // Function to open the modal
-        function openModal() {
-            modal.style.display = 'block';
-        }
-    
-        // Function to close the modal
-        closeModalBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    
-        // Close modal if user clicks outside of it
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    
-        // Increment button logic when applying the value (optional)
-        applyIncrementBtn.addEventListener('click', () => {
-            const incrementValue = parseInt(incrementValueInput.value, 10);
-            if (!isNaN(incrementValue)) {
-                alert(`You entered ${incrementValue}. You can now update the stat accordingly.`);
-                modal.style.display = 'none';
-                incrementValueInput.value = ''; // Reset input
-            } else {
-                alert('Please enter a valid number.');
-            }
-        });
-    </script>-->
     <script>
         const modal = document.getElementById('increment-modal'); // Modal container
         const closeModalBtn = document.querySelector('.close'); // Close button in the modal
@@ -383,6 +358,130 @@
             // Update the bar width (percentage-based)
             const percentage = (newValue / maxValue) * 100;
             barElement.style.width = `${percentage}%`;
+        }
+    </script>
+    <script>
+        const d_modal = document.getElementById('decrement-modal'); // Modal container
+        const d_closeModalBtn = document.querySelector('.close'); // Close button in the modal
+        const applyDecrementBtn = document.getElementById('apply-decrement-btn'); // Apply button in modal
+        const decrementValueInput = document.getElementById('decrement-value'); // Input field for increment
+        console.log("selected");
+        // Elements displaying stat values and buttons
+        const d_hpElement = document.getElementById('pokemon-hp');
+        const d_apElement = document.getElementById('pokemon-ap');
+        const d_spElement = document.getElementById('pokemon-speed');
+    
+        const d_hpBar = document.getElementById('pokemon-hp-bar');
+        const d_apBar = document.getElementById('pokemon-ap-bar');
+        const d_spBar = document.getElementById('pokemon-speed-bar');
+    
+        // Keep track of which stat is being incremented
+        let d_currentStat = null;
+    
+        // Add event listeners to increment buttons
+        document.getElementById('decrement-hp-btn').addEventListener('click', () => d_openModal('hp'));
+        document.getElementById('decrement-ap-btn').addEventListener('click', () => d_openModal('ap'));
+        document.getElementById('decrement-sp-btn').addEventListener('click', () => d_openModal('speed'));
+    
+        // Function to open the modal and set the current stat
+        function d_openModal(stat) {
+            d_currentStat = stat; // Store which stat button was clicked
+            d_modal.style.display = 'block';
+            decrementValueInput.value = ''; // Clear the input field
+        }
+    
+        // Close modal when "X" is clicked
+        d_closeModalBtn.addEventListener('click', () => {
+            console.log(d_closeModalBtn);
+            d_modal.style.display = 'none';
+        });
+    
+        // Close modal if user clicks outside the modal
+        window.addEventListener('click', (event) => {
+            if (event.target === d_modal) {
+                d_modal.style.display = 'none';
+            }
+        });
+    
+        // Function to apply the increment and update the stat
+        applyDecrementBtn.addEventListener('click', () => {
+            const decrementValue = parseInt(decrementValueInput.value, 10); // Get the increment value
+
+            if (!isNaN(decrementValue) && decrementValue > 0) {
+                // Assume you have a way to get the current Pokémon ID (from an attribute or selection)
+                const params = new URLSearchParams(window.location.search);
+                const pokemonId = params.get('id');
+                const stat = d_currentStat; // This should be 'hp', 'ap', or 'sp'
+                // Call API to update the stat
+                d_updateStatThroughAPI(pokemonId, stat, decrementValue);
+                
+                d_modal.style.display = 'none'; // Close the modal
+                decrementValueInput.value = ''; // Reset input field
+            } else {
+                alert('Please enter a valid positive number.');
+            }
+        });
+
+        // Function to update the stat through API
+        function d_updateStatThroughAPI(id, stat, decrementValue) {
+            fetch('http://localhost:3000/api/decrement', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id, attribute: stat, decrement: decrementValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Show success message from API
+                } else {
+                    alert('Something went wrong while updating the stat.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update Pokémon stat.');
+            });
+        }
+    
+        // Function to update the stat value and bar
+        function d_updateStat(statElement, barElement, decrementValue) {
+            const maxValue = 255; // Assuming maximum value for stats
+            let currentValue = parseInt(statElement.textContent, 10) || 0;
+    
+            // Update the stat value
+            const newValue = Math.min(currentValue + decrementValue, maxValue); // Prevent exceeding max value
+            statElement.textContent = newValue;
+    
+            // Update the bar width (percentage-based)
+            const percentage = (newValue / maxValue) * 100;
+            barElement.style.width = `${percentage}%`;
+        }
+    </script>
+    <script>
+        function decrementSpeed() {
+            const decrementValue = document.getElementById('decrementValue').value;
+
+            if (!decrementValue || isNaN(decrementValue)) {
+                alert("Please enter a valid decrement value.");
+                return;
+            }
+            fetch('http://localhost:3000/api/decrement', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ decrement: parseInt(decrementValue) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    document.getElementById('responseMessage').innerText = data.message;
+                } else {
+                    document.getElementById('responseMessage').innerText = 'Something went wrong!';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').innerText = 'Failed to update Pokémon stat.';
+            });
         }
     </script>
     <script>

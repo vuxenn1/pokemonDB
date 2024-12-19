@@ -73,14 +73,14 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Card header (City name) styles */
+/* Card header (Route name) styles */
 .card h3 {
     color: #2f3061; /* Dark Blue */
     font-size: 1.5em;
     margin: 10px 0;
 }
 
-/* Card population styles */
+/* Card details styles */
 .card p {
     font-size: 1em;
     margin: 5px 0;

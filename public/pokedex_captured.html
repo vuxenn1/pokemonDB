@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captured Pokédex</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+    <header>
+        <h1>Captured Pokédex</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="pokemon-grid">
+        <!-- Pokémon cards will be rendered here -->
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Define type logos for all 18 types
+        const typeicons = {
+            Normal: '/images/icons/normal.svg',
+            Fire: '/images/icons/fire.svg',
+            Water: '/images/icons/water.svg',
+            Grass: '/images/icons/grass.svg',
+            Electric: '/images/icons/electric.svg',
+            Ice: '/images/icons/ice.svg',
+            Fighting: '/images/icons/fighting.svg',
+            Poison: '/images/icons/poison.svg',
+            Ground: '/images/icons/ground.svg',
+            Flying: '/images/icons/flying.svg',
+            Psychic: '/images/icons/psychic.svg',
+            Bug: '/images/icons/bug.svg',
+            Rock: '/images/icons/rock.svg',
+            Ghost: '/images/icons/ghost.svg',
+            Dragon: '/images/icons/dragon.svg',
+            Dark: '/images/icons/dark.svg',
+            Steel: '/images/icons/steel.svg',
+            Fairy: '/images/icons/fairy.svg'
+        };
+
+        fetch('/api/pokedex/captured')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched data:', data); // Log fetched data
+            const grid = document.getElementById('pokemon-grid');
+            
+            // Render Pokémon cards
+            grid.innerHTML = data.map(pokemon => `
+                <div class="card ${pokemon.isShiny ? 'shiny' : ''}" data-id="${pokemon.id}">
+                    <div class="pokemon-logo">
+                        <img src="${pokemon.url}" alt="${pokemon.name}">
+                    </div>
+                    <p><small>#${pokemon.id}</small></p>
+                    <h3>${pokemon.name}</h3>
+                    <p><strong>Lv.</strong> ${pokemon.level}</p>
+                    <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}" class="type-img primary-type">
+                    ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}" class="type-img secondary-type">` : ''}
+                </div>
+            `).join('');
+
+            // Add click event listeners to open Pokémon page
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const pokemonId = card.getAttribute('data-id');
+                    window.location.href = `/pokemoninfo.html?id=${pokemonId}`;
+                });
+            });
+        })
+        .catch(err => console.error('Error fetching Pokémon data:', err));
+    </script>
+
+    <script src="splash.js"></script>
+</body>
+</html>

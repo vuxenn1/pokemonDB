@@ -26,6 +26,95 @@ db.connect(err => {
     }
 });
 
+app.post('/add-pokemon', (req, res) => {
+    const { name, level, type1, type2, hp, ap, sp, isShiny, status, logo } = req.body;
+
+    // Step 1: Fetch the type IDs for the selected types
+    const getTypeIdsQuery = `
+        SELECT id 
+        FROM PokemonType 
+        WHERE name IN (?, ?)
+    `;
+    const values = [type1, type2 || 'None']; // If type2 is null, use 'None' or similar fallback
+
+    db.query(getTypeIdsQuery, values, (err, results) => {
+        if (err) {
+            console.error('Error fetching type IDs:', err);
+            return res.status(500).json({ message: 'Error fetching type IDs', error: err.message });
+        }
+
+        // Step 2: Check if we got both type IDs
+        if (results.length < 1) {
+            return res.status(400).json({ message: 'One or both Pokémon types not found.' });
+        }
+
+        // Get the ids from the query result
+        const pTypeId = results[0].id; // Primary Type ID
+        const sTypeId = results.length > 1 ? results[1].id : null; // Secondary Type ID (nullable)
+
+        // Step 3: Insert Pokémon using the type IDs
+        const insertPokemonQuery = `
+            INSERT INTO Pokemon (name, level, pType, sType, hp, ap, speed, isShiny, type, logo_url)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        const pokemonValues = [
+            name, level, pTypeId, sTypeId, hp, ap, sp, isShiny ? 1 : 0, status, logo
+        ];
+
+        db.query(insertPokemonQuery, pokemonValues, (err, result) => {
+            if (err) {
+                console.error('SQL Error:', err);
+                return res.status(500).json({ message: 'Failed to add Pokémon', error: err.message });
+            } else {
+                console.log('Pokémon added:', result);
+                return res.status(200).json({ message: 'Pokémon added successfully' });
+            }
+        });
+    });
+});
+
+// Add Item endpoint
+app.post('/add-item', (req, res) => {
+    const { name, description, price } = req.body;
+
+    const query = `
+        INSERT INTO Item (name, description, price)
+        VALUES (?, ?, ?)
+    `;
+    const values = [name, description, price];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('SQL Error:', err);
+            return res.status(500).json({ message: 'Failed to add item', error: err.message });
+        } else {
+            console.log('Item added:', result);
+            return res.status(200).json({ message: 'Item added successfully' });
+        }
+    });
+});
+
+// Add Badge endpoint
+app.post('/add-badge', (req, res) => {
+    const { name, description, price, isElite } = req.body;
+
+    const query = `
+        INSERT INTO Badge (name, description, price, isElite)
+        VALUES (?, ?, ?, ?)
+    `;
+    const values = [name, description, price, isElite ? 1 : 0];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('SQL Error:', err);
+            return res.status(500).json({ message: 'Failed to add badge', error: err.message });
+        } else {
+            console.log('Badge added:', result);
+            return res.status(200).json({ message: 'Badge added successfully' });
+        }
+    });
+});
+
 // API endpoint to fetch items
 app.get('/api/items', (req, res) => {
     const query = 'SELECT id, name, description, price FROM Item;';

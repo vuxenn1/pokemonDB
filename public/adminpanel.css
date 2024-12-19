@@ -109,17 +109,6 @@ tr.elite {
     background-color: #2f3061;
 }
 
-/* Edit/Delete Button Styles */
-button.edit {
-    background-color: #ffe66d;
-    color: #343434;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
 button.delete {
     background-color: #343434;
     color: #f7fff7;
@@ -128,10 +117,6 @@ button.delete {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
-
-button.edit:hover {
-    background-color: #ffd700;
 }
 
 button.delete:hover {

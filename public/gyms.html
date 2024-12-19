@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyms</title>
+    <link rel="stylesheet" href="gyms.css">
+</head>
+<body>
+    <header>
+        <h1>Gyms</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="gym-grid">
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+    <script>
+        // Define type colors
+const typeColors = {
+    Normal: '#D0D6C0',
+    Fire: '#FFA45C',
+    Water: '#7DCFB6',
+    Electric: '#FFD966',
+    Grass: '#98C379',
+    Ice: '#9AE3F9',
+    Fighting: '#E58C8A',
+    Poison: '#C68BC4',
+    Ground: '#D2B48C',
+    Flying: '#A9B7E2',
+    Psychic: '#F5A6E6',
+    Bug: '#A8C877',
+    Rock: '#C2B280',
+    Ghost: '#A89AD7',
+    Dragon: '#7E88C8',
+    Dark: '#6B6464',
+    Steel: '#D1D1D1',
+    Fairy: '#FADADD'
+};
+
+// Fetch and apply colors
+fetch('/api/gyms')
+    .then(response => response.json())
+    .then(data => 
+    {
+        const grid = document.getElementById('gym-grid');
+        grid.innerHTML = data.map(gym => {
+            const bgColor = typeColors[gym.type_name] || '#ffffff'; // Default to white if no match
+            return `
+                <div class="card" style="background-color: ${bgColor};">
+                    <p><small>#${gym.gym_id}</small></p>
+                    <h3>${gym.gym_name}</h3>
+                    <p><strong>Location:</strong> ${gym.gym_loc}</p>
+                    <p><strong>City:</strong> ${gym.city_name}</p>
+                    <p>Type: ${gym.type_name}</p>
+                </div>
+            `;
+        }).join('');
+    })
+    .catch(err => 
+    {
+        console.error('Error fetching gym data:', err);
+        const grid = document.getElementById('gym-grid');
+        grid.innerHTML = `<p class="error">Failed to load gym data. Please try again later.</p>`;
+    });
+    </script>
+    <style>
+        .error {
+            color: #ff4c4c;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>    
+    <script src="splash.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Routes</title>
-    <link rel="stylesheet" href="cities.css">
+    <link rel="stylesheet" href="gyms.css">
 </head>
 <body>
     <header>
@@ -12,30 +12,27 @@
         <a href="index.html" class="back-btn">Back to Main Menu</a>
     </header>
     <main class="container" id="route-grid">
-        <!-- City cards will be rendered here -->
     </main>
     <footer>
         &copy; 2024 Pokémon Inc. All Rights Reserved.
     </footer>
 
     <script>
-        // Fetch city data from API
         fetch('/api/routes')
             .then(response => response.json())
             .then(data => 
             {
                 const grid = document.getElementById('route-grid');
-                
-                // Render city cards
-                grid.innerHTML = data.map(route => `
+                grid.innerHTML = data.map(r => `
                     <div class="card">
-                        <h3>Route ${route.id}</h3>
-                        <p><strong>Starting City:</strong> ${route.startingCityName}</p>
-                        <p><strong>Ending City:</strong> ${route.endingCityName}</p>
+                         <p><small>#${r.r_id}</small></p>
+                        <h3>${r.r_name}</h3>
+                        <p><strong>Starting:</strong> ${r.starting_city}</p>
+                        <p><strong>Ending:</strong> ${r.ending_city}</p>
                     </div>
                 `).join('');
             })
-            .catch(err => console.error('Error fetching city data:', err));
+            .catch(err => console.error('Error fetching route data:', err));
     </script>
     <script src="splash.js"></script>
 </body>

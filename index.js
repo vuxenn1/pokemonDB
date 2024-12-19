@@ -79,11 +79,47 @@ app.get('/api/cities', (req, res) => {
     });
 });
 
+// API endpoint to fetch gym view
+app.get('/api/gyms', (req, res) => {
+    const query = 'SELECT * FROM gym_view;';
+    db.query(query, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to fetch gyms.'});
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+// API endpoint to fetch gym view
+app.get('/api/pokecenters', (req, res) => {
+    const query = 'SELECT * FROM pokecenter_view;';
+    db.query(query, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to fetch pokecenters.'});
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+// API endpoint to fetch gym view
+app.get('/api/routes', (req, res) => {
+    const query = 'SELECT * FROM route_view;';
+    db.query(query, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to fetch routes.'});
+        } else {
+            res.json(results);
+        }
+    });
+});
+
 app.get('/api/pokeinfo/typeinfo', (req, res) => {
     const query = 'select type as typeName, count(*) as count from pokemon group by type';
     db.query(query, (err, results) => {
         if (err) {
-            res.status(500).json({ error: 'Failed to fetch cities.' });
+            res.status(500).json({ error: 'Failed to fetch pokemon types.' });
         } else {
             res.json(results);
         }

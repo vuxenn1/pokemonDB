@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poké-Centers</title>
+    <link rel="stylesheet" href="pokecenters.css">
+</head>
+<body>
+    <header>
+        <h1>Poké-Centers</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="pokecenter-grid">
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+
+    <script>
+        fetch('/api/pokecenters')
+            .then(response => response.json())
+            .then(data => 
+            {
+                const grid = document.getElementById('pokecenter-grid');
+                grid.innerHTML = data.map(pc => `
+                    <div class="card">
+                         <p><small>#${pc.pc_id}</small></p>
+                        <h3>${pc.pc_name}</h3>
+                        <p><strong>Location:</strong> ${pc.pc_loc}</p>
+                        <p><strong>Capacity:</strong> ${pc.pc_cap}</p>
+                        <p><strong>City:</strong> ${pc.city_name}</p>
+                    </div>
+                `).join('');
+            })
+            .catch(err => console.error('Error fetching pokecenter data:', err));
+    </script>
+    <script src="splash.js"></script>
+</body>
+</html>

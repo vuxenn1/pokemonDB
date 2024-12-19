@@ -29,8 +29,8 @@
                 // Render city cards
                 grid.innerHTML = data.map(city => `
                     <div class="card">
+                         <p><small>#${city.id}</small></p>
                         <h3>${city.name}</h3>
-                        <p><small>ID: ${city.id}</small></p>
                         <p><strong>Population:</strong> ${city.population}</p>
                     </div>
                 `).join('');

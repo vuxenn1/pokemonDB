@@ -74,7 +74,7 @@
 
                 <div id="increment-modal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <span class="close" onclick="closeModal('increment-modal')">&times;</span>
                         <h3>Increase Pokémon Stat</h3>
                         <p>Enter the increment value:</p>
                         <input type="number" id="increment-value" placeholder="e.g., 10" />
@@ -84,7 +84,7 @@
                 </div>
                 <div id="decrement-modal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <span class="close" onclick="closeModal('decrement-modal')">&times;</span>
                         <h3>Decrease Pokémon Stat</h3>
                         <p>Enter the decrement value:</p>
                         <input type="number" id="decrement-value" placeholder="e.g., 10" />
@@ -235,6 +235,12 @@
             .catch(err => console.error('Error fetching Pokémon count:', err));
     </script>
     <script>
+
+        function closeModal(modalId)
+        {
+            document.getElementById(modalId).style.display = "none";
+        }
+        
         // Function to update the stat bars
         function updateStatBar(statBarId, value, maxValue) {
             const statBar = document.getElementById(statBarId);

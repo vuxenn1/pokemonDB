@@ -4,17 +4,14 @@ function switchTab(tabName)
 {
     if (activeTab === tabName) return;
 
-    // Remove active class from all tabs and tab contents
     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-    // Add active class to selected tab and its content
     document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
     document.getElementById(`${tabName}-content`).classList.add('active');
 
     activeTab = tabName;
 
-    // Fetch corresponding data based on selected tab
     if (tabName === 'pokemon') fetchPokemon();
     if (tabName === 'items') fetchItems();
     if (tabName === 'badges') fetchBadges();
@@ -113,22 +110,10 @@ function setupPokemonClickHandlers()
     });
 }
 
-function editPokemon(pokemonId)
-{
-    alert(`Editing Pokémon with ID: ${pokemonId}`);
-    console.log(`Edit action triggered for Pokémon with ID: ${pokemonId}`);
-}
-
 function deletePokemon(pokemonId)
 {
     alert(`Deleting Pokémon with ID: ${pokemonId}`);
     console.log(`Delete action triggered for Pokémon with ID: ${pokemonId}`);
-}
-
-function editItem(itemId)
-{
-    alert(`Editing Item with ID: ${itemId}`);
-    console.log(`Edit action triggered for Item with ID: ${itemId}`);
 }
 
 function deleteItem(itemId)
@@ -162,16 +147,40 @@ function deleteItem(itemId)
         });
 }
 
-function editBadge(badgeId)
-{
-    alert(`Editing Badge with ID: ${badgeId}`);
-    console.log(`Edit action triggered for Badge with ID: ${badgeId}`);
-}
-
 function deleteBadge(badgeId)
 {
-    alert(`Deleting Badge with ID: ${badgeId}`);
-    console.log(`Delete action triggered for Badge with ID: ${badgeId}`);
+    if (!confirm(`Are you sure you want to delete the badge with ID ${badgeId}?`))
+    {
+        return;
+    }
+
+    fetch(`/api/badges/${badgeId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`Badge with ID ${badgeId} has been deleted.`);
+            console.log(`Delete action succeeded for Badge with ID: ${badgeId}`);
+
+            const badgeRow = document.querySelector(`#badge-row-${badgeId}`);
+            if (badgeRow) {
+                badgeRow.remove();
+            }
+            fetchBadges();
+        } else {
+            response.text().then(text => {
+                console.error('Server responded with error:', text);
+                alert(`Error: ${text || 'An error occurred while deleting the badge.'}`);
+            }).catch(() => {
+                console.error('Failed to parse server response.');
+                alert('An error occurred while deleting the badge.');
+            });
+        }
+    })
+    .catch(error => {
+        console.error(`Error deleting badge with ID ${badgeId}:`, error);
+        alert('Failed to delete the badge. Please try again later.');
+    });
 }
 
 function openModal(modalId)
@@ -198,16 +207,13 @@ function initializePokemonFormHandler(formSelector, buttonSelector) {
         return;
     }
 
-    // Attach click event listener to the button
     submitButton.addEventListener('click', function (event) {
-        // Prevent default form submission
         event.preventDefault();
 
-        // Extract values from form fields
         const name = document.querySelector('#pokemon-name').value.trim();
         const level = document.querySelector('#pokemon-level').value.trim();
         const type1 = document.querySelector('#pokemon-type1').value.trim();
-        const type2 = document.querySelector('#pokemon-type2').value.trim() || null; // Optional
+        const type2 = document.querySelector('#pokemon-type2').value.trim() || null;
         const hp = document.querySelector('#pokemon-hp').value.trim();
         const ap = document.querySelector('#pokemon-ap').value.trim();
         const sp = document.querySelector('#pokemon-sp').value.trim();
@@ -215,14 +221,12 @@ function initializePokemonFormHandler(formSelector, buttonSelector) {
         const status = document.querySelector('#pokemon-status').value.trim();
         const logo = document.querySelector('#pokemon-logo').value.trim();
 
-        // Validate required fields
         if (!name || !level || !type1 || !hp || !ap || !sp || !status || !logo) {
             alert("All fields except 'Secondary Type' are required. Please fill in all the fields.");
             console.error("Validation Error: Missing required fields.");
             return;
         }
 
-        // Send data to backend for insertion into the database
         fetch('http://localhost:3000/add-pokemon', {
             method: 'POST',
             headers: {
@@ -245,12 +249,12 @@ function initializePokemonFormHandler(formSelector, buttonSelector) {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.json(); // Parse response JSON
+                return response.json();
             })
             .then((data) => {
                 console.log(data.message || 'Pokémon added successfully!');
                 alert(data.message || 'Pokémon added successfully!');
-                closeModal('pokemon-modal'); // Close modal after successful addition
+                closeModal('pokemon-modal');
             })
             .catch((error) => {
                 console.error('Error adding Pokémon:', error);
@@ -259,7 +263,6 @@ function initializePokemonFormHandler(formSelector, buttonSelector) {
     });
 }
 
-// ITEM ITEM ITEM
 function initializeItemFormHandler(formSelector, buttonSelector) {
     const form = document.querySelector(formSelector);
     const submitButton = document.querySelector(buttonSelector);
@@ -274,29 +277,19 @@ function initializeItemFormHandler(formSelector, buttonSelector) {
         return;
     }
 
-    // Attach click event listener to the button
     submitButton.addEventListener('click', function (event) {
-        // Prevent default form submission
         event.preventDefault();
 
-        // Extract values from form fields
         const name = document.querySelector('#item-name').value.trim();
         const description = document.querySelector('#item-description').value.trim();
         const price = document.querySelector('#item-price').value.trim();
 
-        // Validate required fields
         if (!name || !description || !price) {
             alert("All fields are required. Please fill in all the fields.");
             console.error("Validation Error: Missing required fields.");
             return;
         }
 
-        // Log values to the console (for testing)
-        console.log("Name:", name);
-        console.log("Description:", description);
-        console.log("Price:", price);
-
-        // Send the data to the backend via a POST request
         fetch('http://localhost:3000/add-item', {
             method: 'POST',
             headers: {
@@ -324,7 +317,6 @@ function initializeItemFormHandler(formSelector, buttonSelector) {
     });
 }
 
-// BADGE BADGE BADGE
 function initializeBadgeFormHandler(formSelector, buttonSelector) {
     const form = document.querySelector(formSelector);
     const submitButton = document.querySelector(buttonSelector);
@@ -339,31 +331,20 @@ function initializeBadgeFormHandler(formSelector, buttonSelector) {
         return;
     }
 
-    // Attach click event listener to the button
     submitButton.addEventListener('click', function (event) {
-        // Prevent default form submission
         event.preventDefault();
 
-        // Extract values from form fields
         const name = document.querySelector('#badge-name').value.trim();
         const description = document.querySelector('#badge-description').value.trim();
         const price = document.querySelector('#badge-price').value.trim();
-        const elite = document.querySelector('#badge-elite').checked; // Using .checked for the checkbox
+        const isElite = document.querySelector('#badge-elite').checked;
 
-        // Validate required fields
         if (!name || !description || !price) {
             alert("All fields are required. Please fill in all the fields.");
             console.error("Validation Error: Missing required fields.");
             return;
         }
 
-        // Log values to the console (for testing)
-        console.log("Name:", name);
-        console.log("Description:", description);
-        console.log("Price:", price);
-        console.log("Is Elite:", elite ? 'Yes' : 'No');
-
-        // Send the data to the backend via a POST request
         fetch('http://localhost:3000/add-badge', {
             method: 'POST',
             headers: {
@@ -373,7 +354,7 @@ function initializeBadgeFormHandler(formSelector, buttonSelector) {
                 name: name,
                 description: description,
                 price: price,
-                isElite: elite
+                isElite: isElite
             })
         })
         .then(response => response.json())

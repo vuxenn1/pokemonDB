@@ -262,6 +262,28 @@ app.delete('/api/items/:id', (req, res) => {
     });
 });
 
+// API endpoint to delete a badge by ID
+app.delete('/api/badges/:id', (req, res) => {
+    const badgeId = req.params.id;
+
+    // SQL query to delete the badge by ID
+    const query = 'DELETE FROM Badge WHERE id = ?';
+
+    db.query(query, [badgeId], (err, result) => {
+        if (err) {
+            console.error('Error deleting badge:', err);
+            return res.status(500).json({ error: 'Failed to delete badge.' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Badge not found.' });
+        }
+
+        res.status(200).json({ message: `Badge with ID ${badgeId} has been deleted.` });
+    });
+});
+
+
 // API route to run custom queries
 app.post("/query", (req, res) => {
     const userQuery = req.body.query;

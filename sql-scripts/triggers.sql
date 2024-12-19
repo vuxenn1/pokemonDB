@@ -31,3 +31,27 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER after_trainer_insert
+AFTER INSERT ON Trainer
+FOR EACH ROW
+BEGIN
+    IF NEW.type = 'CasualTrainer' THEN
+        INSERT INTO CasualTrainer (trainer_id, route_id) 
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM Route)));
+    ELSEIF NEW.type = 'Player' THEN
+        INSERT INTO Player (trainer_id, city_id) 
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM City)));
+    ELSEIF NEW.type = 'Professor' THEN
+        INSERT INTO Professor (trainer_id, pokecenter_id) 
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM PokeCenter)));
+    ELSEIF NEW.type = 'GymLeader' THEN
+        INSERT INTO GymLeader (trainer_id, gym_id) 
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM Gym)));
+    END IF;
+END$$
+
+DELIMITER ;

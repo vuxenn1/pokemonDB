@@ -110,10 +110,27 @@ function setupPokemonClickHandlers()
     });
 }
 
-function deletePokemon(pokemonId)
-{
-    alert(`Deleting Pokémon with ID: ${pokemonId}`);
-    console.log(`Delete action triggered for Pokémon with ID: ${pokemonId}`);
+function deletePokemon(pokemonId) {
+    if (!confirm('Are you sure you want to delete this Pokémon?')) {
+        return;
+    }
+
+    fetch(`/api/pokedex/${pokemonId}`, {
+        method: 'DELETE',
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(`Error: ${data.error}`);
+            } else {
+                alert(data.message);
+                fetchPokemon();
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting Pokémon:', error);
+            alert('An error occurred while deleting the Pokémon.');
+        });
 }
 
 function deleteItem(itemId)
@@ -161,6 +178,7 @@ function deleteBadge(badgeId)
         if (response.ok) {
             alert(`Badge with ID ${badgeId} has been deleted.`);
             console.log(`Delete action succeeded for Badge with ID: ${badgeId}`);
+            fetchBadges();
 
             const badgeRow = document.querySelector(`#badge-row-${badgeId}`);
             if (badgeRow) {
@@ -254,6 +272,7 @@ function initializePokemonFormHandler(formSelector, buttonSelector) {
             .then((data) => {
                 console.log(data.message || 'Pokémon added successfully!');
                 alert(data.message || 'Pokémon added successfully!');
+                fetchPokemon();
                 closeModal('pokemon-modal');
             })
             .catch((error) => {
@@ -305,6 +324,7 @@ function initializeItemFormHandler(formSelector, buttonSelector) {
         .then(result => {
             if (result.message === 'Item added successfully') {
                 alert('Item added successfully!');
+                fetchItems();
                 closeModal('item-modal');
             } else {
                 alert('Error adding item: ' + result.error);
@@ -361,6 +381,7 @@ function initializeBadgeFormHandler(formSelector, buttonSelector) {
         .then(result => {
             if (result.message === 'Badge added successfully') {
                 alert('Badge added successfully!');
+                fetchBadges();
                 closeModal('badge-modal');
             } else {
                 alert('Error adding badge: ' + result.error);

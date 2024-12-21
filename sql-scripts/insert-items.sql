@@ -1,5 +1,6 @@
 DELETE FROM Item;
 ALTER TABLE Item AUTO_INCREMENT = 1;
+
 INSERT INTO Item (name, description, price) VALUES
 ('Potion', 'Restores 20 HP of a Pokémon.', 300),
 ('Super Potion', 'Restores 50 HP of a Pokémon.', 700),
@@ -21,5 +22,3 @@ INSERT INTO Item (name, description, price) VALUES
 ('Great Ball', 'A high-performance Poké Ball with a better catch rate.', 600),
 ('Ultra Ball', 'An ultra-high-performance Poké Ball with a high catch rate.', 1200),
 ('Master Ball', 'The best Poké Ball with a 100% catch rate.', 10000);
-
-SELECT * FROM ITEM;

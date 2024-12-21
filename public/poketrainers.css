@@ -1,0 +1,106 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7fff7;
+    color: #343434;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 10px 2px;
+    background-color: #2f3061;
+    color: #ffe66d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-btn {
+    background-color: #ffe66d;
+    color: #2f3061;
+    font-size: 1.1em;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+}
+
+.back-btn:hover {
+    background-color: #ffcc00;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:active {
+    background-color: #2f3061;
+    color: #ffe66d;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: 1em;
+    background-color: #2f3061;
+    color: #ffe66d;
+}
+
+.card .pokemon-link {
+    color: #007bff; /* Blue for Pokémon links */
+    text-decoration: none; /* Remove underline */
+    font-weight: 600;
+    transition: color 0.3s, transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.card .pokemon-link:hover {
+    color: #ff5733; /* Change to orange/red on hover */
+    transform: scale(1.1); /* Slightly enlarge the link */
+    text-decoration: underline; /* Underline on hover */
+}
+
+.card .pokemon-link:active {
+    color: #e74c3c; /* Darker color when clicked */
+    transform: scale(1); /* Reset scale on click */
+}

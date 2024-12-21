@@ -37,7 +37,6 @@ CREATE TABLE Trainer (
 );
 
 ALTER TABLE Trainer ADD COLUMN type ENUM('CasualTrainer', 'Player', 'Professor', 'GymLeader') NOT NULL;
-ALTER TABLE Trainer ADD COLUMN logo_url varchar(255);
 
 CREATE TABLE Pokemon (
     id INT AUTO_INCREMENT PRIMARY KEY,

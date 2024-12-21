@@ -32,5 +32,3 @@ INSERT INTO city (name, population) VALUES
 ('Ever Grande City', FLOOR(1000 + RAND() * 5000)),
 ('Twinleaf Town', FLOOR(500 + RAND() * 1500)),
 ('Hearthome City', FLOOR(9000 + RAND() * 18000));
-
-SELECT * FROM city;

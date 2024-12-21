@@ -1,3 +1,4 @@
+-- POKEMON DELETING TRIGGER
 DELIMITER $$
 
 CREATE TRIGGER after_pokemon_delete
@@ -13,6 +14,26 @@ END$$
 
 DELIMITER ;
 
+-- POKEMON INSERT TRIGGER
+DELIMITER $$
+
+CREATE TRIGGER after_pokemon_insert
+AFTER INSERT ON Pokemon
+FOR EACH ROW
+BEGIN
+    IF NEW.type = 'Wild' THEN
+        INSERT INTO WildPokemon (pokemon_id, route_id) 
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM route)));
+    ELSEIF NEW.type = 'Captured' THEN
+        INSERT INTO CapturedPokemon (pokemon_id, trainer_id)
+        VALUES (NEW.id, FLOOR(1 + RAND() * (SELECT MAX(id) FROM Trainer)));
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+-- TRAINER DELETING TRIGGER
 DELIMITER $$
 
 CREATE TRIGGER after_trainer_delete
@@ -32,6 +53,7 @@ END$$
 
 DELIMITER ;
 
+-- TRAINER INSERT TRIGGER
 
 DELIMITER $$
 

@@ -211,6 +211,30 @@ app.get('/api/routes', (req, res) => {
     });
 });
 
+app.get('/api/trainers', (req, res) => {
+    const query = 'SELECT * FROM Trainer;';
+    db.query(query, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to fetch trainers.'});
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+app.get('/api/poketrainers', (req, res) => {
+    const query = 'SELECT * FROM poketrainer_view;';
+    
+    db.query(query, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Failed to fetch trainers with pokemons.' });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+
 app.get('/api/pokeinfo/typeinfo', (req, res) => {
     const query = 'select type as typeName, count(*) as count from pokemon group by type';
     db.query(query, (err, results) => {

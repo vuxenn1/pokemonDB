@@ -45,5 +45,3 @@ INSERT INTO Pokemon (name, level, pType, sType, hp, ap, speed, isShiny, type, lo
 ('Magmar', 35, 2, NULL, 65, 95, 93, FALSE, 'Captured','https://img.pokemondb.net/sprites/x-y/normal/magmar.png'),
 ('Crobat', 45, 10, NULL, 85, 90, 130, FALSE, 'Captured','https://img.pokemondb.net/sprites/x-y/normal/crobat.png'),
 ('Tyranitar', 50, 13, NULL, 100, 134, 61, FALSE, 'Captured','https://img.pokemondb.net/sprites/x-y/normal/tyranitar.png');
-
-select * from pokemon;

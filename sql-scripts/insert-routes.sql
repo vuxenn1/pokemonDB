@@ -15,5 +15,3 @@ INSERT INTO Route (name, startingCity, endingCity) VALUES
 ('Route 11', 11, 12),
 ('Route 12', 12, 13),
 ('Route 13', 13, 1);
-
-SELECT * FROM Route;

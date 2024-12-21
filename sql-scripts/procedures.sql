@@ -194,6 +194,3 @@ DELIMITER ;
 
 -- CALL InsertTrainerDetails();
 -- CALL InsertPokemons();
-
--- SELECT c.pokemon_id as p, c.trainer_id as t, p.name, t.name FROM capturedpokemon c, trainer t, pokemon p where (c.trainer_id = t.id) and (c.pokemon_id = p.id);
--- SELECT w.pokemon_id as p, w.route_id as r, p.name, r.name FROM wildpokemon w, route r, pokemon p where (w.route_id = r.id) and (w.pokemon_id = p.id);

@@ -17,5 +17,3 @@ INSERT INTO Gym (name, location, gymType, city) VALUES
 ('Ever Grande Gym', 'Summit Rd, Ever Grande City', 15, 28),
 ('Twinleaf Gym', 'New Leaf Ave, Twinleaf Town', 9, 29),
 ('Hearthome Gym', 'Beacon Rd, Hearthome City', 5, 30);
-
-select g.id, g.name,g.location,c.name from gym g, city c where g.city = c.id;

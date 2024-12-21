@@ -1,5 +1,5 @@
-delete from trainer;
-alter table trainer auto_increment = 1;
+DELETE FROM trainer;
+ALTER TABLE trainer auto_increment = 1;
 
 INSERT INTO Trainer (name, age, gender, badge, type) VALUES
 ('Ash Ketchum', 10, 'M', 1, 'Player'),
@@ -32,6 +32,3 @@ INSERT INTO Trainer (name, age, gender, badge, type) VALUES
 ('Professor Kukui', 35, 'M', NULL, 'Professor'),
 ('Hop Galar', 11, 'M', 12, 'Player'),
 ('Leon Champion', 22, 'M', NULL, 'CasualTrainer');
-
-select * from trainer;
-SELECT t.name AS TrainerName, b.name AS BadgeName FROM Trainer t LEFT JOIN Badge b ON t.badge = b.id;

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers</title>
+    <link rel="stylesheet" href="trainers.css">
+</head>
+<body>
+    <header>
+        <h1>Trainers</h1>
+        <a href="index.html" class="back-btn">Back to Main Menu</a>
+    </header>
+    <main class="container" id="trainer-grid">
+        <!-- Trainer cards will be rendered here -->
+    </main>
+    <footer>
+        &copy; 2024 Pokémon Inc. All Rights Reserved.
+    </footer>
+
+    <script>
+        fetch('/api/trainers')
+            .then(response => response.json())
+            .then(data => {
+                const grid = document.getElementById('trainer-grid');
+                
+                const typeColors = {
+                    Player: '#345995',        // Dark Blue
+                    Professor: '#03CEA4',     // Teal
+                    CasualTrainer: '#EAC435', // Yellow
+                    GymLeader: '#FB4D3D'      // Red
+                };
+
+                const genderColors = {
+                    Player: {
+                        M: '#C6D9F7', // Light Blue
+                        F: '#F5C0D2'  // Soft Pink
+                    },
+                    Professor: {
+                        M: '#98DED4', // Aqua
+                        F: '#FFD1E6'  // Pastel Pink
+                    },
+                    CasualTrainer: {
+                        M: '#FFF1C1', // Pale Yellow
+                        F: '#FFE7E0'  // Light Peach
+                    },
+                    GymLeader: {
+                        M: '#FF9B86', // Coral
+                        F: '#FFDADA'  // Light Salmon
+                    }
+                };
+
+                grid.innerHTML = data.map(trainer => {
+                    const backgroundColor = typeColors[trainer.type] || '#ffffff';
+                    const textColor = genderColors[trainer.type]?.[trainer.gender] || '#000000';
+
+                    return `
+                        <div class="card" style="background-color: ${backgroundColor}; color: ${textColor};">
+                            <p><small>#${trainer.id}</small></p>
+                            <h3 style="color: ${textColor};">${trainer.name}</h3>
+                            <p><strong>Age:</strong> ${trainer.age}</p>
+                            <p>${trainer.type}</p>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(err => console.error('Error fetching trainer data:', err));
+    </script>
+    <script src="splash.js"></script>
+</body>
+</html>

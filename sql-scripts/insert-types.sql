@@ -43,10 +43,3 @@ UPDATE PokemonType SET strongAgainst = 15, weakAgainst = 17 WHERE name = 'Dragon
 UPDATE PokemonType SET strongAgainst = 1, weakAgainst = 7 WHERE name = 'Dark';
 UPDATE PokemonType SET strongAgainst = 18, weakAgainst = 9 WHERE name = 'Steel';
 UPDATE PokemonType SET strongAgainst = 17, weakAgainst = 7 WHERE name = 'Fairy';
-
-select * from pokemontype;
-
-SELECT p1.id, p1.name, p2.name AS StrongAgainst, p3.name AS WeakAgainst 
-FROM PokemonType p1 
-LEFT JOIN PokemonType p2 ON p1.strongAgainst = p2.id 
-LEFT JOIN PokemonType p3 ON p1.weakAgainst = p3.id;

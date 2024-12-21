@@ -17,6 +17,3 @@ INSERT INTO PokeCenter (name, location, capacity, city) VALUES
 ('Olivine PokeCenter', 'Lighthouse Lane, Olivine City', 25, 13),
 ('Mahogany PokeCenter', 'Rage Rd, Mahogany Town', 20, 14),
 ('Blackthorn PokeCenter', 'Dragon Ave, Blackthorn City', 35, 15);
-
-select * from pokecenter;
-select p.name,p.location,c.name from pokecenter p, city c where p.city = c.id;

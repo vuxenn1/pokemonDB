@@ -21,5 +21,3 @@ INSERT INTO Badge (name, description, price, isElite) VALUES
 ('Champion Badge', 'A badge awarded to the Champion of the Pokémon League.', 2500, TRUE),
 ('Battle Frontier Badge', 'A badge earned by defeating the Battle Frontier.', 3000, TRUE),
 ('Master Badge', 'A badge awarded to the ultimate Pokémon Master.', 5000, TRUE);
-
-select * from badge;

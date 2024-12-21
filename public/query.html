@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Querry Runner</title>
+    <title>Query Runner</title>
     <link rel="stylesheet" href="query.css">
+    <style>
+        #download-pdf {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #download-pdf:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <header>
         <a href="index.html" class="back-button"> Back to Main Menu</a>
-        <h1 style="text-align: center; margin: 0;">SQL Querry Runner</h1>
+        <h1 style="text-align: center; margin: 0;">SQL Query Runner</h1>
     </header>
 
     <div class="query-section">
@@ -21,8 +36,11 @@
         <div id="query-results">
             <!-- Query results will appear here -->
         </div>
+        <button id="download-pdf">Download PDF</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
         document.getElementById("query-form").addEventListener("submit", function (event) {
             event.preventDefault();
@@ -38,10 +56,14 @@
                 .then((response) => response.json())
                 .then((data) => {
                     const resultsDiv = document.getElementById("query-results");
+                    const downloadButton = document.getElementById("download-pdf");
+
                     if (data.error) {
                         resultsDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+                        downloadButton.style.display = "none"; // Hide button on error
                     } else if (data.message) {
                         resultsDiv.innerHTML = `<p>${data.message}</p>`;
+                        downloadButton.style.display = "none"; // Hide button for non-SELECT queries
                     } else {
                         const table = document.createElement("table");
                         const thead = document.createElement("thead");
@@ -70,6 +92,13 @@
 
                         resultsDiv.innerHTML = "";
                         resultsDiv.appendChild(table);
+
+                        // Show the Download PDF button
+                        downloadButton.style.display = "inline-block";
+
+                        // Attach data for PDF generation
+                        downloadButton.dataset.columns = JSON.stringify(data.columns);
+                        downloadButton.dataset.results = JSON.stringify(data.results);
                     }
                 })
                 .catch((error) => {
@@ -77,6 +106,25 @@
                     document.getElementById("query-results").innerHTML =
                         '<p style="color: red;">Failed to execute query.</p>';
                 });
+        });
+
+        document.getElementById("download-pdf").addEventListener("click", function () {
+            const { jsPDF } = window.jspdf;
+            const columns = JSON.parse(this.dataset.columns);
+            const results = JSON.parse(this.dataset.results);
+
+            const rows = results.map((row) => {
+                return columns.map((col) => row[col]);
+            });
+
+            const doc = new jsPDF();
+            doc.text("SQL Query Report", 14, 10);
+            doc.autoTable({
+                head: [columns],
+                body: rows,
+            });
+
+            doc.save("SQL_Query_Report.pdf");
         });
     </script>
 </body>

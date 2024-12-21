@@ -1,5 +1,3 @@
-use pokemonyasarhoca;
-
 DELETE FROM PokemonType;
 ALTER TABLE PokemonType AUTO_INCREMENT = 1;
 

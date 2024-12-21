@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'nuri234!',
-    database: 'pokemonyasarhoca'
+    password: 'password',
+    database: 'pokemondbms'
 });
 
 db.connect(err => {

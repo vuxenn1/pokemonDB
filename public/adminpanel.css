@@ -7,9 +7,9 @@
 
 /* Body & General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7fff7;
-    color: #343434;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #eaf8f8;
+    color: #2a2a2a;
     padding: 20px;
 }
 
@@ -18,26 +18,28 @@ body {
     position: fixed;
     top: 10px;
     left: 10px;
-    background-color: #343434;
-    color: #f7fff7;
+    background-color: #2a2a2a;
+    color: #eaf8f8;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
+    border-radius: 8px;
+    padding: 12px 18px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .back-to-menu:hover {
-    background-color: #2f3061;
+    background-color: #ffe66d;
+    color: #2a2a2a;
     transform: scale(1.1);
 }
 
 /* Header & Title */
 h1 {
     text-align: center;
-    color: #2f3061;
-    margin-bottom: 20px;
+    color: #2a2a2a;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
 }
 
 /* Tabs */
@@ -45,33 +47,35 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .tab {
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 8px;
     background-color: #2f3061;
-    color: #f7fff7;
+    color: #eaf8f8;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tab.active {
-    background-color: #343434;
+    background-color: #2a2a2a;
 }
 
 .tab:hover {
     background-color: #ffe66d;
-    color: #343434;
+    color: #2a2a2a;
+    transform: scale(1.1);
 }
 
 /* Tab Content */
 .tab-content {
-    border-radius: 5px;
-    background-color: #f7fff7;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: none;
 }
 
@@ -84,52 +88,54 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 thead th {
     background-color: #2f3061;
-    color: #f7fff7;
-    padding: 10px;
-    text-align: left;
+    color: #eaf8f8;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
 }
 
 tbody td {
-    background-color: #f7fff7;
+    background-color: #f9f9f9;
     text-align: center;
-    padding: 10px;
-    border: 1px solid #343434;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 14px;
 }
 
-/* Special Rows */
-tr.shiny {
-    background-color: #ffe66d;
-}
-
-tr.elite {
-    background-color: #2f3061;
+tr:nth-child(even) td {
+    background-color: #f1f1f1;
 }
 
 button.delete {
-    background-color: #343434;
-    color: #f7fff7;
-    padding: 6px 10px;
+    background-color: #2a2a2a;
+    color: #eaf8f8;
+    padding: 8px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button.delete:hover {
     background-color: #d7263d;
+    transform: scale(1.1);
 }
 
 /* Add Button Styles */
 button {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -137,19 +143,19 @@ button {
 /* Specific Styles for Add Buttons */
 button.add {
     background-color: #2f3061;
-    color: #f7fff7;
+    color: #eaf8f8;
     font-weight: bold;
     margin-bottom: 15px;
     display: inline-block;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button.add:hover {
     background-color: #ffe66d;
-    color: #343434;
+    color: #2a2a2a;
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 button.add:active {
@@ -162,7 +168,6 @@ button.add:active {
     margin: 10px 0;
 }
 
-/* Modal General Styles */
 .modal {
     display: none;
     position: fixed;
@@ -173,27 +178,33 @@ button.add:active {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    overflow-y: auto; /* Enable vertical scrolling for the modal */
 }
 
 .modal-content {
-    background-color: #f7fff7;
-    padding: 20px;
-    border-radius: 10px;
+    max-width: 90%; /* Prevent the modal from being too wide */
+    max-height: 90%; /* Prevent the modal from being too tall */
+    overflow-y: auto; /* Allow scrolling if content exceeds the height */
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
     width: 400px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     position: relative;
+    margin: 20px; /* Add margin for better spacing on smaller screens */
 }
 
 .modal-content h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .modal-content .close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    color: #343434;
+    top: 12px;
+    right: 20px;
+    font-size: 28px;
+    color: #2a2a2a;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -204,27 +215,28 @@ button.add:active {
 
 .modal-content form label {
     display: block;
-    margin-bottom: 5px;
-    color: #343434;
+    margin-bottom: 8px;
+    color: #2a2a2a;
 }
 
 .modal-content form input, 
 .modal-content form textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     resize: none;
+    font-size: 14px;
 }
 
 .modal-content form button {
     width: 100%;
-    background-color: #2f3061;
-    color: #f7fff7;
+    background-color: #3e4c59;
+    color: #eaf8f8;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -232,5 +244,5 @@ button.add:active {
 
 .modal-content form button:hover {
     background-color: #ffe66d;
-    color: #343434;
+    color: #2a2a2a;
 }

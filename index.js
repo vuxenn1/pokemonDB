@@ -23,7 +23,6 @@ db.connect(err => {
     }
 });
 
-// Log incoming requests
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
@@ -224,7 +223,6 @@ app.get('/api/trainers', (req, res) => {
 
 app.get('/api/poketrainers', (req, res) => {
     const query = 'SELECT * FROM poketrainer_view;';
-    
     db.query(query, (err, results) => {
         if (err) {
             res.status(500).json({ error: 'Failed to fetch trainers with pokemons.' });
@@ -233,7 +231,6 @@ app.get('/api/poketrainers', (req, res) => {
         }
     });
 });
-
 
 app.get('/api/pokeinfo/typeinfo', (req, res) => {
     const query = 'select type as typeName, count(*) as count from pokemon group by type';
@@ -271,67 +268,20 @@ app.get('/api/strongWeakAgainst/:type', (req, res) => {
 
 app.delete('/api/pokedex/:id', (req, res) => {
     const pokemonId = req.params.id;
-
-    // Step 1: Fetch the Pokémon type
-    const getTypeQuery = 'SELECT type FROM Pokemon WHERE id = ?';
-    db.query(getTypeQuery, [pokemonId], (err, results) => {
+    const deletePokemonQuery = 'DELETE FROM Pokemon WHERE id = ?';
+    db.query(deletePokemonQuery, [pokemonId], (err, result) => {
         if (err) {
-            return res.status(500).json({ error: 'Error fetching Pokémon type', details: err.message });
+            return res.status(500).json({ error: 'Error deleting Pokémon from main table', details: err.message });
         }
-
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'Pokémon not found.' });
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Pokémon not found in main table.' });
         }
-
-        const pokemonType = results[0].type;
-
-        // Step 2: Determine the appropriate table for deletion
-        let deleteTypeQuery = '';
-        let resetTypeAutoIncrementQuery = '';
-        if (pokemonType === 'Captured') {
-            deleteTypeQuery = 'DELETE FROM CapturedPokemon WHERE pokemon_id = ?';
-            resetTypeAutoIncrementQuery = 'ALTER TABLE CapturedPokemon AUTO_INCREMENT = 1';
-        } else if (pokemonType === 'Wild') {
-            deleteTypeQuery = 'DELETE FROM WildPokemon WHERE pokemon_id = ?';
-            resetTypeAutoIncrementQuery = 'ALTER TABLE WildPokemon AUTO_INCREMENT = 1';
-        } else {
-            return res.status(400).json({ error: 'Invalid Pokémon type.' });
-        }
-
-        // Step 3: Delete from the type-specific table
-        db.query(deleteTypeQuery, [pokemonId], (err) => {
+        const resetPokemonAutoIncrementQuery = 'ALTER TABLE Pokemon AUTO_INCREMENT = 1';
+        db.query(resetPokemonAutoIncrementQuery, (err) => {
             if (err) {
-                return res.status(500).json({ error: 'Error deleting Pokémon from type-specific table', details: err.message });
+                return res.status(500).json({ error: 'Error resetting AUTO_INCREMENT for Pokémon table', details: err.message });
             }
-
-            // Step 4: Reset AUTO_INCREMENT for the type-specific table
-            db.query(resetTypeAutoIncrementQuery, (err) => {
-                if (err) {
-                    return res.status(500).json({ error: 'Error resetting AUTO_INCREMENT for type-specific table', details: err.message });
-                }
-
-                // Step 5: Delete from the main Pokémon table
-                const deletePokemonQuery = 'DELETE FROM Pokemon WHERE id = ?';
-                db.query(deletePokemonQuery, [pokemonId], (err, result) => {
-                    if (err) {
-                        return res.status(500).json({ error: 'Error deleting Pokémon from main table', details: err.message });
-                    }
-
-                    if (result.affectedRows === 0) {
-                        return res.status(404).json({ message: 'Pokémon not found in main table.' });
-                    }
-
-                    // Step 6: Reset AUTO_INCREMENT for the main Pokémon table
-                    const resetPokemonAutoIncrementQuery = 'ALTER TABLE Pokemon AUTO_INCREMENT = 1';
-                    db.query(resetPokemonAutoIncrementQuery, (err) => {
-                        if (err) {
-                            return res.status(500).json({ error: 'Error resetting AUTO_INCREMENT for Pokémon table', details: err.message });
-                        }
-
-                        res.status(200).json({ message: `Pokémon with ID ${pokemonId} has been successfully deleted and AUTO_INCREMENT values have been reset.` });
-                    });
-                });
-            });
+            res.status(200).json({ message: `Pokémon with ID ${pokemonId} has been successfully deleted.` });
         });
     });
 });
@@ -340,7 +290,6 @@ app.delete('/api/items/:id', (req, res) => {
     const itemId = req.params.id;
     const deleteQuery = 'DELETE FROM Item WHERE id = ?';
     const resetAutoIncrementQuery = 'ALTER TABLE Item AUTO_INCREMENT = 1';
-
     db.query(deleteQuery, [itemId], (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to delete item.' });
@@ -348,13 +297,11 @@ app.delete('/api/items/:id', (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Item not found.' });
         }
-
-        // Run the second query to reset AUTO_INCREMENT
         db.query(resetAutoIncrementQuery, (err) => {
             if (err) {
                 return res.status(500).json({ error: 'Failed to reset AUTO_INCREMENT value.' });
             }
-            res.status(200).json({ message: `Item with ID ${itemId} has been deleted and AUTO_INCREMENT has been reset.` });
+            res.status(200).json({ message: `Item with ID ${itemId} has been deleted.` });
         });
     });
 });
@@ -363,7 +310,6 @@ app.delete('/api/badges/:id', (req, res) => {
     const badgeId = req.params.id;
     const deleteQuery = 'DELETE FROM Badge WHERE id = ?';
     const resetAutoIncrementQuery = 'ALTER TABLE Badge AUTO_INCREMENT = 1';
-
     db.query(deleteQuery, [badgeId], (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to delete badge.' });
@@ -371,13 +317,11 @@ app.delete('/api/badges/:id', (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Badge not found.' });
         }
-
-        // Run the second query to reset AUTO_INCREMENT
         db.query(resetAutoIncrementQuery, (err) => {
             if (err) {
                 return res.status(500).json({ error: 'Failed to reset AUTO_INCREMENT value.' });
             }
-            res.status(200).json({ message: `Badge with ID ${badgeId} has been deleted and AUTO_INCREMENT has been reset.` });
+            res.status(200).json({ message: `Badge with ID ${badgeId} has been deleted.` });
         });
     });
 });

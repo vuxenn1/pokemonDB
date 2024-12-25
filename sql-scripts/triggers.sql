@@ -1,6 +1,6 @@
-DROP TRIGGER IF EXISTS after_pokemon_delete;
+DROP TRIGGER IF EXISTS before_pokemon_delete;
 DROP TRIGGER IF EXISTS after_pokemon_insert;
-DROP TRIGGER IF EXISTS after_trainer_delete;
+DROP TRIGGER IF EXISTS before_trainer_delete;
 DROP TRIGGER IF EXISTS after_trainer_insert;
 
 DELIMITER $$

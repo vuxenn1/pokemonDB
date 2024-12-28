@@ -1,23 +1,21 @@
-/* Reset and body styles */
 body
 {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F7FFF7; /* Soft light background */
-    color: #343434; /* Dark Gray text color */
+    background-color: #F7FFF7;
+    color: #343434;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Header styles */
 header
 {
     text-align: center;
     padding: 40px 20px;
-    background-color: #2F3061; /* Dark Blue */
-    color: #FFE66D; /* Soft Yellow text */
+    background-color: #2F3061;
+    color: #FFE66D;
 }
 
 header h1
@@ -26,12 +24,11 @@ header h1
     margin: 0;
 }
 
-/* Back to Main Menu Button */
 .back-btn
 {
     display: inline-block;
-    background-color: #FFE66D; /* Soft Yellow */
-    color: #2F3061; /* Dark Blue text */
+    background-color: #FFE66D;
+    color: #2F3061;
     font-size: 1em;
     padding: 12px 30px;
     border: none;
@@ -44,17 +41,16 @@ header h1
 
 .back-btn:hover
 {
-    background-color: #FFCC00; /* Brighter Yellow on hover */
-    transform: translateY(-3px); /* Slight elevation */
+    background-color: #FFCC00;
+    transform: translateY(-3px);
 }
 
 .back-btn:active
 {
-    background-color: #2F3061; /* Dark Blue on click */
-    color: #FFE66D; /* Keep text color soft yellow */
+    background-color: #2F3061;
+    color: #FFE66D;
 }
 
-/* Grid container */
 .container
 {
     display: grid;
@@ -66,7 +62,6 @@ header h1
     flex-grow: 1;
 }
 
-/* Card styles */
 .card
 {
     position: relative;
@@ -96,7 +91,6 @@ header h1
     background: linear-gradient(135deg, #f8e69c, #ecd26b);
 }
 
-/* Shine effect */
 .card::after
 {
     content: '';
@@ -124,22 +118,20 @@ header h1
     transition: left 0.8s ease, opacity 0.8s ease;
 }
 
-/* Card content */
 .card h3
 {
     font-size: 1.6em;
-    color: #2F3061; /* Dark Blue */
+    color: #2F3061;
     margin: 15px 0 10px;
 }
 
 .card p
 {
     font-size: 1em;
-    color: #566573; /* Dark Gray for description text */
+    color: #566573;
     margin: 5px 0;
 }
 
-/* Card with special styles for shiny elements */
 .card.shiny
 {
     background: linear-gradient(135deg, #F9E79F, #F7DC6F);
@@ -148,10 +140,9 @@ header h1
 
 .card.shiny h3
 {
-    color: #D68910; /* Gold color */
+    color: #D68910;
 }
 
-/* Type badges */
 .type-img
 {
     width: 40px;
@@ -172,13 +163,12 @@ header h1
     right: 15px;
 }
 
-/* Footer */
 footer
 {
     text-align: center;
     padding: 20px;
-    background-color: #2F3061; /* Dark Blue */
-    color: #FFE66D; /* Soft Yellow text */
+    background-color: #2F3061;
+    color: #FFE66D;
     font-size: 1em;
     margin-top: auto;
 }

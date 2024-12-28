@@ -12,7 +12,6 @@
         <a href="index.html" class="back-btn">Back to Main Menu</a>
     </header>
     <main class="container" id="poke-trainer-grid">
-        <!-- Trainer cards will be rendered here -->
     </main>
     <footer>
         &copy; 2024 Pokémon Inc. All Rights Reserved.
@@ -25,7 +24,6 @@
                 const grid = document.getElementById('poke-trainer-grid');
     
                 grid.innerHTML = data.map(trainer => {
-                    // Split the Pokémon list into an array and make each one clickable
                     const pokemonsList = trainer.pokemons.split(',').map(pokemon => {
                         return `<p><a href="#" class="pokemon-link" data-name="${pokemon.trim()}">${pokemon.trim()}</a></p>`;
                     }).join('');
@@ -42,19 +40,15 @@
             })
             .catch(err => console.error('Error fetching pokemon trainer data:', err));
 
-        // Add event listener for Pokémon name clicks
         document.addEventListener('click', function (event) {
             if (event.target && event.target.classList.contains('pokemon-link')) {
                 const pokemonName = event.target.getAttribute('data-name');
 
-                // Fetch Pokémon ID based on name dynamically
                 fetch(`/api/pokedex`)
                     .then(response => response.json())
                     .then(data => {
-                        // Find the Pokémon based on the name
                         const pokemon = data.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
                         if (pokemon) {
-                            // Redirect to the Pokémon details page with the ID
                             window.location.href = `/pokemoninfo.html?id=${pokemon.id}`;
                         } else {
                             console.error('Pokémon not found');

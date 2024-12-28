@@ -1,11 +1,9 @@
-/* General Reset for Margin and Padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body & General Styles */
 body {
     font-family: 'Poppins', Arial, sans-serif;
     background-color: #eaf8f8;
@@ -13,7 +11,6 @@ body {
     padding: 20px;
 }
 
-/* Back to Menu Button */
 .back-to-menu {
     position: fixed;
     top: 10px;
@@ -34,7 +31,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Header & Title */
 h1 {
     text-align: center;
     color: #2a2a2a;
@@ -42,7 +38,6 @@ h1 {
     font-size: 2.5rem;
 }
 
-/* Tabs */
 .tabs {
     display: flex;
     justify-content: center;
@@ -70,7 +65,6 @@ h1 {
     transform: scale(1.1);
 }
 
-/* Tab Content */
 .tab-content {
     border-radius: 10px;
     background-color: #ffffff;
@@ -83,7 +77,6 @@ h1 {
     display: block;
 }
 
-/* Table General Styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -140,7 +133,6 @@ button {
     transition: all 0.3s ease;
 }
 
-/* Specific Styles for Add Buttons */
 button.add {
     background-color: #2f3061;
     color: #eaf8f8;
@@ -163,7 +155,6 @@ button.add:active {
     background-color: #ffd700;
 }
 
-/* Align Buttons to the Left and Add Spacing */
 .tab-content button.add {
     margin: 10px 0;
 }
@@ -178,20 +169,20 @@ button.add:active {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    overflow-y: auto; /* Enable vertical scrolling for the modal */
+    overflow-y: auto;
 }
 
 .modal-content {
-    max-width: 90%; /* Prevent the modal from being too wide */
-    max-height: 90%; /* Prevent the modal from being too tall */
-    overflow-y: auto; /* Allow scrolling if content exceeds the height */
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
     background-color: #ffffff;
     padding: 25px;
     border-radius: 12px;
     width: 400px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     position: relative;
-    margin: 20px; /* Add margin for better spacing on smaller screens */
+    margin: 20px;
 }
 
 .modal-content h2 {

@@ -12,14 +12,13 @@
         <a href="index.html" class="back-btn">Back to Main Menu</a>
     </header>
     <main class="container" id="pokemon-grid">
-        <!-- Pokémon cards will be rendered here -->
+        
     </main>
     <footer>
         &copy; 2024 Pokémon Inc. All Rights Reserved.
     </footer>
 
     <script>
-        // Define type logos for all 18 types
         const typeicons = {
             Normal: '/images/icons/normal.svg',
             Fire: '/images/icons/fire.svg',
@@ -49,10 +48,9 @@
             return response.json();
         })
         .then(data => {
-            console.log('Fetched data:', data); // Log fetched data
+            console.log('Fetched data:', data);
             const grid = document.getElementById('pokemon-grid');
             
-            // Render Pokémon cards
             grid.innerHTML = data.map(pokemon => `
                 <div class="card ${pokemon.isShiny ? 'shiny' : ''}" data-id="${pokemon.id}">
                     <div class="pokemon-logo">
@@ -66,7 +64,6 @@
                 </div>
             `).join('');
 
-            // Add click event listeners to open Pokémon page
             document.querySelectorAll('.card').forEach(card => {
                 card.addEventListener('click', () => {
                     const pokemonId = card.getAttribute('data-id');

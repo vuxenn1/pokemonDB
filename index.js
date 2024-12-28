@@ -118,7 +118,8 @@ app.get('/api/badges', (req, res) => {
 
 app.get('/api/pokedex', (req, res) => {
     const query = `
-        SELECT p.id, p.name, p.level, p.hp, p.ap, p.speed, t1.name AS primaryType, t2.name AS secondaryType, p.isShiny, p.logo_url as url 
+        SELECT p.id, p.name, p.level, p.hp, p.ap, p.speed, 
+        t1.name AS primaryType, t2.name AS secondaryType, p.isShiny, p.logo_url as url 
         FROM Pokemon p 
         JOIN PokemonType t1 ON t1.id = p.ptype 
         LEFT JOIN PokemonType t2 ON t2.id = p.stype;

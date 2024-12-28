@@ -1,34 +1,31 @@
-/* Reset and body styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7fff7; /* Soft light background */
-    color: #343434; /* Dark Gray text color */
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack content vertically */
-    min-height: 100vh; /* Ensure full viewport height */
+    background-color: #f7fff7;
+    color: #343434;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Header styles */
 header {
     text-align: center;
-    padding: 10px 2px; /* Reduced padding for a smaller header */
-    background-color: #2f3061; /* Dark Blue */
-    color: #ffe66d; /* Soft Yellow text */
+    padding: 10px 2px;
+    background-color: #2f3061;
+    color: #ffe66d;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Back to Main Menu Button in header */
 .back-btn {
-    background-color: #ffe66d; /* Soft Yellow */
-    color: #2f3061; /* Dark Blue text */
+    background-color: #ffe66d;
+    color: #2f3061;
     font-size: 1.1em;
-    padding: 14px 35px; /* Slightly larger padding for better proportion */
+    padding: 14px 35px;
     border: none;
-    border-radius: 50px; /* More rounded corners */
+    border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -36,17 +33,16 @@ header {
 }
 
 .back-btn:hover {
-    background-color: #ffcc00; /* Brighter yellow on hover */
-    transform: translateY(-3px); /* Slight elevation on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow on hover */
+    background-color: #ffcc00;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .back-btn:active {
-    background-color: #2f3061; /* Dark Blue on click */
-    color: #ffe66d; /* Keep text color soft yellow */
+    background-color: #2f3061;
+    color: #ffe66d;
 }
 
-/* Grid container styles */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -54,7 +50,7 @@ header {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    flex-grow: 1; /* Allow grid to take up available space */
+    flex-grow: 1;
 }
 
 .card {
@@ -64,7 +60,7 @@ header {
     padding: 25px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: white; /* Ensure text is readable */
+    color: white;
 }
 
 .card h3 {
@@ -82,12 +78,11 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer styles */
 footer {
     text-align: center;
     padding: 15px;
-    margin-top: auto; /* Push footer to the bottom */
+    margin-top: auto;
     font-size: 1em;
-    background-color: #2f3061; /* Dark Blue */
-    color: #ffe66d; /* Soft Yellow text */
+    background-color: #2f3061;
+    color: #ffe66d;
 }

@@ -44,7 +44,6 @@
         <div class="welcome-section">
             <h2>Welcome to PokémonDB</h2>
             <p>Explore the world of Pokémon.</p>
-            <!-- Added section for current type counts -->
             <p id="type-counts">Loading Pokémon type counts...</p>
         </div>
         <div class="random-pokemon-box">
@@ -58,7 +57,6 @@
                     
                     <p><strong>Lv.</strong> <span id="pokemon-level">N/A</span></p>
                     <div class="type-icons" id="type-icons">
-                        <!-- Type icons will be inserted dynamically -->
                     </div>
                     <a href="#"><p>Click for more information about <strong> <span id="pokemon-info">Unknown</span> </strong> </p></a>
                 </div>
@@ -73,14 +71,12 @@
     <script src="mainmenu.js"></script>
     <script src="splash.js"></script>
     <script>
-        // Fetch type info from the API
         fetch('/api/pokeinfo/typeinfo')
             .then(response => response.json())
             .then(data => {
                 const wildCount = data.find(item => item.typeName === 'Wild')?.count || 0;
                 const capturedCount = data.find(item => item.typeName === 'Captured')?.count || 0;
 
-                // Update the type-counts paragraph with the fetched data
                 const typeCountsElement = document.getElementById('type-counts');
                 typeCountsElement.innerHTML = `
                     <strong>Current Pokémon Type Counts:</strong><br>

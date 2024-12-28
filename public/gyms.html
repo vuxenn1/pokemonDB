@@ -46,7 +46,7 @@ fetch('/api/gyms')
     {
         const grid = document.getElementById('gym-grid');
         grid.innerHTML = data.map(gym => {
-            const bgColor = typeColors[gym.type_name] || '#ffffff'; // Default to white if no match
+            const bgColor = typeColors[gym.type_name] || '#ffffff';
             return `
                 <div class="card" style="background-color: ${bgColor};">
                     <p><small>#${gym.gym_id}</small></p>

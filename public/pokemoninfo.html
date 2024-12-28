@@ -14,18 +14,15 @@
 
     <main class="container">
         <div class="pokemon-info">
-            <!-- Pokémon image -->
             <div class="pokemon-img-container">
                 <img id="pokemon-img" src="" alt="Pokemon Image" class="pokemon-img">
             </div>
-            <!-- Details section -->
             <div class="pokemon-details">
                 <p><strong></strong> <span id="pokemon-id">Loading...</span></p>
                 <p><strong>Name:</strong> <span id="pokemon-name">Loading...</span></p>
                 <p>
                     <strong>Type:</strong>
                     <span id="pokemon-types" class="type-icons-container">
-                        <!-- Type icons will be injected here -->
                     </span>
                 </p>
                 <div class="pokemon-stat-bar">
@@ -60,18 +57,13 @@
                 <div class="pokemon-attribute strong-against">
                     <span>Strong Against:</span>
                     <div class="type-icons-container" id="strong-against-text">
-                        <!-- Dynamically populated strong icons -->
                     </div>
                 </div>
-            
-                <!-- Weak Against -->
                 <div class="pokemon-attribute weak-against">
                     <span>Weak Against:</span>
                     <div class="type-icons-container" id="weak-against-text">
-                        <!-- Dynamically populated weak icons -->
                     </div>
                 </div>
-
                 <div id="increment-modal" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('increment-modal')">&times;</span>
@@ -92,7 +84,6 @@
                         <p id="responseMessage"></p>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="navigation-buttons">
@@ -104,20 +95,16 @@
             </button>
         </div>        
     </main>
-
     <footer>
         &copy; 2024 Pokémon Inc.
     </footer>
     <script>
-        // Add a keydown event listener to the document
         document.addEventListener('keydown', function(event) {
-            // Check if the 'a' key is pressed
             if (event.key === 'a' || event.key === 'A' || event.key === 'ArrowLeft') {
-                document.getElementById('prev-btn').click(); // Simulate click on the "Previous" button
+                document.getElementById('prev-btn').click();
             }
-            // Check if the 'd' key is pressed
             else if (event.key === 'd' || event.key === 'D' || event.key === 'ArrowRight') {
-                document.getElementById('next-btn').click(); // Simulate click on the "Next" button
+                document.getElementById('next-btn').click();
             }
         });
     </script>
@@ -125,8 +112,6 @@
         const params = new URLSearchParams(window.location.search);
         const pokemonId = params.get('id');
         const pokemonType = params.get('pType')
-    
-        // Define type icons
         const typeicons = {
             Normal: '/images/icons/normal.svg',
             Fire: '/images/icons/fire.svg',
@@ -147,8 +132,7 @@
             Steel: '/images/icons/steel.svg',
             Fairy: '/images/icons/fairy.svg'
         };
-        // Fetch the Pokémon data from API
-                fetch('/api/pokedex')
+        fetch('/api/pokedex')
                 .then(response => response.json())
                 .then(data => {
                     const pokemon = data.find(p => p.id == pokemonId);
@@ -157,24 +141,21 @@
                 .then(strongWeakData => {
                     if (strongWeakData && strongWeakData.length > 0) {
                         const typeData = strongWeakData[0];
-                        // Update HTMLs elements
                         if (typeData.strong_against) {
-                        const strongTypes = typeData.strong_against.split(','); // Split the string by commas
+                        const strongTypes = typeData.strong_against.split(',');
                         document.getElementById('strong-against-text').innerHTML = strongTypes
                             .map(type => `<img src="${typeicons[type.trim()]}" alt="${type.trim()}" title="${type.trim()}" class="type-icon">`)
-                            .join(''); // Generate HTML for each type icon and join them together
+                            .join('');
                     } else {
-                        document.getElementById('strong-against-text').textContent = 'None'; // If no strong types, display 'None'
+                        document.getElementById('strong-against-text').textContent = 'None';
                     }
-
-                    // Populate the "Weak Against" section with icons
                     if (typeData.weak_against) {
-                        const weakTypes = typeData.weak_against.split(','); // Split the string by commas
+                        const weakTypes = typeData.weak_against.split(',');
                         document.getElementById('weak-against-text').innerHTML = weakTypes
                             .map(type => `<img src="${typeicons[type.trim()]}" alt="${type.trim()}" title="${type.trim()}" class="type-icon">`)
-                            .join(''); // Generate HTML for each type icon and join them together
+                            .join('');
                     } else {
-                        document.getElementById('weak-against-text').textContent = 'None'; // If no weak types, display 'None'
+                        document.getElementById('weak-against-text').textContent = 'None';
                     }
                     }
                 })
@@ -182,11 +163,8 @@
                     console.error('Error loading strong/weak data:', err);
                 });
                 if (pokemon) {
-                    // Set the page title and header to Pokémon's name
                     document.title = `${pokemon.name} Info`;
                     document.getElementById('page-header').textContent = `${pokemon.name}`;
-    
-                    // Update Pokémon details
                     document.getElementById('pokemon-img').src = pokemon.url;
                     document.getElementById('pokemon-img').title = `${pokemon.name}`;
                     document.getElementById('pokemon-id').textContent = `#${pokemon.id}`;
@@ -194,17 +172,12 @@
                     document.getElementById('pokemon-hp').textContent = pokemon.hp;
                     document.getElementById('pokemon-ap').textContent = pokemon.ap;
                     document.getElementById('pokemon-speed').textContent = pokemon.speed;
-                    
-    
-                    // Display type icons
                     const typesContainer = document.getElementById('pokemon-types');
                     typesContainer.innerHTML = `
                         <img src="${typeicons[pokemon.primaryType]}" alt="${pokemon.primaryType}" title="${pokemon.primaryType}" class="type-icon">
                         ${pokemon.secondaryType ? `<img src="${typeicons[pokemon.secondaryType]}" alt="${pokemon.secondaryType}" title="${pokemon.secondaryType}" class="type-icon">` : ''}
                     `;
-                    
                 } else {
-                    // Handle the case where Pokémon is not found
                     document.getElementById('pokemon-id').textContent = "Not Found";
                     document.getElementById('pokemon-name').textContent = "Unknown";
                     document.getElementById('pokemon-types').innerHTML = "";
@@ -224,43 +197,32 @@
             const newId = (currentId + direction - 1 + MAX_POKEMON_ID) % MAX_POKEMON_ID + 1;
             window.location.href = `/pokemoninfo.html?id=${newId}`;
         }
-
-        // Dynamically fetch the total Pokémon count
-        let MAX_POKEMON_ID = 151; // Default value (fallback)
+        let MAX_POKEMON_ID = 151;
         fetch('/api/pokedex')
             .then(response => response.json())
             .then(data => {
-                MAX_POKEMON_ID = data.length; // Set the total count dynamically
+                MAX_POKEMON_ID = data.length;
             })
             .catch(err => console.error('Error fetching Pokémon count:', err));
     </script>
     <script>
-
         function closeModal(modalId)
         {
             document.getElementById(modalId).style.display = "none";
         }
-        
-        // Function to update the stat bars
         function updateStatBar(statBarId, value, maxValue) {
             const statBar = document.getElementById(statBarId);
             const statValue = document.getElementById(statBarId.replace('-bar', ''));
             const percentage = (value / maxValue) * 100;
-
-            // Update the bar width
             statBar.style.width = `${percentage}%`;
-
-            // Update the value display
             if (statValue) {
                 statValue.textContent = value;
             }
         }
-        // Example: Fetching data and updating bars
         fetch('/api/pokedex')
             .then(response => response.json())
             .then(data => {
                 const pokemon = data.find(p => p.id == pokemonId);
-
                 if (pokemon) {
                     updateStatBar('pokemon-hp-bar', pokemon.hp, 255);
                     updateStatBar('pokemon-ap-bar', pokemon.ap, 255);
@@ -269,69 +231,47 @@
             })
             .catch(err => console.error('Error loading Pokémon details', err));
     </script>
-    
     <script>
-        const modal = document.getElementById('increment-modal'); // Modal container
-        const closeModalBtn = document.querySelector('.close'); // Close button in the modal
-        const applyIncrementBtn = document.getElementById('apply-increment-btn'); // Apply button in modal
-        const incrementValueInput = document.getElementById('increment-value'); // Input field for increment
-    
-        // Elements displaying stat values and buttons
+        const modal = document.getElementById('increment-modal');
+        const closeModalBtn = document.querySelector('.close');
+        const applyIncrementBtn = document.getElementById('apply-increment-btn');
+        const incrementValueInput = document.getElementById('increment-value');
         const hpElement = document.getElementById('pokemon-hp');
         const apElement = document.getElementById('pokemon-ap');
         const spElement = document.getElementById('pokemon-speed');
-    
         const hpBar = document.getElementById('pokemon-hp-bar');
         const apBar = document.getElementById('pokemon-ap-bar');
         const spBar = document.getElementById('pokemon-speed-bar');
-    
-        // Keep track of which stat is being incremented
         let currentStat = null;
-    
-        // Add event listeners to increment buttons
         document.getElementById('increment-hp-btn').addEventListener('click', () => openModal('hp'));
         document.getElementById('increment-ap-btn').addEventListener('click', () => openModal('ap'));
         document.getElementById('increment-sp-btn').addEventListener('click', () => openModal('speed'));
-    
-        // Function to open the modal and set the current stat
         function openModal(stat) {
-            currentStat = stat; // Store which stat button was clicked
+            currentStat = stat;
             modal.style.display = 'block';
-            incrementValueInput.value = ''; // Clear the input field
+            incrementValueInput.value = '';
         }
-    
-        // Close modal when "X" is clicked
         closeModalBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
-    
-        // Close modal if user clicks outside the modal
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
-    
-        // Function to apply the increment and update the stat
         applyIncrementBtn.addEventListener('click', () => {
-            const incrementValue = parseInt(incrementValueInput.value, 10); // Get the increment value
-
+            const incrementValue = parseInt(incrementValueInput.value, 10);
             if (!isNaN(incrementValue) && incrementValue > 0) {
-                // Assume you have a way to get the current Pokémon ID (from an attribute or selection)
                 const params = new URLSearchParams(window.location.search);
                 const pokemonId = params.get('id');
-                const stat = currentStat; // This should be 'hp', 'ap', or 'sp'
-                // Call API to update the stat
+                const stat = currentStat;
                 updateStatThroughAPI(pokemonId, stat, incrementValue);
-                
-                modal.style.display = 'none'; // Close the modal
-                incrementValueInput.value = ''; // Reset input field
+                modal.style.display = 'none';
+                incrementValueInput.value = '';
             } else {
                 alert('Please enter a valid positive number.');
             }
         });
-
-        // Function to update the stat through API
         function updateStatThroughAPI(id, stat, incrementValue) {
             fetch('http://localhost:3000/api/increment', {
                 method: 'POST',
@@ -341,7 +281,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
-                    alert(data.message); // Show success message from API
+                    alert(data.message);
                 } else {
                     alert('Something went wrong while updating the stat.');
                 }
@@ -351,84 +291,58 @@
                 alert('Failed to update Pokémon stat.');
             });
         }
-    
-        // Function to update the stat value and bar
         function updateStat(statElement, barElement, incrementValue) {
-            const maxValue = 255; // Assuming maximum value for stats
+            const maxValue = 255;
             let currentValue = parseInt(statElement.textContent, 10) || 0;
-    
-            // Update the stat value
-            const newValue = Math.min(currentValue + incrementValue, maxValue); // Prevent exceeding max value
+            const newValue = Math.min(currentValue + incrementValue, maxValue);
             statElement.textContent = newValue;
-    
-            // Update the bar width (percentage-based)
             const percentage = (newValue / maxValue) * 100;
             barElement.style.width = `${percentage}%`;
         }
     </script>
     <script>
-        const d_modal = document.getElementById('decrement-modal'); // Modal container
-        const d_closeModalBtn = document.querySelector('.close'); // Close button in the modal
-        const applyDecrementBtn = document.getElementById('apply-decrement-btn'); // Apply button in modal
-        const decrementValueInput = document.getElementById('decrement-value'); // Input field for increment
+        const d_modal = document.getElementById('decrement-modal');
+        const d_closeModalBtn = document.querySelector('.close');
+        const applyDecrementBtn = document.getElementById('apply-decrement-btn');
+        const decrementValueInput = document.getElementById('decrement-value');
         console.log("selected");
-        // Elements displaying stat values and buttons
         const d_hpElement = document.getElementById('pokemon-hp');
         const d_apElement = document.getElementById('pokemon-ap');
         const d_spElement = document.getElementById('pokemon-speed');
-    
         const d_hpBar = document.getElementById('pokemon-hp-bar');
         const d_apBar = document.getElementById('pokemon-ap-bar');
         const d_spBar = document.getElementById('pokemon-speed-bar');
-    
-        // Keep track of which stat is being incremented
         let d_currentStat = null;
-    
-        // Add event listeners to increment buttons
         document.getElementById('decrement-hp-btn').addEventListener('click', () => d_openModal('hp'));
         document.getElementById('decrement-ap-btn').addEventListener('click', () => d_openModal('ap'));
         document.getElementById('decrement-sp-btn').addEventListener('click', () => d_openModal('speed'));
-    
-        // Function to open the modal and set the current stat
         function d_openModal(stat) {
-            d_currentStat = stat; // Store which stat button was clicked
+            d_currentStat = stat;
             d_modal.style.display = 'block';
-            decrementValueInput.value = ''; // Clear the input field
+            decrementValueInput.value = '';
         }
-    
-        // Close modal when "X" is clicked
         d_closeModalBtn.addEventListener('click', () => {
             console.log(d_closeModalBtn);
             d_modal.style.display = 'none';
         });
-    
-        // Close modal if user clicks outside the modal
         window.addEventListener('click', (event) => {
             if (event.target === d_modal) {
                 d_modal.style.display = 'none';
             }
         });
-    
-        // Function to apply the increment and update the stat
         applyDecrementBtn.addEventListener('click', () => {
-            const decrementValue = parseInt(decrementValueInput.value, 10); // Get the increment value
-
+            const decrementValue = parseInt(decrementValueInput.value, 10);
             if (!isNaN(decrementValue) && decrementValue > 0) {
-                // Assume you have a way to get the current Pokémon ID (from an attribute or selection)
                 const params = new URLSearchParams(window.location.search);
                 const pokemonId = params.get('id');
-                const stat = d_currentStat; // This should be 'hp', 'ap', or 'sp'
-                // Call API to update the stat
+                const stat = d_currentStat;
                 d_updateStatThroughAPI(pokemonId, stat, decrementValue);
-                
-                d_modal.style.display = 'none'; // Close the modal
-                decrementValueInput.value = ''; // Reset input field
+                d_modal.style.display = 'none';
+                decrementValueInput.value = '';
             } else {
                 alert('Please enter a valid positive number.');
             }
         });
-
-        // Function to update the stat through API
         function d_updateStatThroughAPI(id, stat, decrementValue) {
             fetch('http://localhost:3000/api/decrement', {
                 method: 'POST',
@@ -438,7 +352,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
-                    alert(data.message); // Show success message from API
+                    alert(data.message);
                 } else {
                     alert('Something went wrong while updating the stat.');
                 }
@@ -448,17 +362,11 @@
                 alert('Failed to update Pokémon stat.');
             });
         }
-    
-        // Function to update the stat value and bar
         function d_updateStat(statElement, barElement, decrementValue) {
-            const maxValue = 255; // Assuming maximum value for stats
+            const maxValue = 255;
             let currentValue = parseInt(statElement.textContent, 10) || 0;
-    
-            // Update the stat value
-            const newValue = Math.min(currentValue + decrementValue, maxValue); // Prevent exceeding max value
+            const newValue = Math.min(currentValue + decrementValue, maxValue);
             statElement.textContent = newValue;
-    
-            // Update the bar width (percentage-based)
             const percentage = (newValue / maxValue) * 100;
             barElement.style.width = `${percentage}%`;
         }
@@ -466,7 +374,6 @@
     <script>
         function decrementSpeed() {
             const decrementValue = document.getElementById('decrementValue').value;
-
             if (!decrementValue || isNaN(decrementValue)) {
                 alert("Please enter a valid decrement value.");
                 return;
@@ -493,7 +400,6 @@
     <script>
         function incrementSpeed() {
             const incrementValue = document.getElementById('incrementValue').value;
-
             if (!incrementValue || isNaN(incrementValue)) {
                 alert("Please enter a valid increment value.");
                 return;

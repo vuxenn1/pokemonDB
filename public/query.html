@@ -34,7 +34,6 @@
             <button type="submit">Run Query</button>
         </form>
         <div id="query-results">
-            <!-- Query results will appear here -->
         </div>
         <button id="download-pdf">Download as PDF</button>
     </div>
@@ -60,10 +59,10 @@
 
                     if (data.error) {
                         resultsDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
-                        downloadButton.style.display = "none"; // Hide button on error
+                        downloadButton.style.display = "none";
                     } else if (data.message) {
                         resultsDiv.innerHTML = `<p>${data.message}</p>`;
-                        downloadButton.style.display = "none"; // Hide button for non-SELECT queries
+                        downloadButton.style.display = "none";
                     } else {
                         const table = document.createElement("table");
                         const thead = document.createElement("thead");

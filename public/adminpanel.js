@@ -394,16 +394,11 @@ function initializeBadgeFormHandler(formSelector, buttonSelector) {
     });
 }
 
-// Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () =>
 {
-    // Switch to the Pokémon tab
     switchTab('pokemon');
-    
-    // Fetch Pokémon list
     fetchPokemon();
 
-    // Initialize custom button form handler
     initializePokemonFormHandler('#pokemon-modal form', '#submit-pokemon');
     initializeItemFormHandler('#item-modal form', '#submit-item');
     initializeBadgeFormHandler('#badge-modal form', '#submit-badge');

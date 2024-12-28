@@ -88,19 +88,19 @@ footer {
 }
 
 .card .pokemon-link {
-    color: #007bff; /* Blue for Pokémon links */
-    text-decoration: none; /* Remove underline */
+    color: #007bff;
+    text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s, transform 0.3s ease-in-out; /* Smooth transition */
+    transition: color 0.3s, transform 0.3s ease-in-out;
 }
 
 .card .pokemon-link:hover {
-    color: #ff5733; /* Change to orange/red on hover */
-    transform: scale(1.1); /* Slightly enlarge the link */
-    text-decoration: underline; /* Underline on hover */
+    color: #ff5733;
+    transform: scale(1.1);
+    text-decoration: underline;
 }
 
 .card .pokemon-link:active {
-    color: #e74c3c; /* Darker color when clicked */
-    transform: scale(1); /* Reset scale on click */
+    color: #e74c3c;
+    transform: scale(1);
 }

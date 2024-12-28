@@ -1,26 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Dynamically load splash.css
     const splashStyle = document.createElement("link");
     splashStyle.rel = "stylesheet";
-    splashStyle.href = "splash.css"; // Path to your splash.css file
+    splashStyle.href = "splash.css";
     document.head.appendChild(splashStyle);
 
-    // Create splash screen element
     const splashScreen = document.createElement("div");
     splashScreen.id = "splash-screen";
     splashScreen.innerHTML = `
-        <img src="/images/pokeball.gif" class="pokeball" alt="Loading...">
+        <img src="/images/load_screen/pokeball.gif" class="pokeball" alt="Loading...">
     `;
-
-    // Add the splash screen to the DOM
     document.body.appendChild(splashScreen);
 
-    // Remove the splash screen after 1 second
     setTimeout(() => {
-        splashScreen.style.opacity = "0"; // Fade-out effect
+        splashScreen.style.opacity = "0";
         setTimeout(() => {
-            splashScreen.remove(); // Remove splash screen
-            splashStyle.remove(); // Remove splash.css from the page
+            splashScreen.remove();
+            splashStyle.remove();
         }, 500);
-    }, 1000); // Visible duration
+    }, 1000);
 });
